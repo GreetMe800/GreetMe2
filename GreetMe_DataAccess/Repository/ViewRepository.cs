@@ -103,29 +103,16 @@ namespace GreetMe_DataAccess.Repository
         //Delete
         public void Delete(int id)
         {
-            _db.Screens.Remove(GetById(id));
+            _db.Views.Remove(GetById(id));
             _db.SaveChanges();
         }
 
         //Delete Async
         public async void DeleteAsync(int id)
         {
-            _db.Screens.Remove(await GetByIdAsync(id));
+            _db.Views.Remove(await GetByIdAsync(id));
             await _db.SaveChangesAsync();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
