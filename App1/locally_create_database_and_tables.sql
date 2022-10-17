@@ -13,7 +13,11 @@ GO
 
 CREATE TABLE [dbo].[views](
 	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	[view_name] [nvarchar](50) NOT NULL
+	[view_name] [nvarchar](50) NOT NULL,
+	[has_current_datetime] [bit] NOT NULL,
+	[has_birthday] [bit] NOT NULL,
+	[has_anniversary] [bit] NOT NULL,
+	[has_menu] [bit] NOT NULL
 	)
 GO
 
