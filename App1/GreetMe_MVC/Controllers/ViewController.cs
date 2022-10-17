@@ -26,13 +26,13 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Create(CreateViewModel model) 
         {
 
-            //var request = new RestRequest("api/View", Method.Post);
-            //request.AddJsonBody(model);
-            //var response = client.Execute(request);
-            //if (response.StatusCode != System.Net.HttpStatusCode.OK)
-            //{
-            //    throw new Exception();
-            //}
+            var request = new RestRequest("api/View", Method.Post);
+            request.AddJsonBody(model);
+            var response = client.Execute(request);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception();
+            }
 
 
             ViewData["Message"] = string.Format("View Oprettet");
