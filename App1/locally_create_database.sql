@@ -1,0 +1,7 @@
+﻿/* CREATE WEXO_GREET_ME DATABASE */
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'WEXO_GreetMe')
+	BEGIN
+		CREATE DATABASE [WEXO_GreetMe];
+	END;
+GO
