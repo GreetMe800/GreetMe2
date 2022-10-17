@@ -12,7 +12,7 @@
 
         public Boolean Calendar { get; set; }
 
-        public Boolean TadayMenu { get; set; }
+        public Boolean TodaysMenu { get; set; }
 
 
     }
