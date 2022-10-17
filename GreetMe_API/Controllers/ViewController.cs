@@ -14,7 +14,7 @@ using GreetMe_DataAccess.Interface;
 namespace GreetMe_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
 
     public class ViewController : Controller
     {
@@ -79,7 +79,13 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-
+        //Create View
+        [HttpPost]
+        public ActionResult Create(View view)
+        {
+            var viewDto = ViewDTOConverter.ConvertTo(view);
+            return Ok(view);
+        }
 
         //-----------------------------------------------------------------------------
         /* Update                                                                    */
