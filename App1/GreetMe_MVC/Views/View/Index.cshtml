@@ -4,14 +4,21 @@
 @{
 }
 <form asp-controller="View" asp-action="Create" method="post">
+   <p>Input name here:</p>
+    <input type="text" name="Name" value="" /><br>
+
     <input type="checkbox" id="vehicle1" name="DateOfBirth" value="True">
     <label for="vehicle1"> Show birthday</label><br>
+
     <input type="checkbox" id="vehicle2" name="HiringDate" value="True">
-    <label for="vehicle2"> show anniversary</label><br>
+    <label for="vehicle2"> Show anniversary</label><br>
+
     <input type="checkbox" id="vehicle3" name="Calendar" value="True">
-    <label for="vehicle3"> show calendar</label><br><br>
-    <input type="checkbox" id="vehicle3" name="TadaysMeny" value="True">
-    <label for="vehicle3"> show menu</label><br><br>
+    <label for="vehicle3"> Show calendar</label><br>
+
+    <input type="checkbox" id="vehicle3" name="TadaysMenu" value="True">
+    <label for="vehicle3"> Show menu</label><br><br />
+
     <input type="submit" value="Submit">
 
 
