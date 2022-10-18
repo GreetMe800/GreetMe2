@@ -36,7 +36,7 @@ namespace GreetMe_MVC.Controllers
 
 
             ViewData["Message"] = string.Format("View Oprettet");
-            return Index();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
