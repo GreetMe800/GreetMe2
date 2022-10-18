@@ -26,7 +26,7 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Create(CreateViewModel model) 
         {
 
-            var request = new RestRequest("api/View", Method.Post);
+            var request = new RestRequest("https://localhost:7259/api/View", Method.Post);
             request.AddJsonBody(model);
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)

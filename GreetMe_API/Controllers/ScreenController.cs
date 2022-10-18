@@ -31,12 +31,12 @@ namespace GreetMe_API.Controllers
         /* GetAll                                                                    */
         //-----------------------------------------------------------------------------
 
-        //GetAll
-        [HttpGet(Name = "GetAllScreens")]
-        public IEnumerable<Screen> GetAll()
-        {
-            return _screenRepository.GetAll();
-        }
+        ////GetAll
+        //[HttpGet(Name = "GetAllScreens")]
+        //public IEnumerable<Screen> GetAll()
+        //{
+        //    return _screenRepository.GetAll();
+        //}
 
         //GetAll Async
         [HttpGet(Name = "GetAllScreensAsync")]

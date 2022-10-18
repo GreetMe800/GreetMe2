@@ -1,3 +1,8 @@
+using GreetMe_DataAccess.Interface;
+using GreetMe_DataAccess.Model;
+using GreetMe_DataAccess.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<WEXO_GreetMeContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GreetMeLocal"));
+});
+builder.Services.AddScoped<IViewRepository, ViewRepository>();
+builder.Services.AddScoped<IScreenRepository, ScreenRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 

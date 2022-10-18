@@ -31,12 +31,12 @@ namespace GreetMe_API.Controllers
         /* GetAll                                                                    */
         //-----------------------------------------------------------------------------
 
-        //GetAll
-        [HttpGet(Name = "GetAllViews")]
-        public IEnumerable<View> GetAll()
-        {
-            return _viewRepository.GetAll();
-        }
+        ////GetAll
+        //[HttpGet(Name = "GetAllViews")]
+        //public IEnumerable<View> GetAll()
+        //{
+        //    return _viewRepository.GetAll();
+        //}
 
         //GetAll Async
         [HttpGet(Name = "GetAllViewsAsync")]
