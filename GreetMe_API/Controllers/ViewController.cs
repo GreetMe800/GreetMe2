@@ -10,6 +10,7 @@ using GreetMe_DataAccess.Repository;
 using GreetMe_DataAccess.DTO;
 using GreetMe_API.ModelConversion;
 using GreetMe_DataAccess.Interface;
+using GreetMe_API.TestClasses;
 
 namespace GreetMe_API.Controllers
 {
@@ -87,9 +88,10 @@ namespace GreetMe_API.Controllers
         //    return Ok(view);
         //}
 
-        public ActionResult Post(bool dateOfBirth)
+        public ActionResult Create(ViewDto viewDto)
         {
-            //View view = ViewDTOConverter.ConvertFrom(viewDto);
+            View view = ViewDTOConverter.ConvertFrom(viewDto);
+            _viewRepository.Create(view);
             return Ok();
         }
 
