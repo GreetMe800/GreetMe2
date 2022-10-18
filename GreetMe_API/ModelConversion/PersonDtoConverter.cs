@@ -18,10 +18,14 @@ namespace GreetMe_API.ModelConversion
         }
 
         //Convert from PersonDto
-        public static Person ConvertFrom(PersonDto person)
+        public static Person ConvertFrom(PersonDto dto)
         {
-            //TODO
-            throw new NotImplementedException();
+            Person person = new Person();
+            person.Id = dto.Id;
+            person.FullName = dto.FullName;
+            person.DateOfBirth = dto.DateOfBirth;
+            person.HiringDate = dto.HiringDate;
+            return person;
         }
     }
 }

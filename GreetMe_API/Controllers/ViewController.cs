@@ -87,9 +87,10 @@ namespace GreetMe_API.Controllers
         //    return Ok(view);
         //}
 
-        public ActionResult Post([FromBody] ViewDto viewDto)
+        public ActionResult Post(bool dateOfBirth)
         {
-            View view = ViewDTOConverter.ConvertTo(viewDto);
+            //View view = ViewDTOConverter.ConvertFrom(viewDto);
+            return Ok();
         }
 
         //-----------------------------------------------------------------------------

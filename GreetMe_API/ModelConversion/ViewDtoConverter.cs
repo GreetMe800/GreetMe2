@@ -20,10 +20,16 @@ namespace GreetMe_API.ModelConversion
         }
 
         //Convert from ViewDto
-        public static View ConvertFrom(ViewDto view)
+        public static View ConvertFrom(ViewDto dto)
         {
-            //TODO
-            throw new NotImplementedException();
+            View view = new View();
+            view.Id = dto.Id;
+            view.ViewName = dto.ViewName;
+            view.HasCurrentDatetime = dto.HasCurrentDatetime;
+            view.HasBirthday = dto.HasBirthday;
+            view.HasAnniversary = dto.HasAnniversary;
+            view.HasMenu = dto.HasMenu;
+            return view;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace GreetMe_API.ModelConversion
 {
     public static class ScreenDTOConverter
     {
-        //Convert to PersonDto
+        //Convert to ScreenDto
         public static ScreenDto ConvertTo(Screen screen)
         {
             ScreenDto screenDto = new ScreenDto(
@@ -15,11 +15,13 @@ namespace GreetMe_API.ModelConversion
             return screenDto;
         }
 
-        //Convert from PersonDto
-        public static Screen ConvertFrom(ScreenDto screen)
+        //Convert from ScreenDto
+        public static Screen ConvertFrom(ScreenDto dto)
         {
-            //TODO
-            throw new NotImplementedException();
+            Screen screen = new Screen();
+            screen.Id = dto.Id;
+            screen.ScreenName = dto.ScreenName;
+            return screen;
         }
     }
 }
