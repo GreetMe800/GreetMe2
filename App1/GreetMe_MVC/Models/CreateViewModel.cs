@@ -5,14 +5,10 @@
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        public Boolean DateOfBirth { get; set; }
-
-        public Boolean HiringDate { get; set; }
-
-        public Boolean Calendar { get; set; }
-
-        public Boolean TodaysMenu { get; set; }
+        public bool HasCurrentDatetime { get; set; }
+        public bool HasBirthday { get; set; }
+        public bool HasAnniversary { get; set; }
+        public bool HasMenu { get; set; }
 
 
     }
