@@ -81,10 +81,15 @@ namespace GreetMe_API.Controllers
 
         //Create View
         [HttpPost]
-        public ActionResult Create(View view)
+        //public ActionResult Create(View view)
+        //{
+        //    var viewDto = ViewDTOConverter.ConvertTo(view);
+        //    return Ok(view);
+        //}
+
+        public ActionResult Post([FromBody] ViewDto viewDto)
         {
-            var viewDto = ViewDTOConverter.ConvertTo(view);
-            return Ok(view);
+            View view = ViewDTOConverter.ConvertTo(viewDto);
         }
 
         //-----------------------------------------------------------------------------
