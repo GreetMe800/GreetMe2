@@ -47,6 +47,18 @@ namespace GreetMe_DataAccess.Repository
             return await _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToListAsync();
         }
 
+        //GetAll by Anniversary
+        public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
+        {
+            return _db.People.Where(p => p.HiringDate.Equals(datetime)).ToList();
+        }
+
+        //GetAll by Anniversary Async
+        public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
+        {
+            return await _db.People.Where(p => p.HiringDate.Equals(datetime)).ToListAsync();
+        }
+
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------

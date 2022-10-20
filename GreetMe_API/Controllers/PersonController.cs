@@ -64,7 +64,7 @@ namespace GreetMe_API.Controllers
             //if person is found
             if (foundPerson is not null)
             {
-                PersonDto personDto = PersonDTOConverter.ConvertTo(foundPerson);
+                PersonDto personDto = PersonDTOConverter.ConvertToDto(foundPerson);
                 return Ok(personDto);
             }
 
@@ -75,18 +75,32 @@ namespace GreetMe_API.Controllers
             }
         }
 
-        //getall by birthday async
+        //getall by birthday
         [HttpGet("{dateofbirth}")]
-        public IEnumerable<PersonDto> GetAllByBirthdayAsync(DateTime datetime)
+        public IEnumerable<PersonDto> GetAllByBirthday(DateTime datetime)
         {
 
             IEnumerable<Person> listPeople = _personRepository.GetAllByBirthday(datetime);
             List<PersonDto> listPeopleDto = new List<PersonDto>();
             foreach (Person person in listPeople)
             {
-                listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
+                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
             }
 
+            return listPeopleDto;
+        }
+
+        //getall Anniversary
+        [HttpGet("{HttpGet{anniversary}")]
+        public IEnumerable<PersonDto> GetAllByAnniversary(DateTime datetime)
+        {
+
+            IEnumerable<Person> listPeople = _personRepository.GetAllByAnniversary(datetime);
+            List<PersonDto> listPeopleDto = new List<PersonDto>();
+            foreach (Person person in listPeople)
+            {
+                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
+            }
 
             return listPeopleDto;
         }

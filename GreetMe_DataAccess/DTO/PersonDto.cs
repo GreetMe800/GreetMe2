@@ -26,6 +26,13 @@ namespace GreetMe_DataAccess.DTO
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
         }
+
+        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate)
+        {
+            FullName = fulleName;
+            DateOfBirth = dateOfBirth;
+            HiringDate = hiringDate;
+        }
     }
 
     
