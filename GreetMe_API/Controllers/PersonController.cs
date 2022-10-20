@@ -95,7 +95,22 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
+        [HttpPost]
+        public async Task<ActionResult> Create(PersonDto personDto)
+        {
+            Person person = PersonDTOConverter.ConvertFrom(personDto);
+            Person personSaved = await _personRepository.CreateAsync(person);          
+            if (personSaved is not null)
+            {
+                return Ok();
+            }
+            else
+            {
+                return new StatusCodeResult(304);
+            }
 
+
+        }
 
         //-----------------------------------------------------------------------------
         /* Update                                                                    */
