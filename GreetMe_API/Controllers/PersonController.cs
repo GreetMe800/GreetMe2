@@ -75,9 +75,9 @@ namespace GreetMe_API.Controllers
             }
         }
 
-        //getall by birthday async
+        //getall by birthday
         [HttpGet("{dateofbirth}")]
-        public IEnumerable<PersonDto> GetAllByBirthdayAsync(DateTime datetime)
+        public IEnumerable<PersonDto> GetAllByBirthday(DateTime datetime)
         {
 
             IEnumerable<Person> listPeople = _personRepository.GetAllByBirthday(datetime);
@@ -87,6 +87,20 @@ namespace GreetMe_API.Controllers
                 listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
             }
 
+            return listPeopleDto;
+        }
+
+        //getall Anniversary
+        [HttpGet("{HttpGet{anniversary}")]
+        public IEnumerable<PersonDto> GetAllByAnniversary(DateTime datetime)
+        {
+
+            IEnumerable<Person> listPeople = _personRepository.GetAllByAnniversary(datetime);
+            List<PersonDto> listPeopleDto = new List<PersonDto>();
+            foreach (Person person in listPeople)
+            {
+                listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
+            }
 
             return listPeopleDto;
         }

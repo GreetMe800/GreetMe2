@@ -18,7 +18,13 @@ namespace GreetMe_DataAccess.Interface
 
         //GetAll by Birthday Async
         Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime);
-        
+
+        //GetAll by Birthday
+        IEnumerable<Person> GetAllByAnniversary(DateTime datetime);
+
+        //GetAll by Birthday Async
+        Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime);
+
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
