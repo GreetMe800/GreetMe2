@@ -64,7 +64,7 @@ namespace GreetMe_API.Controllers
             //if person is found
             if (foundPerson is not null)
             {
-                PersonDto personDto = PersonDTOConverter.ConvertTo(foundPerson);
+                PersonDto personDto = PersonDTOConverter.ConvertToDto(foundPerson);
                 return Ok(personDto);
             }
 
@@ -84,7 +84,7 @@ namespace GreetMe_API.Controllers
             List<PersonDto> listPeopleDto = new List<PersonDto>();
             foreach (Person person in listPeople)
             {
-                listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
+                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
             }
 
             return listPeopleDto;
@@ -99,7 +99,7 @@ namespace GreetMe_API.Controllers
             List<PersonDto> listPeopleDto = new List<PersonDto>();
             foreach (Person person in listPeople)
             {
-                listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
+                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
             }
 
             return listPeopleDto;
