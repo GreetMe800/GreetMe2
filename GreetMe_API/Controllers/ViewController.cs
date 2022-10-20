@@ -76,6 +76,31 @@ namespace GreetMe_API.Controllers
             }
         }
 
+        [HttpGet("{viewName}")]
+        public ActionResult<ViewDto> GetByViewName(int id)
+        {
+            //Input validator, 0 <
+            if (id <= 0)
+            {
+                return new StatusCodeResult(422);
+            }
+
+            View? foundView = _viewRepository.GetByIdWithDep(id);
+
+            //if view is found
+            if (foundView is not null)
+            {
+                ViewDto viewDto = ViewDTOConverter.ConvertTo(foundView);
+                return Ok(viewDto);
+            }
+
+            //if not found
+            else
+            {
+                return new StatusCodeResult(404);
+            }
+        }
+
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------

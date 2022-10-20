@@ -25,13 +25,15 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<View> GetAll()
         {
-            return _db.Views.ToList();
+            return _db.Views
+                .ToList();
         }
 
         //GetAll Aync
         public async Task<IEnumerable<View>> GetAllAsync()
         {
-            return await _db.Views.ToListAsync();
+            return await _db.Views
+                .ToListAsync();
         }
 
         //GetAll WithDep
@@ -44,17 +46,25 @@ namespace GreetMe_DataAccess.Repository
         //GetBy Id
         public View? GetById(int id)
         {
-            return _db.Views.FirstOrDefault(v => v.Id == id);
+            return _db.Views
+                .FirstOrDefault(v => v.Id == id);
         }
 
         //GetBy Id Async
         public async Task<View?> GetByIdAsync(int id)
         {
-            return await _db.Views.FirstOrDefaultAsync(v => v.Id == id);
+            return await _db.Views
+                .FirstOrDefaultAsync(v => v.Id == id);
         }
 
         //GetBy Id WithDep
-        //TODO
+        public View? GetByIdWithDep(int id)
+        {
+            View? View = _db.Views
+                .Include(s => s.Screens)
+                .FirstOrDefault(x => x.Id == id);
+            return View;
+        }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
