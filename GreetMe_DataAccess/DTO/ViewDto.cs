@@ -15,6 +15,12 @@ namespace GreetMe_DataAccess.DTO
         public bool HasAnniversary { get; set; }
         public bool HasMenu { get; set; }
 
+        public List<PersonDto> BirthdaysToday { get; set; }
+
+        public List<PersonDto> AnniversarysToday { get; set; }
+
+        // TODO: Tilføj menu object med hvilken uge det er og menuen for de dage
+
         public ViewDto()
         {
 
