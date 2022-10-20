@@ -41,9 +41,19 @@ namespace GreetMe_API.Controllers
 
         //GetAll Async
         [HttpGet(Name = "GetAllViewsAsync")]
-        public async Task<IEnumerable<View>> GetAllAsync()
+        public async Task<IEnumerable<ViewDto>> GetAllAsync()
         {
-            return await _viewRepository.GetAllAsync();
+
+            List<View> views = (List<View>)await _viewRepository.GetAllAsync();
+            
+            List<ViewDto> viewDtos = new List<ViewDto>();
+            foreach(View v in views) 
+            {
+                ViewDto vDto = ViewDTOConverter.ConvertTo(v);
+                viewDtos.Add(vDto);
+            }
+
+            return viewDtos;
         }
 
         //-----------------------------------------------------------------------------
@@ -81,28 +91,83 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         //Create View
-        [HttpPost]
+        //[HttpPost]
+        ////public ActionResult Create(View view)
+        ////{
+        ////    var viewDto = ViewDTOConverter.ConvertTo(view);
+        ////    return Ok(view);
+        ////}
+
+        //public ActionResult Create(ViewDto viewDto)
+        //{
+        //    View view = ViewDTOConverter.ConvertFrom(viewDto);
+        //    _viewRepository.Create(view);
+        //    return Ok();
+        //}
+
+        //Create View
+
         //public ActionResult Create(View view)
         //{
         //    var viewDto = ViewDTOConverter.ConvertTo(view);
         //    return Ok(view);
         //}
-
-        public ActionResult Create(ViewDto viewDto)
+        [HttpPost]
+        public async Task<ActionResult> Create(ViewDto viewDto)
         {
             View view = ViewDTOConverter.ConvertFrom(viewDto);
-            _viewRepository.Create(view);
-            return Ok();
+            View? viewSaved = await _viewRepository.CreateAsync(view);
+            if(viewSaved is not null) 
+            {
+                return Ok();
+            }
+            else 
+            {
+                return new StatusCodeResult(304);
+            }
+
+            
         }
 
         //-----------------------------------------------------------------------------
         /* Update                                                                    */
         //-----------------------------------------------------------------------------
 
+        [HttpPut]
+        public async Task<ActionResult> Update(ViewDto viewDto)
+        {
+            View view = ViewDTOConverter.ConvertFrom(viewDto);
+            View viewUpdated = await _viewRepository.UpdateAsync(view);
 
+            if(viewUpdated is not null)
+            {
+                return Ok();  
+            }
+            else 
+            {
+                return new StatusCodeResult(400);
+            };
+
+        }
 
         //-----------------------------------------------------------------------------
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int id) 
+        {
+            bool deleted = await _viewRepository.DeleteAsync(id);
+            if (deleted) 
+            {
+                return Ok();
+            }
+            else 
+            {
+                return BadRequest();
+            }
+
+            
+        }
     }
 }

@@ -108,10 +108,10 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Delete Async
-        public async void DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             _db.Views.Remove(await GetByIdAsync(id));
-            await _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync() != 0;
         }
 
     }
