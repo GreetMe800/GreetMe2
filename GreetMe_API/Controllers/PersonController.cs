@@ -75,6 +75,22 @@ namespace GreetMe_API.Controllers
             }
         }
 
+        //getall by birthday async
+        [HttpGet("{dateofbirth}")]
+        public IEnumerable<PersonDto> GetAllByBirthdayAsync(DateTime datetime)
+        {
+
+            IEnumerable<Person> listPeople = _personRepository.GetAllByBirthday(datetime);
+            List<PersonDto> listPeopleDto = new List<PersonDto>();
+            foreach (Person person in listPeople)
+            {
+                listPeopleDto.Add(PersonDTOConverter.ConvertTo(person));
+            }
+
+
+            return listPeopleDto;
+        }
+
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------

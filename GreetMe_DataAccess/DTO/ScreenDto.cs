@@ -10,16 +10,18 @@ namespace GreetMe_DataAccess.DTO
     {
         public int Id { get; set; }
         public string ScreenName { get; set; }
+        public ViewDto View { get; set; }
 
         public ScreenDto()
         {
 
         }
 
-        public ScreenDto(int id, string screenName)
+        public ScreenDto(int id, string screenName, ViewDto view)
         {
             Id = id;
             ScreenName = screenName;
+            View = view;
         }
     }
 }
