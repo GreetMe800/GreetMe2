@@ -36,6 +36,6 @@ namespace GreetMe_DataAccess.Interface
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
 
-        void DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

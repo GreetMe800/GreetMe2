@@ -1,4 +1,4 @@
-﻿namespace GreetMe_MVC.Models
+﻿namespace GreetMe_MVC.Models.View
 {
     public class CreateViewModel
     {

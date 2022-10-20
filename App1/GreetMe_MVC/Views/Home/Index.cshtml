@@ -1,6 +1,64 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<GreetMe_MVC.Models.Home.IndexModel>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">GreetMe, Your Display Manager</div>
-<div><a asp-action="Index" asp-controller="Play" asp-route-id="45">Vis skærm 45</a></div>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ViewName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasCurrentDatetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasBirthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasAnniversary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasMenu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasCurrentDatetime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasBirthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasAnniversary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasMenu)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "View", new { id= item.Id }) |               
+                @Html.ActionLink("Delete", "Delete","View",  new { id= item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
