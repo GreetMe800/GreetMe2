@@ -9,7 +9,7 @@ namespace GreetMe_DataAccess.DTO
 {
     public class PersonDto
     {
-        public int Id { get; set; }
+        public int Id { get; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HiringDate { get; set; }

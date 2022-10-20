@@ -27,6 +27,9 @@ namespace GreetMe_API.Controllers
             _personRepository = personRepository;
         }
 
+        //datetime
+        
+
         //-----------------------------------------------------------------------------
         /* GetAll                                                                    */
         //-----------------------------------------------------------------------------
@@ -50,7 +53,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         //Get By Id
-        [HttpGet("{id}")]
+        [HttpGet, Route("id")]
         public ActionResult<PersonDto> GetById(int id)
         {
             //Input validator, 0 <
@@ -76,12 +79,14 @@ namespace GreetMe_API.Controllers
         }
 
         //getall by birthday
-        [HttpGet("{dateofbirth}")]
+        [HttpGet, Route("birthday")]
         public IEnumerable<PersonDto> GetAllByBirthday(DateTime datetime)
         {
+            datetime = new DateTime(datetime.Year, datetime.Month, datetime.Day);
 
             IEnumerable<Person> listPeople = _personRepository.GetAllByBirthday(datetime);
             List<PersonDto> listPeopleDto = new List<PersonDto>();
+
             foreach (Person person in listPeople)
             {
                 listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
@@ -91,12 +96,14 @@ namespace GreetMe_API.Controllers
         }
 
         //getall Anniversary
-        [HttpGet("{HttpGet{anniversary}")]
+        [HttpGet, Route("anniversary")]
         public IEnumerable<PersonDto> GetAllByAnniversary(DateTime datetime)
         {
+            datetime = new DateTime(datetime.Year, datetime.Month, datetime.Day);
 
             IEnumerable<Person> listPeople = _personRepository.GetAllByAnniversary(datetime);
             List<PersonDto> listPeopleDto = new List<PersonDto>();
+
             foreach (Person person in listPeople)
             {
                 listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
@@ -112,7 +119,7 @@ namespace GreetMe_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(PersonDto personDto)
         {
-            Person person = PersonDTOConverter.ConvertFrom(personDto);
+            Person person = PersonDTOConverter.ConvertFromDto(personDto);
             Person personSaved = await _personRepository.CreateAsync(person);          
             if (personSaved is not null)
             {

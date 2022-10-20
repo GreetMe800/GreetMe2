@@ -35,7 +35,19 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //GetAll WithDep
-            //TODO
+        //TODO
+
+        //GetAll by Birthday
+        public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
+        {
+            return _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToList();
+        }
+
+        //GetAll by Birthday Async
+        public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
+        {
+            return await _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToListAsync();
+        }
 
         //GetAll by Anniversary
         public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
