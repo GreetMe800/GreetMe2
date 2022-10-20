@@ -85,8 +85,16 @@ namespace GreetMe_MVC.Controllers
             var response = ApiService.Execute(requsst);
             return RedirectToAction("Index", "Home");
         }
-       
 
+        public async Task<IActionResult> Detail(int id)
+        {
+
+            var request = new RestRequest("api/View" + id, Method.Get);
+            var response = await ApiService.ExecuteAsync<ViewDto>(request);
+            DetailViewModel detailViewModel = new DetailViewModel(response.Data);
+
+            return View(detailViewModel);
+        }
 
 
     }
