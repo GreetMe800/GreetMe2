@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,8 +35,17 @@ namespace GreetMe_DataAccess.Repository
             return await _db.People.ToListAsync();
         }
 
-        //GetAll WithDep
-            //TODO
+        //GetAll by Birthday
+        public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
+        {
+            return _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToList();
+        }
+
+        //GetAll by Birthday Async
+        public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
+        {
+            return await _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToListAsync();
+        }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
