@@ -89,7 +89,7 @@ namespace GreetMe_API.Controllers
                     {
                         birthPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
                     }
-                    viewDto.AnniversarysToday = birthPeopleDto;
+                    viewDto.BirthdaysToday = birthPeopleDto;
                 }
 
                 return Ok(viewDto);
