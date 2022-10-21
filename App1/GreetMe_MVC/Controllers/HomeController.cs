@@ -17,7 +17,7 @@ namespace GreetMe_MVC.Controllers
             public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            ApiService = new RestClient(configuration["Api"]);
+            ApiService = new RestClient(configuration.GetConnectionString("api"));
         }
 
         public async Task<IActionResult> Index()

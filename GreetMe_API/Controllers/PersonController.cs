@@ -119,6 +119,8 @@ namespace GreetMe_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(PersonDto personDto)
         {
+            personDto.HiringDate = new DateTime(personDto.HiringDate.Year, personDto.HiringDate.Month, personDto.HiringDate.Day);
+            personDto.DateOfBirth = new DateTime(personDto.DateOfBirth.Year, personDto.DateOfBirth.Month, personDto.DateOfBirth.Day);
             Person person = PersonDTOConverter.ConvertFromDto(personDto);
             Person personSaved = await _personRepository.CreateAsync(person);          
             if (personSaved is not null)

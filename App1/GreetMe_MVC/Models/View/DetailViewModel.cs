@@ -21,38 +21,12 @@ namespace GreetMe_MVC.Models.View
 
         public DetailViewModel(ViewDto viewDto) 
         {
-            BirthdaysToday = new List<PersonDto>();
-            AnniversarysToday = new List<PersonDto>();
-            //Id = viewDto.Id;
-            //ViewName = viewDto.ViewName;
-            //HasCurrentDatetime = viewDto.HasCurrentDatetime;
-            //BirthdaysToday = viewDto.BirthdaysToday;
-            //AnniversarysToday = viewDto.AnniversarysToday;
-            HasAnniversary = false;
-            HasBirthday = true;
-            PersonDto dto = new PersonDto()
-            {
-                DateOfBirth = DateTime.Now,
-                HiringDate = DateTime.Now,
-                FullName = "agemam",
-                Id = 2
-
-            };
-
-            PersonDto dto2 = new PersonDto()
-            {
-                DateOfBirth = DateTime.Now,
-                HiringDate = DateTime.Now,
-                FullName = "agemamnon",
-                Id = 2
-
-            };
-
-            AnniversarysToday.Add(dto);
-            BirthdaysToday.Add(dto2);
-
-
-
+            BirthdaysToday = viewDto.BirthdaysToday;
+            AnniversarysToday = viewDto.AnniversarysToday;
+            ViewName = viewDto.ViewName;
+            HasCurrentDatetime = viewDto.HasCurrentDatetime;
+            BirthdaysToday = viewDto.BirthdaysToday;
+            AnniversarysToday = viewDto.AnniversarysToday;
         }
 
 

@@ -20,12 +20,15 @@ namespace GreetMe_API.Controllers
     public class ViewController : Controller
     {
         private readonly IViewRepository _viewRepository;
+        private readonly IPersonRepository _personrepository;
 
         [ActivatorUtilitiesConstructor]
 
-        public ViewController(IViewRepository viewRepository)
+        public ViewController(IViewRepository viewRepository, IPersonRepository personRepository)
         {
             _viewRepository = viewRepository;
+            _personrepository = personRepository;
+
         }
 
         //-----------------------------------------------------------------------------
@@ -76,6 +79,19 @@ namespace GreetMe_API.Controllers
             if (foundView is not null)
             {
                 ViewDto viewDto = ViewDTOConverter.ConvertTo(foundView);
+                if (viewDto.HasBirthday) 
+                {
+                    DateTime today = DateTime.Today;
+                    DateTime todayShort = new DateTime(today.Year, today.Month, today.Day);
+                    IEnumerable<Person> birthPeople = _personrepository.GetAllByBirthday(todayShort);
+                    List<PersonDto> birthPeopleDto = new List<PersonDto>();
+                    foreach(Person p in birthPeople) 
+                    {
+                        birthPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
+                    }
+                    viewDto.AnniversarysToday = birthPeopleDto;
+                }
+
                 return Ok(viewDto);
             }
 
@@ -86,7 +102,7 @@ namespace GreetMe_API.Controllers
             }
         }
 
-        [HttpGet("{viewName}")]
+        [HttpGet, Route("viewName")]
         public ActionResult<ViewDto> GetByViewName(int id)
         {
             //Input validator, 0 <
@@ -138,7 +154,7 @@ namespace GreetMe_API.Controllers
         //    return Ok(view);
         //}
         [HttpPost]
-        public async Task<ActionResult> Create(ViewDto viewDto)
+        public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
         {
             View view = ViewDTOConverter.ConvertFrom(viewDto);
             View? viewSaved = await _viewRepository.CreateAsync(view);

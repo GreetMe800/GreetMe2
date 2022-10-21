@@ -81,8 +81,22 @@ namespace GreetMe_DataAccess.Repository
         //Create Async
         public async Task<View?> CreateAsync(View entity)
         {
-            _db.Views.Add(entity);
-            await _db.SaveChangesAsync();
+
+            try 
+            {
+                _db.Views.Add(entity);
+                await _db.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+                int i = 1;
+            }
+            catch 
+            {
+                int i = 1;
+            }
+
             return entity;
         }
 

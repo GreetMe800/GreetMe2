@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using System.Net;
 using System.Net.Http.Headers;
+using static System.Net.WebRequestMethods;
 
 namespace GreetMe_MVC.Controllers
 {
@@ -11,12 +12,22 @@ namespace GreetMe_MVC.Controllers
     {
 
         private RestClient ApiService;
-        
+        //private HttpClient ApiService;
 
         public ViewController(IConfiguration configuration)
         {
-            ApiService = new RestClient(configuration["Api"]);
-            //"https://localhost:7259/"
+            //ApiService = new RestClient(configuration.GetConnectionString("api"));
+
+            //for testing
+            var options = new RestClientOptions("http://localhost:5259/")
+            {
+                ThrowOnAnyError = true,
+                Timeout = 5000000
+            };
+
+            ApiService = new RestClient(options);
+            //string conncetionstring = "https://localhost:7259";
+            //ApiService = new HttpClient();
         }
 
         public IActionResult Index()
@@ -28,8 +39,16 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Create(CreateViewModel model) 
         {
 
+            ViewDto vdto = new ViewDto( "name", true,
+                true,
+                true,
+                true
+                );
+            //vdto.AnniversarysToday = new List<PersonDto>();
+            //vdto.BirthdaysToday = new List<PersonDto>();
+
             var request = new RestRequest("api/View", Method.Post);
-            request.AddJsonBody(model);
+            request.AddJsonBody(vdto);
             var response = ApiService.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -55,7 +74,6 @@ namespace GreetMe_MVC.Controllers
                 HasAnniversary = true,
                 HasBirthday = true,
                 HasMenu = true,
-                Id = 1123,
                 ViewName = "din nar"
 
             };
@@ -88,8 +106,18 @@ namespace GreetMe_MVC.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
+            
+          
+            //HttpClient client = new HttpClient();
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "rDY8UqOWYuU5Wc+Ohe0zuDAg==");//insert bearer token here
+            //HttpResponseMessage response = await client.GetAsync("http://localhost:5259/api/view");
 
-            var request = new RestRequest("api/View" + id, Method.Get);
+
+            //    response.EnsureSuccessStatusCode();
+            //string responseBody = await response.Content.ReadAsStringAsync();
+            //Root? value = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(responseBody);
+
+            var request = new RestRequest("https://localhost:7259/api/View/" + 1, Method.Get);
             var response = await ApiService.ExecuteAsync<ViewDto>(request);
             DetailViewModel detailViewModel = new DetailViewModel(response.Data);
 

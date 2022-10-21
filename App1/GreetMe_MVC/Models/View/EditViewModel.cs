@@ -20,7 +20,7 @@ namespace GreetMe_MVC.Models.View
             HasMenu = viewDto.HasMenu;
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string ViewName { get; set; } = null!;
         public bool HasCurrentDatetime { get; set; }
         public bool HasBirthday { get; set; }
