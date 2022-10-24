@@ -13,6 +13,8 @@ namespace GreetMe_MVC.Models.View
         public bool HasAnniversary { get; set; }
         public bool HasMenu { get; set; }
 
+        public string test { get; set; }
+
         public List<PersonDto> BirthdaysToday { get; set; }
 
         public List<PersonDto> AnniversarysToday { get; set; }
@@ -29,6 +31,12 @@ namespace GreetMe_MVC.Models.View
             AnniversarysToday = viewDto.AnniversarysToday;
         }
 
+        public DetailViewModel()
+        {
+
+        }
+
+        
 
 
     }

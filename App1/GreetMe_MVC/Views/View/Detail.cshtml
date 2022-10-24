@@ -4,68 +4,89 @@
     ViewData["Title"] = "Detail";
 }
 
+@*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
+
+@Html.TextBoxFor(model => model.test, new { @id = "txtBox", @disabled = "disabled" })
+
+@section scripts {
+
+    <script>
+
+        var textBox = document.getElementById('txtBox');
+
+        function time() {
+            var d = new Date();
+            var s = d.getSeconds();
+            var m = d.getMinutes();
+            var h = d.getHours();
+            textBox.value =
+                ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+        }
+
+        setInterval(time, 1000);
+
+    </script>
+        }
+
 <h1>Detail</h1>
 
 <div>
     <h4>DetailViewModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ViewName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ViewName)
         </dd>
-        <dt class = "col-sm-2">
+        
+       
+
+        
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.HasCurrentDatetime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HasCurrentDatetime)
         </dd>
+
+
         @{
            if(Model.HasBirthday)
            {
                 foreach (var person in Model.BirthdaysToday)
                 {
+                    
                     <h2>@person.FullName har fødslesdag og det har vedkommende jo og det er idag</h2>
                 }
-           } 
-            
-        }
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasBirthday)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasBirthday)
-        </dd>*@
-
-        @{
-           if(Model.HasAnniversary)
-           {
-               foreach (var person in Model.AnniversarysToday)
-                {
-                <h2>@person.FullName har jubilæum</h2>
-                }
            }
-            
-        }
 
-       @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasAnniversary)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasAnniversary)
-        </dd>*@
-        <dt class = "col-sm-2">
+        }
+        @{
+            if (Model.HasAnniversary)
+            {
+                foreach (var person in Model.AnniversarysToday)
+                {
+                    <h2>@person har jubilæum</h2>
+                }
+            }
+        }
+           
+
+        
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.HasMenu)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HasMenu)
         </dd>
     </dl>

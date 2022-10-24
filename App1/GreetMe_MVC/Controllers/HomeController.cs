@@ -23,57 +23,44 @@ namespace GreetMe_MVC.Controllers
         public async Task<IActionResult> Index()
         {
 
-            //var request = new RestRequest("api/View", Method.Get);
-            //var response = await ApiService.ExecuteAsync<List<ViewDto>>(request);
-
-            //List<IndexModel> indices = new List<IndexModel>();
-
-           
-
-            //if (response.Data is not null)
-            //{
-            //    foreach (ViewDto vDto in response.Data)
-            //    {
-            //        IndexModel index = new IndexModel(vDto);
-            //        indices.Add(index);
-            //    }
-
-            //}
-
-
-           
-
-            ViewDto vdto = new ViewDto()
-            {
-                HasCurrentDatetime = true,
-                HasAnniversary = true,
-                HasBirthday = true,
-                HasMenu = true,
-                Id = 1123,
-                ViewName = "din nar"
-
-            };
-         
-            List<ViewDto> views = new List<ViewDto>();
-            views.Add(vdto);
-            views.Add(vdto);
-            views.Add(vdto);
+            var request = new RestRequest("api/View", Method.Get);
+            var response = await ApiService.ExecuteAsync<List<ViewDto>>(request);
 
             List<IndexModel> indices = new List<IndexModel>();
-            
-            foreach (ViewDto vDto in views)
+
+            if (response.Data is not null)
             {
-                    IndexModel view = new IndexModel(vDto);
-                    indices.Add(view);                    
+                foreach (ViewDto vDto in response.Data)
+                {
+                    IndexModel index = new IndexModel(vDto);
+                    indices.Add(index);
+                }
+
             }
 
+            //ViewDto vdto = new ViewDto()
+            //{
+            //    HasCurrentDatetime = true,
+            //    HasAnniversary = true,
+            //    HasBirthday = true,
+            //    HasMenu = true,
+            //    Id = 1123,
+            //    ViewName = "din nar"
 
-           
+            //};
 
+            //List<ViewDto> views = new List<ViewDto>();
+            //views.Add(vdto);
+            //views.Add(vdto);
+            //views.Add(vdto);
 
-
-
-
+            //List<IndexModel> indices = new List<IndexModel>();
+            
+            //foreach (ViewDto vDto in views)
+            //{
+            //        IndexModel view = new IndexModel(vDto);
+            //        indices.Add(view);                    
+            //}
             return View(indices);
         }
 
