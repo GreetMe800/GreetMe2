@@ -39,16 +39,8 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Create(CreateViewModel model) 
         {
 
-            ViewDto vdto = new ViewDto( "name", true,
-                true,
-                true,
-                true
-                );
-            //vdto.AnniversarysToday = new List<PersonDto>();
-            //vdto.BirthdaysToday = new List<PersonDto>();
-
             var request = new RestRequest("api/View", Method.Post);
-            request.AddJsonBody(vdto);
+            request.AddJsonBody(model);
             var response = ApiService.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
