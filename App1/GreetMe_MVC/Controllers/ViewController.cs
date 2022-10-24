@@ -106,20 +106,19 @@ namespace GreetMe_MVC.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
-            
-          
-            //HttpClient client = new HttpClient();
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "rDY8UqOWYuU5Wc+Ohe0zuDAg==");//insert bearer token here
-            //HttpResponseMessage response = await client.GetAsync("http://localhost:5259/api/view");
 
 
-            //    response.EnsureSuccessStatusCode();
-            //string responseBody = await response.Content.ReadAsStringAsync();
-            //Root? value = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(responseBody);
+           
+
 
             var request = new RestRequest("https://localhost:7259/api/View/" + 1, Method.Get);
             var response = await ApiService.ExecuteAsync<ViewDto>(request);
             DetailViewModel detailViewModel = new DetailViewModel(response.Data);
+
+            //DetailViewModel detailViewModel1 = new DetailViewModel();
+            //detailViewModel1.HasCurrentDatetime = true;
+            //detailViewModel1.HasAnniversary = false;
+            //detailViewModel1.HasBirthday = false;
 
             return View(detailViewModel);
         }
