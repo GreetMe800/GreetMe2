@@ -21,7 +21,7 @@ namespace GreetMe_DataAccess.DTO
         }
 
 
-        public PersonDto(int id, string fulleName, DateTime dateOfBirth, DateTime hiringDate)
+        public PersonDto(int id, string fulleName, DateTime dateOfBirth, DateTime hiringDate) : this()
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
@@ -32,7 +32,7 @@ namespace GreetMe_DataAccess.DTO
             HiringDate = hiringDate;
         }
 
-        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate)
+        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate) : this()
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);

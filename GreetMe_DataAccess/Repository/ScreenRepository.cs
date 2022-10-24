@@ -89,7 +89,7 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Update Async
-        public async Task<Screen> UpdateAsync(Screen entity)
+        public async Task<Screen?> UpdateAsync(Screen entity)
         {
             _db.Screens.Update(entity);
             await _db.SaveChangesAsync();
