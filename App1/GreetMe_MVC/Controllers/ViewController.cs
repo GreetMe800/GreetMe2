@@ -88,7 +88,7 @@ namespace GreetMe_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpDelete] routingen skal ikk være her eller ved put
+        [HttpDelete] 
         public IActionResult Delete(int id) 
         {
             var requsst = new RestRequest("api/View" + id, Method.Delete);

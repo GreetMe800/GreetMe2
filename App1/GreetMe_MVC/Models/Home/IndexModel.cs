@@ -11,7 +11,6 @@ namespace GreetMe_MVC.Models.Home
 
         public IndexModel(ViewDto viewDto)
         {
-            Id = (int)viewDto.Id;
             ViewName = viewDto.ViewName;
             HasCurrentDatetime = viewDto.HasCurrentDatetime;
             HasBirthday = viewDto.HasBirthday;
