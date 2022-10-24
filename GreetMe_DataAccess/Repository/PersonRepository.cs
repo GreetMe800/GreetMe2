@@ -114,7 +114,7 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Update Async
-        public async Task<Person> UpdateAsync(Person entity)
+        public async Task<Person?> UpdateAsync(Person entity)
         {
             _db.People.Update(entity);
             await _db.SaveChangesAsync();

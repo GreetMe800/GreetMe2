@@ -17,7 +17,7 @@ namespace GreetMe_DataAccess.DTO
 
         }
 
-        public ScreenDto(int id, string screenName, ViewDto view)
+        public ScreenDto(int id, string screenName, ViewDto view) : this()
         {
             Id = id;
             ScreenName = screenName;
