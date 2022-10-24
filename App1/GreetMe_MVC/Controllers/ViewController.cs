@@ -22,7 +22,7 @@ namespace GreetMe_MVC.Controllers
             var options = new RestClientOptions("http://localhost:5259/")
             {
                 ThrowOnAnyError = true,
-                Timeout = 100000
+                Timeout = 5000000
             };
 
             ApiService = new RestClient(options);
@@ -39,13 +39,7 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Create(CreateViewModel model) 
         {
 
-          
-            //vdto.AnniversarysToday = new List<PersonDto>();
-            //vdto.BirthdaysToday = new List<PersonDto>();
-
-            var request = new RestRequest("http://localhost:5259/api/View", Method.Post);
-            
-
+            var request = new RestRequest("api/View", Method.Post);
             request.AddJsonBody(model);
             var response = ApiService.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -59,17 +53,24 @@ namespace GreetMe_MVC.Controllers
         }
 
         //[HttpPut]
-        public async Task<IActionResult> Edit(int id) 
+        public IActionResult Edit(int id) 
         {
 
-            var request = new RestRequest("http://localhost:5259/api/View/" + id, Method.Get);
-            var response = await ApiService.ExecuteAsync<ViewDto>(request);
-            ViewDto? viewDto = response.Data;
+            //var request = new RestRequest("api/View" + id, Method.Get);
+            //ViewDto? viewDto = ApiService.Execute<ViewDto>(request).Data;
 
 
-            
+            ViewDto vdto = new ViewDto()
+            {
+                HasCurrentDatetime = true,
+                HasAnniversary = true,
+                HasBirthday = true,
+                HasMenu = true,
+                ViewName = "din nar"
 
-            EditViewModel view = new EditViewModel(viewDto);
+            };
+
+            EditViewModel view = new EditViewModel(vdto);
             
             
             
@@ -81,7 +82,7 @@ namespace GreetMe_MVC.Controllers
         [HttpPost]
         public IActionResult Edit(EditViewModel editViewModel) 
         {
-            var request = new RestRequest("http://localhost:5259/api/View", Method.Post);
+            var request = new RestRequest("api/View", Method.Post);
             request.AddJsonBody(editViewModel);
             var response = ApiService.Execute(request);
             return RedirectToAction("Index", "Home");
@@ -90,7 +91,7 @@ namespace GreetMe_MVC.Controllers
         //[HttpDelete] routingen skal ikk være her eller ved put
         public IActionResult Delete(int id) 
         {
-            var requsst = new RestRequest("http://localhost:5259/api/View" + id, Method.Delete);
+            var requsst = new RestRequest("api/View" + id, Method.Delete);
             var response = ApiService.Execute(requsst);
             return RedirectToAction("Index", "Home");
         }
@@ -102,7 +103,7 @@ namespace GreetMe_MVC.Controllers
            
 
 
-            var request = new RestRequest("https://localhost:7259/api/View/" + id, Method.Get);
+            var request = new RestRequest("https://localhost:7259/api/View/" + 1, Method.Get);
             var response = await ApiService.ExecuteAsync<ViewDto>(request);
             DetailViewModel detailViewModel = new DetailViewModel(response.Data);
 
