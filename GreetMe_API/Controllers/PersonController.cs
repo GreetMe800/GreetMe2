@@ -78,40 +78,6 @@ namespace GreetMe_API.Controllers
             }
         }
 
-        //getall by birthday
-        [HttpGet, Route("birthday")]
-        public IEnumerable<PersonDto> GetAllByBirthday(DateTime datetime)
-        {
-            datetime = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-
-            IEnumerable<Person> listPeople = _personRepository.GetAllByBirthday(datetime);
-            List<PersonDto> listPeopleDto = new List<PersonDto>();
-
-            foreach (Person person in listPeople)
-            {
-                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
-            }
-
-            return listPeopleDto;
-        }
-
-        //getall Anniversary
-        [HttpGet, Route("anniversary")]
-        public IEnumerable<PersonDto> GetAllByAnniversary(DateTime datetime)
-        {
-            datetime = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-
-            IEnumerable<Person> listPeople = _personRepository.GetAllByAnniversary(datetime);
-            List<PersonDto> listPeopleDto = new List<PersonDto>();
-
-            foreach (Person person in listPeople)
-            {
-                listPeopleDto.Add(PersonDTOConverter.ConvertToDto(person));
-            }
-
-            return listPeopleDto;
-        }
-
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------

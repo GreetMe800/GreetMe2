@@ -1,4 +1,5 @@
-﻿using GreetMe_DataAccess.Interface;
+﻿using GreetMe_DataAccess.DTO;
+using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
