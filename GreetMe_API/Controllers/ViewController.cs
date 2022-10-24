@@ -196,7 +196,7 @@ namespace GreetMe_API.Controllers
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
 
-        [HttpDelete]
+        
         public async Task<ActionResult> Delete(int id) 
         {
             bool deleted = await _viewRepository.DeleteAsync(id);

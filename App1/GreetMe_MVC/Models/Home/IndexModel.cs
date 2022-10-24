@@ -11,6 +11,8 @@ namespace GreetMe_MVC.Models.Home
 
         public IndexModel(ViewDto viewDto)
         {
+         
+            Id = viewDto.Id;
             ViewName = viewDto.ViewName;
             HasCurrentDatetime = viewDto.HasCurrentDatetime;
             HasBirthday = viewDto.HasBirthday;
@@ -18,7 +20,7 @@ namespace GreetMe_MVC.Models.Home
             HasMenu = viewDto.HasMenu;
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string ViewName { get; set; } = null!;
         public bool HasCurrentDatetime { get; set; }
         public bool HasBirthday { get; set; }
