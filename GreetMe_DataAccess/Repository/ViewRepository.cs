@@ -89,7 +89,7 @@ namespace GreetMe_DataAccess.Repository
         //Create Async
         public async Task<View?> CreateAsync(View entity)
         {
-
+      
             try 
             {
                 _db.Views.Add(entity);

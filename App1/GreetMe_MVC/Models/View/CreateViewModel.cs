@@ -2,7 +2,6 @@
 {
     public class CreateViewModel
     {
-        public int Id { get; set; }
         public string ViewName { get; set; }
         public bool HasCurrentDatetime { get; set; }
         public bool HasBirthday { get; set; }

@@ -155,9 +155,9 @@ namespace GreetMe_API.Controllers
         //    return Ok(view);
         //}
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
+        public async Task<ActionResult> Create([FromBody] View view)
         {
-            View view = ViewDTOConverter.ConvertFrom(viewDto);
+            //View view = ViewDTOConverter.ConvertFrom(viewDto);
             View? viewSaved = await _viewRepository.CreateAsync(view);
             if(viewSaved is not null) 
             {
