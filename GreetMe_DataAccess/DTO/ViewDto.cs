@@ -8,7 +8,7 @@ namespace GreetMe_DataAccess.DTO
 {
     public class ViewDto
     {
-        public int? Id { get; set; }
+        public int? Id { get; set;}
         public string ViewName { get; set; }
         public bool HasCurrentDatetime { get; set; }
         public bool HasBirthday { get; set; }
@@ -25,6 +25,7 @@ namespace GreetMe_DataAccess.DTO
         {
 
         }
+
 
         public ViewDto(int id, string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu)
         {

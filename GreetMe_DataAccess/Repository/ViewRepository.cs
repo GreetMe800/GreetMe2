@@ -32,8 +32,16 @@ namespace GreetMe_DataAccess.Repository
         //GetAll Aync
         public async Task<IEnumerable<View>> GetAllAsync()
         {
-            return await _db.Views
+            try
+            {
+                return await _db.Views
                 .ToListAsync();
+            }
+            catch(Exception e) 
+            {
+                int i = 1;
+            }
+            return new List<View>();
         }
 
         //GetAll WithDep

@@ -23,7 +23,7 @@ namespace GreetMe_MVC.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var request = new RestRequest("api/View", Method.Get);
+            var request = new RestRequest("https://localhost:7259/api/View", Method.Get);
             var response = await ApiService.ExecuteAsync<List<ViewDto>>(request);
 
             List<IndexModel> indices = new List<IndexModel>();
