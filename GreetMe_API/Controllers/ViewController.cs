@@ -11,6 +11,7 @@ using GreetMe_DataAccess.DTO;
 using GreetMe_API.ModelConversion;
 using GreetMe_DataAccess.Interface;
 using GreetMe_API.TestClasses;
+using GreetMe_API.BusinessLogic;
 
 namespace GreetMe_API.Controllers
 {
@@ -75,21 +76,21 @@ namespace GreetMe_API.Controllers
 
             View? foundView = _viewRepository.GetById(id);
 
-            //if view is found
+            //if view is found, get view with components
             if (foundView is not null)
             {
                 ViewDto viewDto = ViewDTOConverter.ConvertTo(foundView);
-                if (viewDto.HasBirthday) 
+
+                //If hasbirthday, retun list of birthday people
+                if (viewDto.HasBirthday)
                 {
-                    DateTime today = DateTime.Today;
-                    DateTime todayShort = new DateTime(today.Year, today.Month, today.Day);
-                    IEnumerable<Person> birthPeople = _personrepository.GetAllByBirthday(todayShort);
-                    List<PersonDto> birthPeopleDto = new List<PersonDto>();
-                    foreach(Person p in birthPeople) 
-                    {
-                        birthPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
-                    }
-                    viewDto.BirthdaysToday = birthPeopleDto;
+                    PersonLogic.GetAllByBirthday(_personrepository, viewDto);
+                }
+
+                //If hasAnniversary, retun list of Anniversary people
+                if (viewDto.HasAnniversary)
+                {
+                    PersonLogic.GetAllByAnniversary(_personrepository, viewDto);
                 }
 
                 return Ok(viewDto);

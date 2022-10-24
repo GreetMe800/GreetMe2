@@ -1,4 +1,5 @@
-﻿using GreetMe_DataAccess.Interface;
+﻿using GreetMe_DataAccess.DTO;
+using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,25 +41,25 @@ namespace GreetMe_DataAccess.Repository
         //GetAll by Birthday
         public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
         {
-            return _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToList();
+            return _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToList();
         }
 
         //GetAll by Birthday Async
         public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
         {
-            return await _db.People.Where(p => p.DateOfBirth.Equals(datetime)).ToListAsync();
+            return await _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToListAsync();
         }
 
         //GetAll by Anniversary
         public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
         {
-            return _db.People.Where(p => p.HiringDate.Equals(datetime)).ToList();
+            return _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToList();
         }
 
         //GetAll by Anniversary Async
         public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
         {
-            return await _db.People.Where(p => p.HiringDate.Equals(datetime)).ToListAsync();
+            return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
         }
 
         //-----------------------------------------------------------------------------
