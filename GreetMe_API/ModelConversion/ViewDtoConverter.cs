@@ -9,6 +9,7 @@ namespace GreetMe_API.ModelConversion
         public static ViewDto ConvertTo(View view)
         {
             ViewDto viewDto = new ViewDto(
+                view.Id,
                 view.ViewName,
                 view.HasCurrentDatetime,
                 view.HasBirthday,

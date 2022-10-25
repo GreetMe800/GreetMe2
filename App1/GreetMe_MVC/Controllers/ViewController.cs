@@ -28,6 +28,7 @@ namespace GreetMe_MVC.Controllers
             ApiService = new RestClient(options);
             //string conncetionstring = "https://localhost:7259";
             //ApiService = new HttpClient();
+            //http://localhost:5259
         }
 
         public IActionResult Index()
@@ -88,22 +89,17 @@ namespace GreetMe_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpDelete] 
+ 
         public IActionResult Delete(int id) 
         {
-            var requsst = new RestRequest("api/View" + id, Method.Delete);
+            var requsst = new RestRequest("api/View?id=" + id, Method.Delete);
             var response = ApiService.Execute(requsst);
             return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Detail(int id)
         {
-
-
-           
-
-
-            var request = new RestRequest("https://localhost:7259/api/View/" + 1, Method.Get);
+            var request = new RestRequest("https://localhost:7259/api/View/" + id, Method.Get);
             var response = await ApiService.ExecuteAsync<ViewDto>(request);
             DetailViewModel detailViewModel = new DetailViewModel(response.Data);
 
