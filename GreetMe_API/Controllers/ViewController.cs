@@ -63,9 +63,40 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
+        //get by id without components
+        [HttpGet]
+        [Route("getWithoutComponents/{id}")] //   /api/example/get1/1?param2=4
+        public ActionResult Get(int id)
+        {
+            //Input validator, 0 <
+            if (id <= 0)
+            {
+                return new StatusCodeResult(422);
+            }
 
+            View? foundView = _viewRepository.GetById(id);
+
+            //if view is found, get view with components
+            if (foundView is not null)
+            {
+                ViewDto viewDto = ViewDTOConverter.ConvertTo(foundView);
+
+               
+                return Ok(viewDto);
+            }
+
+            //if not found
+            else
+            {
+                return new StatusCodeResult(404);
+            }
+        }
+
+
+    
         //Get By Id
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("getWithCompontents/{id}")]
         public ActionResult<ViewDto> GetById(int id)
         {
             //Input validator, 0 <
@@ -155,9 +186,9 @@ namespace GreetMe_API.Controllers
         //    return Ok(view);
         //}
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] View view)
+        public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
         {
-            //View view = ViewDTOConverter.ConvertFrom(viewDto);
+            View view = ViewDTOConverter.ConvertFrom(viewDto);
             View? viewSaved = await _viewRepository.CreateAsync(view);
             if(viewSaved is not null) 
             {

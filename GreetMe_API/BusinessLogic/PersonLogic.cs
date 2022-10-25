@@ -7,30 +7,38 @@ using System;
 
 namespace GreetMe_API.BusinessLogic
 {
-    public static class PersonLogic
-    {
-        //Birthday
-        public static void GetAllByBirthday(IPersonRepository personRepository, ViewDto viewDto)
+    
+        public static class PersonLogic
         {
-            IEnumerable<Person> birthPeople = personRepository.GetAllByBirthday(DateTime.Today);
-            List<PersonDto> birthPeopleDto = new List<PersonDto>();
-            foreach (Person p in birthPeople)
+            //Birthday
+            public static void GetAllByBirthday(IPersonRepository personRepository, ViewDto viewDto)
             {
-                birthPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
-            }
-            viewDto.BirthdaysToday = birthPeopleDto;
-        }
+                DateTime datetimeToday = DateTime.Now.ToUniversalTime();
+                DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
 
-        //Anniversary
-        public static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
-        {
-            IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(DateTime.Today);
-            List<PersonDto> anniversaryPeopleDto = new List<PersonDto>();
-            foreach (Person p in anniversaryPeople)
-            {
-                anniversaryPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
+                IEnumerable<Person> birthPeople = personRepository.GetAllByBirthday(dateToday);
+                List<PersonDto> birthPeopleDto = new List<PersonDto>();
+                foreach (Person p in birthPeople)
+                {
+                    birthPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
+                }
+                viewDto.BirthdaysToday = birthPeopleDto;
             }
-            viewDto.AnniversarysToday = anniversaryPeopleDto;
+
+            //Anniversary
+            public static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
+            {
+                DateTime datetimeToday = DateTime.Now;
+                DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
+
+                IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(dateToday);
+                List<PersonDto> anniversaryPeopleDto = new List<PersonDto>();
+                foreach (Person p in anniversaryPeople)
+                {
+                    anniversaryPeopleDto.Add(PersonDTOConverter.ConvertToDto(p));
+                }
+                viewDto.AnniversarysToday = anniversaryPeopleDto;
+            }
         }
-    }
+    
 }

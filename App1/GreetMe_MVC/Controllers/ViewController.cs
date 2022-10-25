@@ -57,33 +57,26 @@ namespace GreetMe_MVC.Controllers
         public IActionResult Edit(int id) 
         {
 
-            //var request = new RestRequest("api/View" + id, Method.Get);
-            //ViewDto? viewDto = ApiService.Execute<ViewDto>(request).Data;
+            var request = new RestRequest("api/View/getWithoutComponents/" + id, Method.Get);
+            ViewDto? viewDto = ApiService.Execute<ViewDto>(request).Data;
 
 
-            ViewDto vdto = new ViewDto()
+            if(viewDto is not null) 
             {
-                HasCurrentDatetime = true,
-                HasAnniversary = true,
-                HasBirthday = true,
-                HasMenu = true,
-                ViewName = "din nar"
-
-            };
-
-            EditViewModel view = new EditViewModel(vdto);
-            
-            
-            
-            
-
-            return View(view);
+                EditViewModel view = new EditViewModel(viewDto);
+                return View(view);
+            }
+            else 
+            {
+                ViewData["Message"] = string.Format("View ikke fundet");
+                return RedirectToAction("Index", "Home");
+            }          
         }
 
         [HttpPost]
         public IActionResult Edit(EditViewModel editViewModel) 
         {
-            var request = new RestRequest("api/View", Method.Post);
+            var request = new RestRequest("api/View", Method.Put);
             request.AddJsonBody(editViewModel);
             var response = ApiService.Execute(request);
             return RedirectToAction("Index", "Home");
@@ -99,7 +92,7 @@ namespace GreetMe_MVC.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
-            var request = new RestRequest("https://localhost:7259/api/View/" + id, Method.Get);
+            var request = new RestRequest("api/View/getWithCompontents/" + id, Method.Get);
             var response = await ApiService.ExecuteAsync<ViewDto>(request);
             DetailViewModel detailViewModel = new DetailViewModel(response.Data);
 
