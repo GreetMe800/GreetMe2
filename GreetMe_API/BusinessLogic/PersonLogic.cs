@@ -12,7 +12,10 @@ namespace GreetMe_API.BusinessLogic
         //Birthday
         public static void GetAllByBirthday(IPersonRepository personRepository, ViewDto viewDto)
         {
-            IEnumerable<Person> birthPeople = personRepository.GetAllByBirthday(DateTime.Today);
+            DateTime datetimeToday = DateTime.Now;
+            DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
+
+            IEnumerable<Person> birthPeople = personRepository.GetAllByBirthday(dateToday);
             List<PersonDto> birthPeopleDto = new List<PersonDto>();
             foreach (Person p in birthPeople)
             {
@@ -24,7 +27,10 @@ namespace GreetMe_API.BusinessLogic
         //Anniversary
         public static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
         {
-            IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(DateTime.Today);
+            DateTime datetimeToday = DateTime.Now;
+            DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
+
+            IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(dateToday);
             List<PersonDto> anniversaryPeopleDto = new List<PersonDto>();
             foreach (Person p in anniversaryPeople)
             {
