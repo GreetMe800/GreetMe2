@@ -88,6 +88,9 @@ namespace GreetMe_DataAccess.Repository
         //Create
         public Person? Create(Person entity)
         {
+            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
+            entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
+
             _db.People.Add(entity);
             _db.SaveChanges();
             return entity;
@@ -96,6 +99,9 @@ namespace GreetMe_DataAccess.Repository
         //Create Async
         public async Task<Person?> CreateAsync(Person entity)
         {
+            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
+            entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
+
             _db.People.Add(entity);
             await _db.SaveChangesAsync();
             return entity;
@@ -108,6 +114,9 @@ namespace GreetMe_DataAccess.Repository
         //Update
         public Person Update(Person entity)
         {
+            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
+            entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
+
             _db.People.Update(entity);
             _db.SaveChanges();
             return entity;
@@ -116,6 +125,9 @@ namespace GreetMe_DataAccess.Repository
         //Update Async
         public async Task<Person?> UpdateAsync(Person entity)
         {
+            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
+            entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
+
             _db.People.Update(entity);
             await _db.SaveChangesAsync();
             return entity;
