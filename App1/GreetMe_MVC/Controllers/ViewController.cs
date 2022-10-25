@@ -52,21 +52,21 @@ namespace GreetMe_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPut]
+        [HttpPut]
         public IActionResult Edit(int id) 
         {
 
-            //var request = new RestRequest("api/View" + id, Method.Get);
-            //ViewDto? viewDto = ApiService.Execute<ViewDto>(request).Data;
+            var request = new RestRequest("api/View" + id, Method.Get);
+            ViewDto? viewDto = ApiService.Execute<ViewDto>(request).Data;
 
 
             ViewDto vdto = new ViewDto()
             {
-                HasCurrentDatetime = true,
-                HasAnniversary = true,
-                HasBirthday = true,
-                HasMenu = true,
-                ViewName = "din nar"
+                HasCurrentDatetime = viewDto.HasCurrentDatetime,
+                HasAnniversary = viewDto.HasAnniversary,
+                HasBirthday = viewDto.HasBirthday,
+                HasMenu = viewDto.HasMenu,
+                ViewName = viewDto.ViewName
 
             };
 

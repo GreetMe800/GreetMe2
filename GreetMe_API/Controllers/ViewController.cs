@@ -76,6 +76,7 @@ namespace GreetMe_API.Controllers
 
             View? foundView = _viewRepository.GetById(id);
 
+            /*Extra antribrutes*/
             //if view is found, get view with components
             if (foundView is not null)
             {
@@ -157,6 +158,7 @@ namespace GreetMe_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] View view)
         {
+
             //View view = ViewDTOConverter.ConvertFrom(viewDto);
             View? viewSaved = await _viewRepository.CreateAsync(view);
             if(viewSaved is not null) 
@@ -176,16 +178,18 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpPut]
+
+        //update async
         public async Task<ActionResult> Update(ViewDto viewDto)
         {
             View view = ViewDTOConverter.ConvertFrom(viewDto);
             View viewUpdated = await _viewRepository.UpdateAsync(view);
 
-            if(viewUpdated is not null)
+            if (viewUpdated is not null)
             {
-                return Ok();  
+                return Ok();
             }
-            else 
+            else
             {
                 return new StatusCodeResult(400);
             };
