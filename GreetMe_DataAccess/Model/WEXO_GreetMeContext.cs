@@ -25,10 +25,8 @@ namespace GreetMe_DataAccess.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=WEXO_GreetMe;Trusted_Connection=True");
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WEXO_GreetMe;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=WEXO_GreetMe;Trusted_Connection=True");
             }
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,18 +35,25 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E61641FB5E58B")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.DateOfBirth)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("date_of_birth");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .HasColumnName("email");
 
                 entity.Property(e => e.FullName)
                     .HasMaxLength(50)
                     .HasColumnName("full_name");
 
                 entity.Property(e => e.HiringDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("hiring_date");
             });
 

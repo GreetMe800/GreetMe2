@@ -26,7 +26,7 @@ namespace GreetMe_DataAccess.DTO
 
         }
 
-        public ViewDto(int id, string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu) 
+        public ViewDto(int id, string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu) : this()
         {
             Id = id;
             ViewName = viewName;
@@ -38,7 +38,7 @@ namespace GreetMe_DataAccess.DTO
 
 
 
-        public ViewDto(string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu)
+        public ViewDto(string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu) : this()
         {
             ViewName = viewName;
             HasCurrentDatetime = hasCurrentDateTime;
@@ -49,7 +49,7 @@ namespace GreetMe_DataAccess.DTO
         }
 
 
-        public ViewDto(int? id, string viewName, bool hasCurrentDatetime, bool hasBirthday, bool hasAnniversary, bool hasMenu) 
+        public ViewDto(int? id, string viewName, bool hasCurrentDatetime, bool hasBirthday, bool hasAnniversary, bool hasMenu) : this()
         {
             Id = id;
             ViewName = viewName;

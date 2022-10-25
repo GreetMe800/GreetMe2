@@ -25,11 +25,21 @@ namespace GreetMe_DataAccess.Interface
         //GetAll by Birthday Async
         Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime);
 
+        //GetAll by Email
+        IEnumerable<Person> GetAllByEmail(string email);
+
+        //GetAll by Email Async
+        Task<IEnumerable<Person>> GetAllByEmailAsync(string email);
+
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //Get by Email
+        Person GetByEmail(string email);
 
+        //Get by Email Async
+        Task<Person> GetByEmailAsync(string email);
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
