@@ -79,6 +79,28 @@ namespace GreetMe_API.Controllers
             }
         }
 
+        //Get By Email
+        [HttpGet, Route("email")]
+        public ActionResult<PersonDto> GetByEmail(string email)
+        {
+            //Input validator, 0 <
+
+            Person? foundPerson = _personRepository.GetByEmail(email);
+
+            //if person is found
+            if (foundPerson is not null)
+            {
+                PersonDto personDto = PersonDTOConverter.ConvertToDto(foundPerson);
+                return Ok(personDto);
+            }
+
+            //if not found
+            else
+            {
+                return new StatusCodeResult(404);
+            }
+        }
+
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------

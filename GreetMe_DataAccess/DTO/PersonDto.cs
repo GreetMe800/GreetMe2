@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace GreetMe_DataAccess.DTO
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HiringDate { get; set; }
+        public string Email { get; set; }
 
         public PersonDto()
         {
@@ -21,7 +23,7 @@ namespace GreetMe_DataAccess.DTO
         }
 
 
-        public PersonDto(int id, string fulleName, DateTime dateOfBirth, DateTime hiringDate) : this()
+        public PersonDto(int id, string fulleName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
@@ -30,9 +32,10 @@ namespace GreetMe_DataAccess.DTO
             FullName = fulleName;
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
+            Email = email;
         }
 
-        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate) : this()
+        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
@@ -40,7 +43,9 @@ namespace GreetMe_DataAccess.DTO
             FullName = fulleName;
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
+            Email = email;
         }
+
     }
 
     

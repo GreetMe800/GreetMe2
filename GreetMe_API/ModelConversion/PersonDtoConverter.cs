@@ -12,7 +12,8 @@ namespace GreetMe_API.ModelConversion
                 person.Id,
                 person.FullName,
                 person.DateOfBirth,
-                person.HiringDate
+                person.HiringDate,
+                person.Email
                 );
             return personDto;
         }
@@ -24,6 +25,7 @@ namespace GreetMe_API.ModelConversion
             person.FullName = dto.FullName;
             person.DateOfBirth = dto.DateOfBirth;
             person.HiringDate = dto.HiringDate;
+            person.Email = dto.Email;
             return person;
         }
     }

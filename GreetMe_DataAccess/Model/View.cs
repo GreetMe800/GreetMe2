@@ -10,7 +10,7 @@ namespace GreetMe_DataAccess.Model
             Screens = new HashSet<Screen>();
         }
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string ViewName { get; set; } = null!;
         public bool HasCurrentDatetime { get; set; }
         public bool HasBirthday { get; set; }

@@ -32,7 +32,8 @@ GO
 CREATE TABLE [dbo].[people](
 	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[full_name] [nvarchar](50) NOT NULL,
-	[date_of_birth] [datetime] NOT NULL,
-	[hiring_date] [datetime] NOT NULL
+	[date_of_birth] [date] NOT NULL,
+	[hiring_date] [date] NOT NULL,
+	[email] [nvarchar](50) UNIQUE NOT NULL
 	)
 GO

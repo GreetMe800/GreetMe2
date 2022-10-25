@@ -67,6 +67,18 @@ namespace GreetMe_DataAccess.Repository
             //return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
         }
 
+        //GetAll by Email
+        public IEnumerable<Person> GetAllByEmail(string email)
+        {
+            return _db.People.Where(p => p.Email.Equals(email)).ToList();
+        }
+
+        //GetAll by Email Async
+        public async Task<IEnumerable<Person>> GetAllByEmailAsync(string email)
+        {
+            return await _db.People.Where(p => p.Email.Equals(email)).ToListAsync();
+        }
+
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
@@ -84,7 +96,22 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //GetBy Id WithDep
-            //TODO
+        //TODO
+
+        //Getby Email
+        public Person? GetByEmail(string email)
+        {
+            return _db.People.FirstOrDefault(p => p.Email == email);
+        }
+
+        //Getby Email Async
+        public async Task<Person?> GetByEmailAsync(string email)
+        {
+            return await _db.People.FirstOrDefaultAsync(p => p.Email == email);
+        }
+
+        //Getby Email with dep
+        //TODO
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
