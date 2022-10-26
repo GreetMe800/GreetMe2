@@ -23,27 +23,34 @@ namespace GreetMe_DataAccess.DTO
         }
 
 
-        public PersonDto(int id, string fulleName, DateTime dateOfBirth, DateTime hiringDate, string email)
+        public PersonDto(int id, string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
 
             Id = id;
-            FullName = fulleName;
+            FullName = fullName;
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
             Email = email;
         }
 
-        public PersonDto(string fulleName, DateTime dateOfBirth, DateTime hiringDate, string email)
+        public PersonDto(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
 
-            FullName = fulleName;
+            FullName = fullName;
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
             Email = email;
+        }
+        public PersonDto(string fullName, DateTime dateOfBirth)
+        {
+            DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
+
+            FullName = fullName;
+            DateOfBirth = dateOfBirth;
         }
 
     }

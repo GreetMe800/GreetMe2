@@ -5,7 +5,7 @@ namespace GreetMe_API.ModelConversion
 {
     public static class PersonDTOConverter
     {
-        //Convert to PersonDto (convert from database, getdata)
+        //Convert to PersonDto (convert from database, getdata) /\
         public static PersonDto ConvertToDto(Person person)
         {
             PersonDto personDto = new PersonDto(
@@ -18,7 +18,18 @@ namespace GreetMe_API.ModelConversion
             return personDto;
         }
 
-        //Convert from PersonDto (convert to database, savedata)
+        //Convert to PersonDto (convert from database, getdata) /\
+        public static PersonDto ConvertToDtoNameBirthOnly(Person person)
+        {
+            PersonDto personDto = new PersonDto(
+                person.FullName,
+                person.DateOfBirth
+                );
+                      
+            return personDto;
+        }
+
+        //Convert from PersonDto (convert to database, savedata) \/
         public static Person ConvertFromDto(PersonDto dto)
         {
             Person person = new Person();
