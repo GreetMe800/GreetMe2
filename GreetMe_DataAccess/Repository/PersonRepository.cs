@@ -26,7 +26,8 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<Person> GetAll()
         {
-            return _db.People.ToList();
+            var persons = _db.People;
+            return persons.ToList();
         }
 
         //GetAll Aync
@@ -41,25 +42,29 @@ namespace GreetMe_DataAccess.Repository
         //GetAll by Birthday
         public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
         {
-            return _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToList();
+            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            return _db.People.Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day);
         }
 
         //GetAll by Birthday Async
         public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
         {
-            return await _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToListAsync();
+            throw new NotImplementedException();
+            //return await _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToListAsync();
         }
 
         //GetAll by Anniversary
         public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
         {
-            return _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToList();
+            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            return _db.People.Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day);
         }
 
         //GetAll by Anniversary Async
         public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
         {
-            return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
+            throw new NotImplementedException();
+            //return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
         }
 
         //GetAll by Email
@@ -115,9 +120,8 @@ namespace GreetMe_DataAccess.Repository
         //Create
         public Person? Create(Person entity)
         {
-            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
+            entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day); 
             entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
-
             _db.People.Add(entity);
             _db.SaveChanges();
             return entity;
@@ -128,7 +132,6 @@ namespace GreetMe_DataAccess.Repository
         {
             entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
             entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
-
             _db.People.Add(entity);
             await _db.SaveChangesAsync();
             return entity;
@@ -143,7 +146,6 @@ namespace GreetMe_DataAccess.Repository
         {
             entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
             entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
-
             _db.People.Update(entity);
             _db.SaveChanges();
             return entity;
@@ -154,7 +156,6 @@ namespace GreetMe_DataAccess.Repository
         {
             entity.HiringDate = new DateTime(entity.HiringDate.Year, entity.HiringDate.Month, entity.HiringDate.Day);
             entity.DateOfBirth = new DateTime(entity.DateOfBirth.Year, entity.DateOfBirth.Month, entity.DateOfBirth.Day);
-
             _db.People.Update(entity);
             await _db.SaveChangesAsync();
             return entity;

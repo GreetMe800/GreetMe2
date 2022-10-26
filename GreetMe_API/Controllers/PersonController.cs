@@ -43,9 +43,10 @@ namespace GreetMe_API.Controllers
 
         //GetAll Async
         [HttpGet(Name = "GetAllPeopleAsync")]
-        public async Task<IEnumerable<Person>> GetAllAsync()
+        public IEnumerable<Person> GetAllAsync()
         {
-            return await _personRepository.GetAllAsync();
+            return  _personRepository.GetAll();
+            //return await _personRepository.GetAllAsync();
         }
 
         //-----------------------------------------------------------------------------
