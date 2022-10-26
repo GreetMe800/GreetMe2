@@ -53,7 +53,7 @@ namespace GreetMe_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPut]
+    
         public IActionResult Edit(int id) 
         {
 
