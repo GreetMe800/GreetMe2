@@ -38,25 +38,25 @@ namespace GreetMe_DataAccess.DTO
 
 
 
-        public ViewDto(string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu) : this()
-        {
-            ViewName = viewName;
-            HasCurrentDatetime = hasCurrentDateTime;
-            HasBirthday = hasBirthDay;
-            HasAnniversary = hasAnniversary;
-            HasMenu = hasMenu;
+        //public ViewDto(string viewName, bool hasCurrentDateTime, bool hasBirthDay, bool hasAnniversary, bool hasMenu) : this()
+        //{
+        //    ViewName = viewName;
+        //    HasCurrentDatetime = hasCurrentDateTime;
+        //    HasBirthday = hasBirthDay;
+        //    HasAnniversary = hasAnniversary;
+        //    HasMenu = hasMenu;
 
-        }
+        //}
 
 
-        public ViewDto(int? id, string viewName, bool hasCurrentDatetime, bool hasBirthday, bool hasAnniversary, bool hasMenu) : this()
-        {
-            Id = id;
-            ViewName = viewName;
-            HasCurrentDatetime = hasCurrentDatetime;
-            HasBirthday = hasBirthday;
-            HasAnniversary = hasAnniversary;
-            HasMenu = hasMenu;
-        }
+        //public ViewDto(int? id, string viewName, bool hasCurrentDatetime, bool hasBirthday, bool hasAnniversary, bool hasMenu) : this()
+        //{
+        //    Id = id;
+        //    ViewName = viewName;
+        //    HasCurrentDatetime = hasCurrentDatetime;
+        //    HasBirthday = hasBirthday;
+        //    HasAnniversary = hasAnniversary;
+        //    HasMenu = hasMenu;
+        //}
     }
 }
