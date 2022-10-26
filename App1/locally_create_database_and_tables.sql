@@ -6,7 +6,7 @@ IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'WEXO_GreetMe')
 	END;
 GO
 
-/* CREATE TABELS dd */
+/* CREATE TABELS */
 
 USE [WEXO_GreetMe]
 GO
