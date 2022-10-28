@@ -1,5 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,27 +20,32 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //-----------------------------------------------------------------------------
-        /* Get / Read                                                                */
+        /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
         public IEnumerable<Layout> GetAll()
         {
-            throw new NotImplementedException();
+            var layouts = _db.Layouts;
+            return layouts.ToList();
         }
 
-        public Task<IEnumerable<Layout>> GetAllAsync()
+        public async Task<IEnumerable<Layout>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Layouts.ToListAsync();
         }
+
+        //-----------------------------------------------------------------------------
+        /* Get / Read                                                                */
+        //-----------------------------------------------------------------------------
 
         public Layout? Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.Layouts.FirstOrDefault(p => p.Id == id);
         }
 
-        public Task<Layout?> GetAsync(int id)
+        public async Task<Layout?> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _db.Layouts.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //-----------------------------------------------------------------------------
@@ -48,12 +54,15 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Create(Layout entity)
         {
-            throw new NotImplementedException();
+            _db.Layouts.Add(entity);
+            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+
         }
 
-        public Task<bool> CreateAsync(Layout entity)
+        public async Task<bool> CreateAsync(Layout entity)
         {
-            throw new NotImplementedException();
+            _db.Layouts.Add(entity);
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
         //-----------------------------------------------------------------------------
@@ -62,12 +71,13 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Update(Layout entity)
         {
-            throw new NotImplementedException();
+            _db.Layouts.Update(entity);
+            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
-        public Task<bool> UpdateAsync(Layout entity)
+        public async Task<bool> UpdateAsync(Layout entity)
         {
-            throw new NotImplementedException();
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
         //-----------------------------------------------------------------------------
@@ -76,12 +86,14 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            _db.Layouts.Remove(Get(id));
+            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            _db.Layouts.Remove(await GetAsync(id));
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,27 +20,32 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //-----------------------------------------------------------------------------
-        /* Get / Read                                                                */
-        //----------------------------------------------------------------------------- 
+        /* GetAll / Read                                                             */
+        //-----------------------------------------------------------------------------
 
         public IEnumerable<Menu> GetAll()
         {
-            throw new NotImplementedException();
+            var menus = _db.Menus;
+            return menus.ToList();
         }
 
-        public Task<IEnumerable<Menu>> GetAllAsync()
+        public async Task<IEnumerable<Menu>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Menus.ToListAsync();
         }
 
-        public Task<Menu?> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //-----------------------------------------------------------------------------
+        /* Get / Read                                                                */
+        //-----------------------------------------------------------------------------
 
         public Menu? Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.Menus.FirstOrDefault(p => p.Id == id);
+        }
+
+        public async Task<Menu?> GetAsync(int id)
+        {
+            return await _db.Menus.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //-----------------------------------------------------------------------------
@@ -49,9 +55,10 @@ namespace GreetMe_DataAccess.Repository
         public bool Create(Menu entity)
         {
             throw new NotImplementedException();
+
         }
 
-        public Task<bool> CreateAsync(Menu entity)
+        public async Task<bool> CreateAsync(Menu entity)
         {
             throw new NotImplementedException();
         }
@@ -65,7 +72,7 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Menu entity)
+        public async Task<bool> UpdateAsync(Menu entity)
         {
             throw new NotImplementedException();
         }
@@ -79,7 +86,7 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }

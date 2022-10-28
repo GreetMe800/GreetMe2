@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //-----------------------------------------------------------------------------
-        /* Get / Read                                                                */
+        /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
         public IEnumerable<Person> GetAll()
@@ -34,24 +35,28 @@ namespace GreetMe_DataAccess.Repository
             return await _db.People.ToListAsync();
         }
 
+        //-----------------------------------------------------------------------------
+        /* Get / Read                                                                */
+        //-----------------------------------------------------------------------------
+
         public Person? Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.People.FirstOrDefault(p => p.Id == id);
         }
 
-        public Task<Person?> GetAsync(int id)
+        public async Task<Person?> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _db.People.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Person? GetAllByEmail(string email)
+        public Person? GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            return _db.People.FirstOrDefault(p => p.Email == email);
         }
 
-        public Task<Person?> GetAllByEmailAsync(string email)
+        public async Task<Person?> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return await _db.People.FirstOrDefaultAsync(p => p.Email == email);
         }
 
         //-----------------------------------------------------------------------------
@@ -60,12 +65,15 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Create(Person entity)
         {
-            throw new NotImplementedException();
+            _db.People.Add(entity);
+            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+           
         }
 
-        public Task<bool> CreateAsync(Person entity)
+        public async Task<bool> CreateAsync(Person entity)
         {
-            throw new NotImplementedException();
+            _db.People.Add(entity);
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
         //-----------------------------------------------------------------------------
@@ -74,12 +82,13 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Update(Person entity)
         {
-            throw new NotImplementedException();
+            _db.People.Update(entity);
+            return _db.SaveChanges() != 0;
         }
 
-        public Task<bool> UpdateAsync(Person entity)
+        public async Task<bool> UpdateAsync(Person entity)
         {
-            throw new NotImplementedException();
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
         //-----------------------------------------------------------------------------
@@ -88,12 +97,14 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            _db.People.Remove(Get(id));
+            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            _db.People.Remove(await GetAsync(id));
+            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
     }
 }

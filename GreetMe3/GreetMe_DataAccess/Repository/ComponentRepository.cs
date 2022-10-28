@@ -1,5 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,27 +20,32 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //-----------------------------------------------------------------------------
-        /* Get / Read                                                                */
+        /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
         public IEnumerable<Component> GetAll()
         {
-            throw new NotImplementedException();
+            var components = _db.Components;
+            return components.ToList();
         }
 
-        public Task<IEnumerable<Component>> GetAllAsync()
+        public async Task<IEnumerable<Component>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Components.ToListAsync();
         }
+
+        //-----------------------------------------------------------------------------
+        /* Get / Read                                                                */
+        //-----------------------------------------------------------------------------
 
         public Component? Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.Components.FirstOrDefault(p => p.Id == id);
         }
 
-        public Task<Component?> GetAsync(int id)
+        public async Task<Component?> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _db.Components.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //-----------------------------------------------------------------------------
@@ -49,9 +55,10 @@ namespace GreetMe_DataAccess.Repository
         public bool Create(Component entity)
         {
             throw new NotImplementedException();
+
         }
 
-        public Task<bool> CreateAsync(Component entity)
+        public async Task<bool> CreateAsync(Component entity)
         {
             throw new NotImplementedException();
         }
@@ -65,7 +72,7 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Component entity)
+        public async Task<bool> UpdateAsync(Component entity)
         {
             throw new NotImplementedException();
         }
@@ -79,7 +86,7 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
