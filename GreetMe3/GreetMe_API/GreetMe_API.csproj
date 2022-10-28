@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="Controllers\" />
     <Folder Include="ModelConverter\" />
     <Folder Include="DTO\" />
   </ItemGroup>
