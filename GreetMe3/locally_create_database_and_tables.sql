@@ -55,6 +55,6 @@ CREATE TABLE [dbo].[menus](
 	[menu_name] [nvarchar](50) NOT NULL,
 	[start_date] [date] NOT NULL,
 	[end_date] [date] NULL,
-	[decription] [nvarchar](50) NOT NULL
+	[description] [nvarchar](50) NOT NULL
 )
 GO

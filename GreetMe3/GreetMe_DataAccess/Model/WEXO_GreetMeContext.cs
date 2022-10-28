@@ -62,9 +62,9 @@ namespace GreetMe_DataAccess.Model
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Decription)
+                entity.Property(e => e.Description)
                     .HasMaxLength(50)
-                    .HasColumnName("decription");
+                    .HasColumnName("description");
 
                 entity.Property(e => e.EndDate)
                     .HasColumnType("date")
