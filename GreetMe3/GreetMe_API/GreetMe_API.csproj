@@ -16,11 +16,8 @@
 
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\GreetMe_DataAccess\GreetMe_DataAccess.csproj" />
+    <Folder Include="ModelConverter\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
 
 </Project>
