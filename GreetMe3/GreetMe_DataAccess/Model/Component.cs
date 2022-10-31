@@ -11,7 +11,7 @@ namespace GreetMe_DataAccess.Model
         public Component()
         {
             ComponentPositions = new HashSet<ComponentPosition>();
-            Views = new <View>HashSet();
+            Views = new HashSet<View>();
         }
 
         //id
