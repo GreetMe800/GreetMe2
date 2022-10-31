@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.DataAccess
 {
-    public class LayoutContext : DbContext
+    public class WEXOContext : DbContext
     {
         //context
-        public LayoutContext(DbContextOptions options) : base(options) { }
+        public WEXOContext(DbContextOptions options) : base(options) { }
 
         //relations in class
-        public DbSet<Layout> Layouts { get; set; }
-        public DbSet<ComponentPosition> ComponentPositions { get; set; }
         public DbSet<View> Views { get; set; }
+        public DbSet<Layout> Layouts { get; set; }
+        public DbSet<Component> Components { get; set; }
+        public DbSet<ComponentPosition> ComponentPositions { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Menu> Menus { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

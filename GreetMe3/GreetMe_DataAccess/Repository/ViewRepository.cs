@@ -9,7 +9,7 @@ namespace GreetMe_DataAccess.Repository
     {
 
         //ConnectionString
-        private readonly ViewContext _db;
+        private readonly WEXOContext _db;
         public ViewRepository()
         {
             _db = new WEXO_GreetMeContext();
