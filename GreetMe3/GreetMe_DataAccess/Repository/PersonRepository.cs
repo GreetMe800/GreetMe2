@@ -16,9 +16,9 @@ namespace GreetMe_DataAccess.Repository
 
         //ConnectionString
         private readonly PersonContext _db;
-        public PersonRepository()
+        public PersonRepository(PersonContext _db)
         {
-            _db = new WEXO_GreetMeContext();
+            this._db = _db;
         }
 
         //-----------------------------------------------------------------------------

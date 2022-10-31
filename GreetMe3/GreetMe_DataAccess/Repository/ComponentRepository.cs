@@ -1,4 +1,5 @@
-﻿using GreetMe_DataAccess.Interface;
+﻿using GreetMe_DataAccess.DataAccess;
+using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,10 +14,10 @@ namespace GreetMe_DataAccess.Repository
     {
 
         //ConnectionString
-        private readonly WEXO_GreetMeContext _db;
-        public ComponentRepository()
+        private readonly ComponentContext _db;
+        public ComponentRepository(ComponentContext _db)
         {
-            _db = new WEXO_GreetMeContext();
+            this._db = _db;
         }
 
         //-----------------------------------------------------------------------------

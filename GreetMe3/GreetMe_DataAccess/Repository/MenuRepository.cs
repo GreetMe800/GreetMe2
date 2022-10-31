@@ -15,9 +15,9 @@ namespace GreetMe_DataAccess.Repository
 
         //ConnectionString
         private readonly MenuContext _db;
-        public MenuRepository()
+        public MenuRepository(MenuContext _db)
         {
-            _db = new WEXO_GreetMeContext();
+            this._db = _db;
         }
 
         //-----------------------------------------------------------------------------

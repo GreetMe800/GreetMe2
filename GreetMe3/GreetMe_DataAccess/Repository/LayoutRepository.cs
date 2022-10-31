@@ -15,9 +15,9 @@ namespace GreetMe_DataAccess.Repository
 
         //ConnectionString
         private readonly LayoutContext _db;
-        public LayoutRepository()
+        public LayoutRepository(LayoutContext _db)
         {
-            _db = new WEXO_GreetMeContext();
+            this._db = _db;
         }
 
         //-----------------------------------------------------------------------------
