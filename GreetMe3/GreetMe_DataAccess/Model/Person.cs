@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreetMe_DataAccess.Model
 {
-    public partial class Person
+    [Table("persons")]
+    public class Person
     {
         //id
         [Key]

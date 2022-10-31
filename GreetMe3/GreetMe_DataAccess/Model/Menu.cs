@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreetMe_DataAccess.Model
 {
-    public partial class Menu
+    [Table("menus")]
+    public class Menu
     {
         //id
         [Required]

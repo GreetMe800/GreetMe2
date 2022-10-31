@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GreetMe_DataAccess.Model
 {
+    [Table("layouts")]
     public class Layout
     {
         public Layout()
