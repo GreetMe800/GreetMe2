@@ -8,35 +8,18 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Model
 {
-    [Table("component_positions")]
-    public class ComponentPosition
+    public partial class ComponentPosition
     {
         public ComponentPosition()
         {
-            Layouts = new HashSet<Layout>();
+            ComponentComponentPositions = new HashSet<ComponentComponentPosition>();
         }
 
-        //id
-        [Key]
-        [Required]
-        [Column(TypeName = "INT")]
         public int Id { get; set; }
-
-        //position
-        [Required]
-        [Column(TypeName = "INT")]
-        public int Position { get; set; }
-
-        /* one to Many relation */
-        //layout
-        [Required]
-        [Column(TypeName = "INT")]
+        public string ComponentName { get; set; } = null!;
         public int ComponentId { get; set; }
-        [ForeignKey("ComponentId")]
-        public Component Component { get; set; } = null!;
 
-        /* Many to Many relations */
-        //Component Position
-        public virtual ICollection<Layout> Layouts { get; set; }
+        public virtual Component Component { get; set; } = null!;
+        public virtual ICollection<ComponentComponentPosition> ComponentComponentPositions { get; set; }
     }
 }

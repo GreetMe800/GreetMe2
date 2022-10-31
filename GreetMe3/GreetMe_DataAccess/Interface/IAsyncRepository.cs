@@ -1,40 +1,40 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace GreetMe_DataAccess.Interface
-//{
-//    public interface IAsyncRepository<T> where T : class
-//    {
-//        //-----------------------------------------------------------------------------
-//        /* Get / Read                                                                */
-//        //-----------------------------------------------------------------------------
+namespace GreetMe_DataAccess.Interface
+{
+    public interface IAsyncRepository<T> where T : class
+    {
+        //-----------------------------------------------------------------------------
+        /* Get / Read                                                                */
+        //-----------------------------------------------------------------------------
 
-//        //Get All
-//        public Task<IEnumerable<T>> GetAllAsync();
+        //Get All
+        public Task<IEnumerable<T>> GetAllAsync();
 
-//        //Get
-//        public Task<T?> GetAsync(int id);
+        //Get
+        public Task<T?> GetAsync(int id);
 
-//        //-----------------------------------------------------------------------------
-//        /* Create / Post                                                             */
-//        //-----------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------
+        /* Create / Post                                                             */
+        //-----------------------------------------------------------------------------
 
-//        //Create
-//        public Task<bool> CreateAsync(T entity);
+        //Create
+        public Task<bool> CreateAsync(T entity);
 
-//        //-----------------------------------------------------------------------------
-//        /* Update / Put                                                              */
-//        //-----------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------
+        /* Update / Put                                                              */
+        //-----------------------------------------------------------------------------
 
-//        public Task<bool> UpdateAsync(T entity);
+        public Task<bool> UpdateAsync(T entity);
 
-//        //-----------------------------------------------------------------------------
-//        /* Delete / Remove                                                           */
-//        //-----------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------
+        /* Delete / Remove                                                           */
+        //-----------------------------------------------------------------------------
 
-//        public Task<bool> DeleteAsync(int id);
-//    }
-//}
+        public Task<bool> DeleteAsync(int id);
+    }
+}

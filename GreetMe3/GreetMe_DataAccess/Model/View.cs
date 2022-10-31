@@ -5,36 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreetMe_DataAccess.Model
 {
-    [Table("views")]
-    public class View
+    public partial class View
     {
         public View()
         {
-            Components = new HashSet<Component>();
+            InverseLayout = new HashSet<View>();
         }
 
-        //id
-        [Key]
-        [Required]
-        [Column(TypeName = "INT")]
         public int Id { get; set; }
-
-        //name
-        [Required]
-        [Column(TypeName = "NVARCHAR")]
-        [MaxLength(50)]
         public string ViewName { get; set; } = null!;
-
-        /* One to Many relation */
-        //layout
-        [Required]
-        [Column(TypeName = "INT")]
         public int LayoutId { get; set; }
-        [ForeignKey("LayoutId")]
-        public Layout Layout { get; set; } = null!;
 
-        /* Many to mmany relations */
-        //components
-        public virtual ICollection<Component> Components { get; set; }
+        public virtual View Layout { get; set; } = null!;
+        public virtual ComponentView? ComponentView { get; set; }
+        public virtual ICollection<View> InverseLayout { get; set; }
     }
 }
