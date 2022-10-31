@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{ECE8D9CD-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{09DD91FC-01B4-42F3-A7CC-DFAA0B815489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetMe_API", "GreetMe_API\GreetMe_API.csproj", "{ACE9B765-D293-4CC5-A64B-1EB32B789BC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_API", "GreetMe_API\GreetMe_API.csproj", "{ACE9B765-D293-4CC5-A64B-1EB32B789BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetMe_DataAccess", "GreetMe_DataAccess\GreetMe_DataAccess.csproj", "{B5E3B024-CBCF-4C94-AC7E-685CEBDF3C9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_DataAccess", "GreetMe_DataAccess\GreetMe_DataAccess.csproj", "{B5E3B024-CBCF-4C94-AC7E-685CEBDF3C9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D7B2F1FF-06D6-4BD5-B7E9-AE25F2EC1BD4}"
 EndProject
@@ -28,11 +28,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{94DC
 		locally_drop_testdata.sql = locally_drop_testdata.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetMe_Test", "GreetMe_Test\GreetMe_Test.csproj", "{5F9E8673-42C4-4235-A58F-8915AC272A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_Test", "GreetMe_Test\GreetMe_Test.csproj", "{5F9E8673-42C4-4235-A58F-8915AC272A89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{AA537214-73FA-4666-911F-028D012329E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetMe_MVC", "GreetMe_MVC\GreetMe_MVC.csproj", "{43C8B479-F906-427D-902F-5928FBF40298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_MVC", "GreetMe_MVC\GreetMe_MVC.csproj", "{43C8B479-F906-427D-902F-5928FBF40298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

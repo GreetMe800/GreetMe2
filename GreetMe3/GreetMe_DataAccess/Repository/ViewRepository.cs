@@ -1,11 +1,7 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GreetMe_DataAccess.DataAccess;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -13,7 +9,7 @@ namespace GreetMe_DataAccess.Repository
     {
 
         //ConnectionString
-        private readonly WEXO_GreetMeContext _db;
+        private readonly ViewContext _db;
         public ViewRepository()
         {
             _db = new WEXO_GreetMeContext();

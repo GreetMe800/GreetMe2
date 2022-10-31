@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GreetMe_DataAccess.DataAccess;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -13,7 +14,7 @@ namespace GreetMe_DataAccess.Repository
     {
 
         //ConnectionString
-        private readonly WEXO_GreetMeContext _db;
+        private readonly MenuContext _db;
         public MenuRepository()
         {
             _db = new WEXO_GreetMeContext();
