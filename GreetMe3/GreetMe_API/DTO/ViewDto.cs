@@ -2,7 +2,7 @@
 {
     public class ViewDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string ViewName { get; set; }
         public List<PersonDto>? BirthdaysToday { get; set; }
         public List<PersonDto>? AnniversarysToday { get; set; }
@@ -11,7 +11,7 @@
         {
 
         }
-        public ViewDto(int? id, string viewName)
+        public ViewDto(int id, string viewName)
         {
             Id = id;
             ViewName = viewName;
