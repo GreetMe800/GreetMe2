@@ -15,9 +15,9 @@ namespace GreetMe_DataAccess.DataAccess
 
         //relations in class
         public DbSet<Menu> Menus { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            optionsBuilder.UseSqlServer("@(localdb)\\mssqllocaldb;Database=WEXO_GreetMe;integrated security=True;");
         }
     }
 }

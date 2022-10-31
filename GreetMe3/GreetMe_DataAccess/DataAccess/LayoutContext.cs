@@ -17,10 +17,10 @@ namespace GreetMe_DataAccess.DataAccess
         public DbSet<Layout> Layouts { get; set; }
         public DbSet<ComponentPosition> ComponentPositions { get; set; }
         public DbSet<View> Views { get; set; }
-        
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            optionsBuilder.UseSqlServer("@(localdb)\\mssqllocaldb;Database=WEXO_GreetMe;integrated security=True;");
         }
     }
 }
