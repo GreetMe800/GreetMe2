@@ -2,7 +2,7 @@
 {
     public class PersonDto
     {
-        public int Id { get; set; }
+        public int Id { get; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HiringDate { get; set; }
@@ -22,8 +22,9 @@
             FullName = fullName;
             DateOfBirth = dateOfBirth;
             HiringDate = hiringDate;
-            this.Email = email;
+            Email = email;
         }
+
         public PersonDto(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);

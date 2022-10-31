@@ -6,7 +6,7 @@
         public string ViewName { get; set; }
         public List<PersonDto>? BirthdaysToday { get; set; }
         public List<PersonDto>? AnniversarysToday { get; set; }
-
+       
         public ViewDto()
         {
 
