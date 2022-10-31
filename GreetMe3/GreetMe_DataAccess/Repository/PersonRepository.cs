@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using GreetMe_DataAccess.DataAccess;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -14,7 +15,7 @@ namespace GreetMe_DataAccess.Repository
     {
 
         //ConnectionString
-        private readonly WEXO_GreetMeContext _db;
+        private readonly PersonContext _db;
         public PersonRepository()
         {
             _db = new WEXO_GreetMeContext();
@@ -60,6 +61,15 @@ namespace GreetMe_DataAccess.Repository
         {
             throw new NotImplementedException();
             //return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
+        }
+        public IEnumerable<Person> GetAllByEmail(string email)
+        {
+            return _db.People.Where(p => p.Email == email); ;
+        }
+
+        public Task<IEnumerable<Person>> GetAllByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
         }
 
         //-----------------------------------------------------------------------------
