@@ -31,7 +31,8 @@ namespace GreetMe_DataAccess.Interface
 
         //GetAll by Email Async
         Task<IEnumerable<Person>> GetAllByEmailAsync(string email);
-
+        //GetBy Email
+        public Person? GetByEmail(string email);
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
