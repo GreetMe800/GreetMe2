@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreetMe_DataAccess.Model
 {
+    [Table("views")]
     public class View
     {
         public View()

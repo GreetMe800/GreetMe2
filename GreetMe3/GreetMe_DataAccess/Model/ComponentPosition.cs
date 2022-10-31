@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Model
 {
+    [Table("component_positions")]
     public class ComponentPosition
     {
         public ComponentPosition()
