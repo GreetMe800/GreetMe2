@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GreetMe_API\GreetMe_API.csproj" />
+  </ItemGroup>
+
 </Project>

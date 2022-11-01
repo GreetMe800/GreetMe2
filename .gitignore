@@ -478,3 +478,4 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualbasic,visualstudiocode,visualstudio
+/GreetMe3/GreetMe_MVC/Models/Component.cs
