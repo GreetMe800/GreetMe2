@@ -1,5 +1,6 @@
 ﻿using GreetMe_API.BusinessLogic;
 using GreetMe_API.DTO;
+using GreetMe_API.ModelConverter;
 using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -84,28 +85,27 @@ namespace GreetMe_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(PersonDto personDto)
         {
-            Person person = PersonDtoConverter.ConvertFromDto(personDto);
-            bool personSaved = await _personRepository.CreateAsync(person);
-            if (personSaved)
-            {
-                return Ok();
-            }
-            else
-            {
-                return Conflict();
-            }
-
-
+            throw new NotImplementedException();
         }
 
         //-----------------------------------------------------------------------------
         /* Update                                                                    */
         //-----------------------------------------------------------------------------
 
-
+        [HttpPut]
+        public async Task<ActionResult> Update(PersonDto personDto)
+        {
+            throw new NotImplementedException();
+        }
 
         //-----------------------------------------------------------------------------
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(PersonDto personDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

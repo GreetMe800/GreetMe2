@@ -3,7 +3,7 @@ using GreetMe_DataAccess.Model;
 
 namespace GreetMe_API.ModelConverter
 {
-    public static class MenuDTOConverter
+    public static class MenuDtoConverter
     {
         //Convert to MenuDto (convert from database, getdata) /\
         public static MenuDto ConvertToDto(Menu menu)

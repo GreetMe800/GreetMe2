@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Model
 {
-    public partial class ComponentComponentPosition
+    public partial class LayoutsComponentPosition
     {
         public int ComponentId { get; set; }
         public int ComponentPositionId { get; set; }

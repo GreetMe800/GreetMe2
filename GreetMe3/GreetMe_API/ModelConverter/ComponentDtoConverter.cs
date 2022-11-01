@@ -3,7 +3,7 @@ using GreetMe_DataAccess.Model;
 
 namespace GreetMe_API.ModelConverter
 {
-    public static class ComponentDTOConverter
+    public static class ComponentDtoConverter
     {
         //Convert to ComponentDto (convert from database, getdata) /\
         public static ComponentDto ConvertToDto(Component component)

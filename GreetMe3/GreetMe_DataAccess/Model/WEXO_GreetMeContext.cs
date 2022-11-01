@@ -19,13 +19,13 @@ namespace GreetMe_DataAccess.Model
         }
 
         public virtual DbSet<Component> Components { get; set; } = null!;
-        public virtual DbSet<ComponentComponentPosition> ComponentComponentPositions { get; set; } = null!;
         public virtual DbSet<ComponentPosition> ComponentPositions { get; set; } = null!;
-        public virtual DbSet<ComponentView> ComponentViews { get; set; } = null!;
         public virtual DbSet<Layout> Layouts { get; set; } = null!;
+        public virtual DbSet<LayoutsComponentPosition> LayoutsComponentPositions { get; set; } = null!;
         public virtual DbSet<Menu> Menus { get; set; } = null!;
         public virtual DbSet<Person> People { get; set; } = null!;
         public virtual DbSet<View> Views { get; set; } = null!;
+        public virtual DbSet<ViewsComponent> ViewsComponents { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,32 +49,6 @@ namespace GreetMe_DataAccess.Model
                     .HasColumnName("component_name");
             });
 
-            modelBuilder.Entity<ComponentComponentPosition>(entity =>
-            {
-                entity.HasKey(e => e.ComponentId)
-                    .HasName("PK__componen__AEB1DA59809AB327");
-
-                entity.ToTable("component_component_positions");
-
-                entity.Property(e => e.ComponentId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("component_id");
-
-                entity.Property(e => e.ComponentPositionId).HasColumnName("component_position_id");
-
-                entity.HasOne(d => d.Component)
-                    .WithOne(p => p.ComponentComponentPosition)
-                    .HasForeignKey<ComponentComponentPosition>(d => d.ComponentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_component_positions_components_id");
-
-                entity.HasOne(d => d.ComponentPosition)
-                    .WithMany(p => p.ComponentComponentPositions)
-                    .HasForeignKey(d => d.ComponentPositionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_component_positions_component_positions_id");
-            });
-
             modelBuilder.Entity<ComponentPosition>(entity =>
             {
                 entity.ToTable("component_positions");
@@ -91,33 +65,7 @@ namespace GreetMe_DataAccess.Model
                     .WithMany(p => p.ComponentPositions)
                     .HasForeignKey(d => d.ComponentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_position_components_id");
-            });
-
-            modelBuilder.Entity<ComponentView>(entity =>
-            {
-                entity.HasKey(e => e.ComponentId)
-                    .HasName("PK__componen__AEB1DA5951D5AD98");
-
-                entity.ToTable("component_views");
-
-                entity.Property(e => e.ComponentId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("component_id");
-
-                entity.Property(e => e.ViewId).HasColumnName("view_id");
-
-                entity.HasOne(d => d.Component)
-                    .WithOne(p => p.ComponentView)
-                    .HasForeignKey<ComponentView>(d => d.ComponentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_views_components_id");
-
-                entity.HasOne(d => d.ComponentNavigation)
-                    .WithOne(p => p.ComponentView)
-                    .HasForeignKey<ComponentView>(d => d.ComponentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_views_views_id");
+                    .HasConstraintName("FK_component_positions_component_id");
             });
 
             modelBuilder.Entity<Layout>(entity =>
@@ -129,6 +77,32 @@ namespace GreetMe_DataAccess.Model
                 entity.Property(e => e.LayoutName)
                     .HasMaxLength(50)
                     .HasColumnName("layout_name");
+            });
+
+            modelBuilder.Entity<LayoutsComponentPosition>(entity =>
+            {
+                entity.HasKey(e => e.ComponentId)
+                    .HasName("PK__layouts___AEB1DA5953ECD723");
+
+                entity.ToTable("layouts_component_positions");
+
+                entity.Property(e => e.ComponentId)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("component_id");
+
+                entity.Property(e => e.ComponentPositionId).HasColumnName("component_position_id");
+
+                entity.HasOne(d => d.Component)
+                    .WithOne(p => p.LayoutsComponentPosition)
+                    .HasForeignKey<LayoutsComponentPosition>(d => d.ComponentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_layouts_component_positions_components_id");
+
+                entity.HasOne(d => d.ComponentPosition)
+                    .WithMany(p => p.LayoutsComponentPositions)
+                    .HasForeignKey(d => d.ComponentPositionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_layouts_component_positions_component_positions_id");
             });
 
             modelBuilder.Entity<Menu>(entity =>
@@ -158,7 +132,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E6164BA0C0115")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E61645B26678E")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -193,10 +167,33 @@ namespace GreetMe_DataAccess.Model
                     .HasColumnName("view_name");
 
                 entity.HasOne(d => d.Layout)
-                    .WithMany(p => p.InverseLayout)
+                    .WithMany(p => p.Views)
                     .HasForeignKey(d => d.LayoutId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_view_layout_id");
+                    .HasConstraintName("FK_views_layout_id");
+            });
+
+            modelBuilder.Entity<ViewsComponent>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("views_components");
+
+                entity.Property(e => e.ComponentId).HasColumnName("component_id");
+
+                entity.Property(e => e.ViewId).HasColumnName("view_id");
+
+                entity.HasOne(d => d.Component)
+                    .WithMany()
+                    .HasForeignKey(d => d.ComponentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("views_components_component_id");
+
+                entity.HasOne(d => d.View)
+                    .WithMany()
+                    .HasForeignKey(d => d.ViewId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("views_components_view_id");
             });
 
             OnModelCreatingPartial(modelBuilder);

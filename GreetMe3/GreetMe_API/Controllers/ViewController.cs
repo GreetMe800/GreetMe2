@@ -3,6 +3,7 @@ using GreetMe_DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 using GreetMe_API.BusinessLogic;
 using GreetMe_API.DTO;
+using GreetMe_API.ModelConverter;
 
 
 
@@ -22,7 +23,17 @@ namespace GreetMe_API.Controllers
         {
             _viewRepository = viewRepository;
             _personrepository = personRepository;
+        }
 
+        //-----------------------------------------------------------------------------
+        /* GetAll / Read                                                             */
+        //-----------------------------------------------------------------------------
+
+        //GetAll Async
+        [HttpGet(Name = "GetAllViewsAsync")]
+        public async Task<IEnumerable<View>> GetAllAsync()
+        {
+            return await _viewRepository.GetAllAsync();
         }
 
         //-----------------------------------------------------------------------------
@@ -32,31 +43,28 @@ namespace GreetMe_API.Controllers
         //Get by ID
         [HttpGet]
         [Route("get/{id}")]
-        public ActionResult GetById(int id)
+        public ActionResult Get(int id)
         {
-            //Input Validator, 0 <
+            //Input Validator, if 0
             if (id <= 0)
             {
                 return Conflict();
             }
+
             View? foundView = _viewRepository.Get(id);
 
+            //Input Validator, if not null
             if (foundView is not null)
             {
                 ViewDto viewDto = ViewDtoConverter.ConvertToDto(foundView);
                 return Ok(viewDto);
             }
 
+            //Input Validator, if null
             else
             {
                 return Conflict();
             }
-        }
-
-        [HttpGet, Route("viewName")]
-        public ActionResult<ViewDto> GetByViewName(int id)
-        {
-            throw new NotImplementedException();
         }
 
         //-----------------------------------------------------------------------------

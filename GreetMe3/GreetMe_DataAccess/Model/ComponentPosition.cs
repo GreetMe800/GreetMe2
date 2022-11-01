@@ -12,7 +12,7 @@ namespace GreetMe_DataAccess.Model
     {
         public ComponentPosition()
         {
-            ComponentComponentPositions = new HashSet<ComponentComponentPosition>();
+            LayoutsComponentPositions = new HashSet<LayoutsComponentPosition>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace GreetMe_DataAccess.Model
         public int ComponentId { get; set; }
 
         public virtual Component Component { get; set; } = null!;
-        public virtual ICollection<ComponentComponentPosition> ComponentComponentPositions { get; set; }
+        public virtual ICollection<LayoutsComponentPosition> LayoutsComponentPositions { get; set; }
     }
 }

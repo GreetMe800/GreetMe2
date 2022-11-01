@@ -3,7 +3,7 @@ using GreetMe_DataAccess.Model;
 
 namespace GreetMe_API.ModelConverter
 {
-    public static class LayoutDTOConverter
+    public static class LayoutDtoConverter
     {
         //Convert to LayoutDto (convert from database, getdata) /\
         public static LayoutDto ConvertToDto(Layout layout)

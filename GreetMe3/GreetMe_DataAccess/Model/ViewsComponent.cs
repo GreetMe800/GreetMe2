@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Model
 {
-    public partial class ComponentView
+    public partial class ViewsComponent
     {
         public int ComponentId { get; set; }
         public int ViewId { get; set; }
 
         public virtual Component Component { get; set; } = null!;
-        public virtual View ComponentNavigation { get; set; } = null!;
+        public virtual View View { get; set; } = null!;
     }
 }
