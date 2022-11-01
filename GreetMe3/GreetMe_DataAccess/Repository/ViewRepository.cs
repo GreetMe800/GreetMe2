@@ -35,12 +35,14 @@ namespace GreetMe_DataAccess.Repository
 
         public View? Get(int id)
         {
-            return _db.Views.FirstOrDefault(p => p.Id == id);
+            return _db.ViewsComponents
+                .Include(vc => vc.View)
+                .Include(vc => vc.Component);
         }
 
         public async Task<View?> GetAsync(int id)
         {
-            return await _db.Views.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.Views.FindAsync(id);
         }
 
         //-----------------------------------------------------------------------------
