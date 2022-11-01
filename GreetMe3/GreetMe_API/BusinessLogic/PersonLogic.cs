@@ -1,4 +1,5 @@
 ﻿using GreetMe_API.DTO;
+using GreetMe_API.ModelConverter;
 using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 
@@ -20,6 +21,7 @@ namespace GreetMe_API.BusinessLogic
             }
             viewDto.BirthdaysToday = birthdayPeopleDto;
         }
+
         //Anniversary component logic
         public static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
         {

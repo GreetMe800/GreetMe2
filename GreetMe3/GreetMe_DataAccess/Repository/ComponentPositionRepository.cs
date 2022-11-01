@@ -1,15 +1,20 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Repository
 {
-    public class ViewRepository : IViewRepository
+    public class ComponentPositionRepository : IComponentPositionRepository
     {
 
         //ConnectionString
         private readonly WEXO_GreetMeContext _db;
-        public ViewRepository()
+        public ComponentPositionRepository()
         {
             _db = new WEXO_GreetMeContext();
         }
@@ -18,47 +23,45 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
-        public IEnumerable<View> GetAll()
+        public IEnumerable<ComponentPosition> GetAll()
         {
-            var views = _db.Views;
-            return views.ToList();
+            var componentPositions = _db.ComponentPositions;
+            return componentPositions.ToList();
         }
 
-        public async Task<IEnumerable<View>> GetAllAsync()
+        public async Task<IEnumerable<ComponentPosition>> GetAllAsync()
         {
-            return await _db.Views.ToListAsync();
+            return await _db.ComponentPositions.ToListAsync();
         }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        public View? Get(int id)
+        public ComponentPosition? Get(int id)
         {
-            return _db.ViewsComponents
-                .Include(vc => vc.View)
-                .Include(vc => vc.Component);
+            return _db.ComponentPositions.FirstOrDefault(p => p.Id == id);
         }
 
-        public async Task<View?> GetAsync(int id)
+        public async Task<ComponentPosition?> GetAsync(int id)
         {
-            return await _db.Views.FindAsync(id);
+            return await _db.ComponentPositions.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-        public bool Create(View entity)
+        public bool Create(ComponentPosition entity)
         {
-            _db.Views.Add(entity);
+            _db.ComponentPositions.Add(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
 
         }
 
-        public async Task<bool> CreateAsync(View entity)
+        public async Task<bool> CreateAsync(ComponentPosition entity)
         {
-            _db.Views.Add(entity);
+            _db.ComponentPositions.Add(entity);
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
@@ -66,13 +69,13 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
-        public bool Update(View entity)
+        public bool Update(ComponentPosition entity)
         {
-            _db.Views.Update(entity);
+            _db.ComponentPositions.Update(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
-        public async Task<bool> UpdateAsync(View entity)
+        public async Task<bool> UpdateAsync(ComponentPosition entity)
         {
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
@@ -83,13 +86,13 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Delete(int id)
         {
-            _db.Views.Remove(Get(id));
+            _db.ComponentPositions.Remove(Get(id));
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            _db.Views.Remove(await GetAsync(id));
+            _db.ComponentPositions.Remove(await GetAsync(id));
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
     }

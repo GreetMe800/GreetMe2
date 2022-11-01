@@ -61,15 +61,6 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
             //return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
         }
-        public IEnumerable<Person> GetAllByEmail(string email)
-        {
-            return _db.People.Where(p => p.Email == email); ;
-        }
-
-        public Task<IEnumerable<Person>> GetAllByEmailAsync(string email)
-        {
-            throw new NotImplementedException();
-        }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */

@@ -5,31 +5,32 @@ GO
 
 --DROP FK's
 
-ALTER TABLE [dbo].[layouts] DROP CONSTRAINT [FK_component_component_positions_component_positions_id]
+ALTER TABLE [dbo].[layouts_component_positions] DROP CONSTRAINT [FK_layouts_component_positions_component_positions_id]
 GO
-ALTER TABLE [dbo].[component_positions] DROP CONSTRAINT [FK_component_component_positions_components_id]
+ALTER TABLE [dbo].[layouts_component_positions] DROP CONSTRAINT [FK_layouts_component_positions_components_id]
 GO
-ALTER TABLE [dbo].[component_views] DROP CONSTRAINT [FK_component_views_views_id]
+ALTER TABLE [dbo].[views_components] DROP CONSTRAINT [views_components_view_id]
 GO
-ALTER TABLE [dbo].[component_views] DROP CONSTRAINT [FK_component_views_components_id]
+ALTER TABLE [dbo].[views_components] DROP CONSTRAINT [views_components_component_id]
 GO
-ALTER TABLE [dbo].[component_component_positions] DROP CONSTRAINT [FK_component_position_components_id]
+ALTER TABLE [dbo].[component_positions] DROP CONSTRAINT [FK_component_positions_component_id]
 GO
-ALTER TABLE [dbo].[component_component_positions] DROP CONSTRAINT [FK_view_layout_id]
+ALTER TABLE [dbo].[views] DROP CONSTRAINT [FK_views_layout_id]
 GO
 
 --DROP TABLES
-DROP TABLE [dbo].[views]
-GO
-DROP TABLE [dbo].[layouts]
-GO
-DROP TABLE [dbo].[components]
-GO
-DROP TABLE [dbo].[component_positions]
+
+DROP TABLE [dbo].[menus]
 GO
 DROP TABLE [dbo].[people]
 GO
-DROP TABLE [dbo].[menus]
+DROP TABLE [dbo].[component_positions]
+GO
+DROP TABLE [dbo].[components]
+GO
+DROP TABLE [dbo].[views]
+GO
+DROP TABLE [dbo].[layouts]
 GO
 
 /* DROP WEXO_GREET_ME DATABASE */

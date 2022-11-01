@@ -15,8 +15,7 @@ namespace GreetMe_DataAccess.Model
         public int Id { get; set; }
         public string ComponentName { get; set; } = null!;
 
-        public virtual ComponentComponentPosition? ComponentComponentPosition { get; set; }
-        public virtual ComponentView? ComponentView { get; set; }
+        public virtual LayoutsComponentPosition? LayoutsComponentPosition { get; set; }
         public virtual ICollection<ComponentPosition> ComponentPositions { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using GreetMe_DataAccess.Model;
 
 namespace GreetMe_API.ModelConverter
 {
-    public static class PersonDTOConverter
+    public static class PersonDtoConverter
     {
         //Convert to PersonDto (convert from database, getdata) /\
         public static PersonDto ConvertToDto(Person person)
