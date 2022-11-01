@@ -11,18 +11,18 @@ GO
 USE [WEXO_GreetMe]
 GO
 
+CREATE TABLE [dbo].[layouts](
+	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[layout_name] [nvarchar](50) NOT NULL
+	)
+GO
+
 CREATE TABLE [dbo].[views](
 	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[view_name] [nvarchar](50) NOT NULL,
 	[layout_id] [int] NOT NULL,
 
-	CONSTRAINT [FK_views_layout_id] FOREIGN KEY (layout_id) REFERENCES [layouts] (id),
-	)
-GO
-
-CREATE TABLE [dbo].[layouts](
-	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	[layout_name] [nvarchar](50) NOT NULL
+	CONSTRAINT [FK_views_layout_id] FOREIGN KEY (layout_id) REFERENCES [layouts] (id)
 	)
 GO
 

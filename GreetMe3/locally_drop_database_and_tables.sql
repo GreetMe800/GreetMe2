@@ -19,17 +19,18 @@ ALTER TABLE [dbo].[views] DROP CONSTRAINT [FK_views_layout_id]
 GO
 
 --DROP TABLES
-DROP TABLE [dbo].[views]
-GO
-DROP TABLE [dbo].[layouts]
-GO
-DROP TABLE [dbo].[components]
-GO
-DROP TABLE [dbo].[component_positions]
+
+DROP TABLE [dbo].[menus]
 GO
 DROP TABLE [dbo].[people]
 GO
-DROP TABLE [dbo].[menus]
+DROP TABLE [dbo].[component_positions]
+GO
+DROP TABLE [dbo].[components]
+GO
+DROP TABLE [dbo].[views]
+GO
+DROP TABLE [dbo].[layouts]
 GO
 
 /* DROP WEXO_GREET_ME DATABASE */
