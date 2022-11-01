@@ -41,21 +41,21 @@ CREATE TABLE [dbo].[component_positions](
 )
 GO
 
-CREATE TABLE [dbo].[views_components](
+CREATE TABLE [dbo].[component_view](
 	[component_id] [int] NOT NULL,
 	[view_id] [int] NOT NULL,
 
-	CONSTRAINT [views_components_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
-	CONSTRAINT [views_components_view_id] FOREIGN KEY (view_id) REFERENCES [views] (id)
+	CONSTRAINT [view_component_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
+	CONSTRAINT [view_component_view_id] FOREIGN KEY (view_id) REFERENCES [views] (id)
 )
 GO
 
-CREATE TABLE [dbo].[layouts_component_positions](
+CREATE TABLE [dbo].[layout_component_position](
 	[component_id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[component_position_id] [int] NOT NULL,
 
-	CONSTRAINT [FK_layouts_component_positions_components_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
-	CONSTRAINT [FK_layouts_component_positions_component_positions_id] FOREIGN KEY (component_position_id) REFERENCES [component_positions] (id)
+	CONSTRAINT [FK_layout_component_position_components_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
+	CONSTRAINT [FK_layout_component_position_component_positions_id] FOREIGN KEY (component_position_id) REFERENCES [component_positions] (id)
 )
 GO
 
