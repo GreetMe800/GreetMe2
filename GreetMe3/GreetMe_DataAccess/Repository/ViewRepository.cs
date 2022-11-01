@@ -36,8 +36,7 @@ namespace GreetMe_DataAccess.Repository
         public View? Get(int id)
         {
             return _db.ViewsComponents
-                .Include(vc => vc.View)
-                .Include(vc => vc.Component);
+                .Select(vc => vc.Component)
         }
 
         public async Task<View?> GetAsync(int id)

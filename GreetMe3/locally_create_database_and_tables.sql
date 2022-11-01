@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[views](
 	[view_name] [nvarchar](50) NOT NULL,
 	[layout_id] [int] NOT NULL,
 
-	CONSTRAINT [FK_views_layout_id] FOREIGN KEY (layout_id) REFERENCES [layouts] (id)
+	CONSTRAINT [FK_view_layout_id] FOREIGN KEY (layout_id) REFERENCES [layouts] (id)
 	)
 GO
 
@@ -37,25 +37,27 @@ CREATE TABLE [dbo].[component_positions](
 	[component_name] [nvarchar](50) NOT NULL,
 	[component_id] [int] NOT NULL,
 
-	CONSTRAINT [FK_component_positions_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id)
+	CONSTRAINT [FK_component_position_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id)
 )
 GO
 
 CREATE TABLE [dbo].[component_view](
 	[component_id] [int] NOT NULL,
-	[view_id] [int] NOT NULL,
+	[view_id] [int] NOT NULL
 
-	CONSTRAINT [view_component_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
-	CONSTRAINT [view_component_view_id] FOREIGN KEY (view_id) REFERENCES [views] (id)
+	CONSTRAINT [PK_component_view] PRIMARY KEY([component_id], [view_id]),
+	CONSTRAINT [FK_[component_view_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
+	CONSTRAINT [FK_[component_view_view_id] FOREIGN KEY (view_id) REFERENCES [views] (id)
 )
 GO
 
 CREATE TABLE [dbo].[layout_component_position](
-	[component_id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[component_id] [int] NOT NULL,
 	[component_position_id] [int] NOT NULL,
 
-	CONSTRAINT [FK_layout_component_position_components_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
-	CONSTRAINT [FK_layout_component_position_component_positions_id] FOREIGN KEY (component_position_id) REFERENCES [component_positions] (id)
+	CONSTRAINT [PK_layout_component_position] PRIMARY KEY([component_id], [component_position_id]),
+	CONSTRAINT [FK_layout_component_position_component_id] FOREIGN KEY (component_id) REFERENCES [components] (id),
+	CONSTRAINT [FK_layout_component_position_component_position_id] FOREIGN KEY (component_position_id) REFERENCES [component_positions] (id)
 )
 GO
 
