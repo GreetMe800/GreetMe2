@@ -1,4 +1,4 @@
-﻿using GreetMe_API.BusinessLogic;
+﻿using GreetMe_API;
 using GreetMe_API.DTO;
 using GreetMe_API.ModelConverter;
 using GreetMe_DataAccess.Interface;

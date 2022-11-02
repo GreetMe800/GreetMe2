@@ -6,19 +6,21 @@ namespace GreetMe_API.DTO
     {
         public int Id { get; set; }
         public string ComponentName { get; set; } = null!;
-        public virtual Component Component { get; set; } = null!;
+        public virtual ICollection<ComponentPosition> ComponentPositions { get; set; }
+        public virtual ICollection<View> Views { get; set; }
 
         public ComponentPositionDto()
         {
 
         }
-
-        public ComponentPositionDto(int id, string componentName, Component component)
+        public ComponentPositionDto(int id, string componentName, ICollection<ComponentPosition> componentPositions, ICollection<View> views)
         {
             Id = id;
             ComponentName = componentName;
-            Component = component;
+            ComponentPositions = componentPositions;
+            Views = views;
         }
-    }
 
+
+    }
 }
