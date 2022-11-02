@@ -26,7 +26,7 @@ namespace GreetMe_MVC.Models
             string birthdays = "";
             foreach (PersonDto person in BirthdayPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idag eksta langt";
+                birthdays += person.FullName + "har fødselsdag idag eksta laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaangt";
             }
             return birthdays;
         }
