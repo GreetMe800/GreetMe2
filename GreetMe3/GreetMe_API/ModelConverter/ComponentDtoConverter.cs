@@ -10,7 +10,9 @@ namespace GreetMe_API.ModelConverter
         {
             ComponentDto componentDto = new ComponentDto(
                 component.Id,
-                component.ComponentName
+                component.ComponentName,
+                component.ComponentPositions,
+                component.Views
                 );
             return componentDto;
         }

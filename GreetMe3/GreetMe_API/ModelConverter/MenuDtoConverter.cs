@@ -25,7 +25,7 @@ namespace GreetMe_API.ModelConverter
             menu.MenuName = dto.MenuName;
             menu.StartDate = dto.StartDate;
             menu.EndDate = dto.EndDate;
-            menu.Description = dto.Descriptionn;
+            menu.Description = dto.Description;
             return menu;
         }
     }

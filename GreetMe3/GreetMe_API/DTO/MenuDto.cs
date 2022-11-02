@@ -2,11 +2,11 @@
 {
     public class MenuDto
     {
-        public int Id { get; }
-        public string MenuName { get; set; }
+        public int Id { get; set; }
+        public string MenuName { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string Descriptionn { get; set; }
+        public string Description { get; set; } = null!;
 
         public MenuDto()
         {
@@ -19,7 +19,7 @@
             MenuName = menuName;
             StartDate = startDate;
             EndDate = endDate;
-            Descriptionn = description;
+            Description = description;
         }
 
     }

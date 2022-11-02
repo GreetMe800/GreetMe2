@@ -10,7 +10,9 @@ namespace GreetMe_API.ModelConverter
         {
             ViewDto viewDto = new ViewDto(
                 view.Id,
-                view.ViewName
+                view.ViewName,
+                view.Layout,
+                view.Components
                 );
             return viewDto;
         }

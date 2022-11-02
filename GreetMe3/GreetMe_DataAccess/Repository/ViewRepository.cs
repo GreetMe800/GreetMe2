@@ -18,12 +18,14 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
+        //getall
         public IEnumerable<View> GetAll()
         {
             var views = _db.Views;
             return views.ToList();
         }
 
+        //getall Async
         public async Task<IEnumerable<View>> GetAllAsync()
         {
             return await _db.Views.ToListAsync();
@@ -33,14 +35,13 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //get
         public View? Get(int id)
         {
-            return new View();
-            //return _db.ViewsComponents
-            //    .Include(vc => vc.View)
-            //    .Include(vc => vc.Component);
+            return _db.Views.Find(id);
         }
 
+        //get async
         public async Task<View?> GetAsync(int id)
         {
             return await _db.Views.FindAsync(id);

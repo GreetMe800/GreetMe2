@@ -5,17 +5,21 @@ GO
 
 --DROP FK's
 
-ALTER TABLE [dbo].[layouts_component_positions] DROP CONSTRAINT [FK_layouts_component_positions_component_positions_id]
+ALTER TABLE [dbo].[layout_component_position] DROP CONSTRAINT [FK_layout_component_position_component_position_id]
 GO
-ALTER TABLE [dbo].[layouts_component_positions] DROP CONSTRAINT [FK_layouts_component_positions_components_id]
+ALTER TABLE [dbo].[layout_component_position] DROP CONSTRAINT [FK_layout_component_position_layout_id]
 GO
-ALTER TABLE [dbo].[views_components] DROP CONSTRAINT [views_components_view_id]
+ALTER TABLE [dbo].[layout_component_position] DROP CONSTRAINT [PK_layout_component_position]
 GO
-ALTER TABLE [dbo].[views_components] DROP CONSTRAINT [views_components_component_id]
+ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [FK_[component_view_view_id]
 GO
-ALTER TABLE [dbo].[component_positions] DROP CONSTRAINT [FK_component_positions_component_id]
+ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [FK_[component_view_component_id]
 GO
-ALTER TABLE [dbo].[views] DROP CONSTRAINT [FK_views_layout_id]
+ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [PK_component_view]
+GO
+ALTER TABLE [dbo].[component_positions] DROP CONSTRAINT [FK_component_position_component_id]
+GO
+ALTER TABLE [dbo].[components] DROP CONSTRAINT [FK_view_layout_id]
 GO
 
 --DROP TABLES
