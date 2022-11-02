@@ -83,7 +83,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpPost]
-        public async Task<ActionResult> Create(PersonDto personDto)
+        public async Task<ActionResult> Create([FromBody]PersonDto personDto)
         {
             throw new NotImplementedException();
         }

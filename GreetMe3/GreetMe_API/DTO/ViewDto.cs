@@ -6,21 +6,21 @@ namespace GreetMe_API.DTO
 {
     public class ViewDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public virtual Layout Layout { get; set; }
-        public virtual ICollection<Component> Components { get; set; }
+        public virtual LayoutDto? LayoutDto { get; set; }
+        public virtual ICollection<ComponentDto>? ComponentDtos { get; set; }
 
         public ViewDto()
         {
 
         }
-        public ViewDto(int id, string viewName, Layout layout, ICollection<Component> components)
+        public ViewDto(int id, string viewName, LayoutDto layoutDto, ICollection<ComponentDto> componentDtos)
         {
             Id = id;
             ViewName = viewName;
-            Layout = layout;
-            Components = components;
+            LayoutDto = layoutDto;
+            ComponentDtos = componentDtos;
         }
     }
 }
