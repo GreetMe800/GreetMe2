@@ -3,26 +3,26 @@
 USE [WEXO_GreetMe]
 GO
 
---layouts
-insert into layouts (layout_name) values ('Senger-Hane layout');
-insert into layouts (layout_name) values ('Harber-Bruen layout');
-insert into layouts (layout_name) values ('Kassulke, White and Heidenreich layout');
-insert into layouts (layout_name) values ('Ritchie, Ullrich and Romaguera layout');
-insert into layouts (layout_name) values ('Macejkovic, Stroman and Wilkinson layout');
-insert into layouts (layout_name) values ('hjkl llc layout');
-insert into layouts (layout_name) values ('allinone layout');
-insert into layouts (layout_name) values ('allinoneshuffled layout');
+--views
+insert into [views] (view_name) values ('birthday view');
+insert into [views] (view_name) values ('birthdayAnniversery view');
+insert into [views] (view_name) values ('Anniversery view');
+insert into [views] (view_name) values ('Menu view');
+insert into [views] (view_name) values ('BirthdayMenu view');
+insert into [views] (view_name) values ('AnniverseryMenu view');
+insert into [views] (view_name) values ('BirthdayAnniverseryMenu view');
+insert into [views] (view_name) values ('MenuBirthdayAnniversery view');
 GO
 
---views
-insert into [views] (view_name, layout_id) values ('birthday view', 1);
-insert into [views] (view_name, layout_id) values ('birthdayAnniversery view', 2);
-insert into [views] (view_name, layout_id) values ('Anniversery view', 3);
-insert into [views] (view_name, layout_id) values ('Menu view', 4);
-insert into [views] (view_name, layout_id) values ('BirthdayMenu view', 5);
-insert into [views] (view_name, layout_id) values ('AnniverseryMenu view', 6);
-insert into [views] (view_name, layout_id) values ('BirthdayAnniverseryMenu view', 7);
-insert into [views] (view_name, layout_id) values ('MenuBirthdayAnniversery view', 8);
+--layouts
+insert into layouts (view_id, layout_name) values (1, 'Senger-Hane layout');
+insert into layouts (view_id, layout_name) values (2, 'Harber-Bruen layout');
+insert into layouts (view_id, layout_name) values (3, 'Kassulke, White and Heidenreich layout');
+insert into layouts (view_id, layout_name) values (4, 'Ritchie, Ullrich and Romaguera layout');
+insert into layouts (view_id, layout_name) values (5, 'Macejkovic, Stroman and Wilkinson layout');
+insert into layouts (view_id, layout_name) values (6, 'hjkl llc layout');
+insert into layouts (view_id, layout_name) values (7, 'allinone layout');
+insert into layouts (view_id, layout_name) values (8, 'allinoneshuffled layout');
 GO
 
 --components
