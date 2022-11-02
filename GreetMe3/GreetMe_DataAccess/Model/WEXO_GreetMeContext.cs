@@ -83,13 +83,24 @@ namespace GreetMe_DataAccess.Model
 
             modelBuilder.Entity<Layout>(entity =>
             {
+                entity.HasKey(e => e.ViewId)
+                    .HasName("PK__layouts__B5A34EE286A7BB67");
+
                 entity.ToTable("layouts");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.ViewId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("view_id");
 
                 entity.Property(e => e.LayoutName)
                     .HasMaxLength(50)
                     .HasColumnName("layout_name");
+
+                entity.HasOne(d => d.View)
+                    .WithOne(p => p.Layout)
+                    .HasForeignKey<Layout>(d => d.ViewId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_layout_view_id");
 
                 entity.HasMany(d => d.ComponentPositions)
                     .WithMany(p => p.Layouts)
@@ -136,7 +147,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E6164F73D8153")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E61640D11172F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -164,17 +175,9 @@ namespace GreetMe_DataAccess.Model
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.LayoutId).HasColumnName("layout_id");
-
                 entity.Property(e => e.ViewName)
                     .HasMaxLength(50)
                     .HasColumnName("view_name");
-
-                entity.HasOne(d => d.Layout)
-                    .WithMany(p => p.Views)
-                    .HasForeignKey(d => d.LayoutId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_view_layout_id");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -14,9 +14,8 @@ namespace GreetMe_DataAccess.Model
 
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public int LayoutId { get; set; }
 
-        public virtual Layout Layout { get; set; } = null!;
+        public virtual Layout? Layout { get; set; }
 
         public virtual ICollection<Component> Components { get; set; }
     }
