@@ -9,6 +9,8 @@ namespace GreetMe_API.DTO
         public List<ComponentDto> Components { get; set; }
         public List<PersonDto>? BirthdaysToday { get; set; }
         public List<PersonDto>? AnniversarysToday { get; set; }
+        public MenuDto Menu { get; set; }
+
 
         public ViewDto()
         {
