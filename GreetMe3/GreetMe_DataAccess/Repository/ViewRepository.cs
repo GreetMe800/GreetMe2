@@ -53,6 +53,17 @@ namespace GreetMe_DataAccess.Repository
 
         public bool Create(View entity)
         {
+            bool isSuccceeded = false;
+            try 
+            {
+                _db.Views.Add(entity);
+                return _db.SaveChanges() != 0;
+            } 
+            catch (Exception e)
+            {
+                int i = 1;
+            }
+
             _db.Views.Add(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
 

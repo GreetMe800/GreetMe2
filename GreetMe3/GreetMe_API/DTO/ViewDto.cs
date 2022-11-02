@@ -6,24 +6,21 @@ namespace GreetMe_API.DTO
 {
     public class ViewDto
     {
-        public int Id { get; set; }
-        public string ViewName { get; set; }
-        public List<ComponentDto> Components { get; set; }
-        public List<PersonDto>? BirthdaysToday { get; set; }
-        public List<PersonDto>? AnniversarysToday { get; set; }
-        public MenuDto Menu { get; set; }
-        public virtual Layout? Layout { get; set; }
+        public int? Id { get; set; }
+        public string ViewName { get; set; } = null!;
+        public virtual LayoutDto? LayoutDto { get; set; }
+        public virtual ICollection<ComponentDto>? ComponentDtos { get; set; }
 
         public ViewDto()
         {
 
         }
-        public ViewDto(int id, string viewName, Layout layout, ICollection<Component> components)
+        public ViewDto(int id, string viewName, LayoutDto layoutDto, ICollection<ComponentDto> componentDtos)
         {
             Id = id;
             ViewName = viewName;
-            Layout = layout;
-            Components = components;
+            LayoutDto = layoutDto;
+            ComponentDtos = componentDtos;
         }
     }
 }
