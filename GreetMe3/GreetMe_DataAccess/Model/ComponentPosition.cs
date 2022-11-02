@@ -12,15 +12,15 @@ namespace GreetMe_DataAccess.Model
     {
         public ComponentPosition()
         {
-            Components = new HashSet<Component>();
+            Layouts = new HashSet<Layout>();
         }
 
         public int Id { get; set; }
-        public string ComponentName { get; set; } = null!;
+        public int Position { get; set; }
         public int ComponentId { get; set; }
 
         public virtual Component Component { get; set; } = null!;
 
-        public virtual ICollection<Component> Components { get; set; }
+        public virtual ICollection<Layout> Layouts { get; set; }
     }
 }

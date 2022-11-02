@@ -46,23 +46,6 @@ namespace GreetMe_DataAccess.Model
                     .HasMaxLength(50)
                     .HasColumnName("component_name");
 
-                entity.HasMany(d => d.ComponentPositionsNavigation)
-                    .WithMany(p => p.Components)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "LayoutComponentPosition",
-                        l => l.HasOne<ComponentPosition>().WithMany().HasForeignKey("ComponentPositionId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_component_position_id"),
-                        r => r.HasOne<Component>().WithMany().HasForeignKey("ComponentId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_component_id"),
-                        j =>
-                        {
-                            j.HasKey("ComponentId", "ComponentPositionId");
-
-                            j.ToTable("layout_component_position");
-
-                            j.IndexerProperty<int>("ComponentId").HasColumnName("component_id");
-
-                            j.IndexerProperty<int>("ComponentPositionId").HasColumnName("component_position_id");
-                        });
-
                 entity.HasMany(d => d.Views)
                     .WithMany(p => p.Components)
                     .UsingEntity<Dictionary<string, object>>(
@@ -89,9 +72,7 @@ namespace GreetMe_DataAccess.Model
 
                 entity.Property(e => e.ComponentId).HasColumnName("component_id");
 
-                entity.Property(e => e.ComponentName)
-                    .HasMaxLength(50)
-                    .HasColumnName("component_name");
+                entity.Property(e => e.Position).HasColumnName("position");
 
                 entity.HasOne(d => d.Component)
                     .WithMany(p => p.ComponentPositions)
@@ -109,6 +90,23 @@ namespace GreetMe_DataAccess.Model
                 entity.Property(e => e.LayoutName)
                     .HasMaxLength(50)
                     .HasColumnName("layout_name");
+
+                entity.HasMany(d => d.ComponentPositions)
+                    .WithMany(p => p.Layouts)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "LayoutComponentPosition",
+                        l => l.HasOne<ComponentPosition>().WithMany().HasForeignKey("ComponentPositionId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_component_position_id"),
+                        r => r.HasOne<Layout>().WithMany().HasForeignKey("LayoutId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_layout_id"),
+                        j =>
+                        {
+                            j.HasKey("LayoutId", "ComponentPositionId");
+
+                            j.ToTable("layout_component_position");
+
+                            j.IndexerProperty<int>("LayoutId").HasColumnName("layout_id");
+
+                            j.IndexerProperty<int>("ComponentPositionId").HasColumnName("component_position_id");
+                        });
             });
 
             modelBuilder.Entity<Menu>(entity =>
@@ -118,7 +116,7 @@ namespace GreetMe_DataAccess.Model
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(50)
+                    .HasMaxLength(1000)
                     .HasColumnName("description");
 
                 entity.Property(e => e.EndDate)
@@ -138,7 +136,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E61643F9195D6")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E6164F73D8153")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
