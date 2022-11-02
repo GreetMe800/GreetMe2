@@ -40,12 +40,12 @@ namespace GreetMe_DataAccess.Repository
 
         public Layout? Get(int id)
         {
-            return _db.Layouts.FirstOrDefault(p => p.Id == id);
+            return _db.Layouts.FirstOrDefault(p => p.ViewId == id);
         }
 
         public async Task<Layout?> GetAsync(int id)
         {
-            return await _db.Layouts.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.Layouts.FirstOrDefaultAsync(p => p.ViewId == id);
         }
 
         //-----------------------------------------------------------------------------

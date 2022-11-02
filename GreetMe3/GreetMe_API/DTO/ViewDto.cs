@@ -8,7 +8,7 @@ namespace GreetMe_API.DTO
     {
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public virtual Layout Layout { get; set; } = null!;
+        public virtual Layout? Layout { get; set; }
         public virtual ICollection<Component> Components { get; set; }
 
         public ViewDto()

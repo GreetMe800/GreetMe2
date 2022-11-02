@@ -9,9 +9,9 @@ namespace GreetMe_API.ModelConverter
         public static LayoutDto ConvertToDto(Layout layout)
         {
             LayoutDto layoutDto = new LayoutDto(
-                layout.Id,
+                layout.ViewId,
                 layout.LayoutName,
-                layout.Views,
+                layout.View,
                 layout.ComponentPositions
                 );
             return layoutDto;

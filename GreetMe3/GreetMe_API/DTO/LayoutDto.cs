@@ -4,9 +4,9 @@ namespace GreetMe_API.DTO
 {
     public class LayoutDto
     {
-        public int Id { get; set; }
+        public int ViewId { get; set; }
         public string LayoutName { get; set; } = null!;
-        public virtual ICollection<View> Views { get; set; }
+        public virtual View View { get; set; } = null!;
         public virtual ICollection<ComponentPosition> ComponentPositions { get; set; }
 
         public LayoutDto()
@@ -14,11 +14,11 @@ namespace GreetMe_API.DTO
 
         }
 
-        public LayoutDto(int id, string layoutName, ICollection<View> views, ICollection<ComponentPosition> componentPositions)
+        public LayoutDto(int id, string layoutName, View view, ICollection<ComponentPosition> componentPositions)
         {
-            Id = id;
+            ViewId = id;
             LayoutName = layoutName;
-            Views = views;
+            View = view;
             ComponentPositions = componentPositions;
         }
     }
