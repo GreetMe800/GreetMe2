@@ -126,5 +126,3 @@ insert into menus (menu_name, start_date, end_date, description) values ('Oneflo
 insert into menus (menu_name, start_date, end_date, description) values ('Fir Dwarf Mistletoe', '7/22/2023', '10/28/2021', 'BG74 YWQO 2032 818S 82YP UR');
 insert into menus (menu_name, start_date, end_date, description) values ('Small Evening Primrose', '1/9/2022', null, 'FR98 0068 2008 24WD FXUN ZCSH S94');
 GO
-​
-
