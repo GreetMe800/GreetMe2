@@ -72,7 +72,11 @@ namespace GreetMe_DataAccess.Model
 
                 entity.Property(e => e.ComponentId).HasColumnName("component_id");
 
+                entity.Property(e => e.Height).HasColumnName("height");
+
                 entity.Property(e => e.Position).HasColumnName("position");
+
+                entity.Property(e => e.Width).HasColumnName("width");
 
                 entity.HasOne(d => d.Component)
                     .WithMany(p => p.ComponentPositions)
@@ -84,7 +88,7 @@ namespace GreetMe_DataAccess.Model
             modelBuilder.Entity<Layout>(entity =>
             {
                 entity.HasKey(e => e.ViewId)
-                    .HasName("PK__layouts__B5A34EE286A7BB67");
+                    .HasName("PK__layouts__B5A34EE26251DCA7");
 
                 entity.ToTable("layouts");
 
@@ -147,7 +151,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E61640D11172F")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E616494C94683")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
