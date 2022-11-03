@@ -9,16 +9,11 @@ namespace GreetMe_API.ModelConverter
         public static ViewDto ConvertToDto(View view)
         {
             List<ComponentDto> componentDtos = new List<ComponentDto>();
-            foreach(Component c in view.Components) 
-            {
-                componentDtos.Add(ComponentDtoConverter.ConvertToDto(c));
-            }
 
             ViewDto viewDto = new ViewDto(
                 view.Id,
                 view.ViewName,
-                LayoutDtoConverter.ConvertToDto(view.Layout),
-                componentDtos
+                LayoutDtoConverter.ConvertToDto(view.Layout)
                 );
             return viewDto;
         }
