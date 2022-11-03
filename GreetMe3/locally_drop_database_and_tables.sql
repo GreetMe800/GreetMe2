@@ -11,10 +11,6 @@ ALTER TABLE [dbo].[layout_component_position] DROP CONSTRAINT [FK_layout_compone
 GO
 ALTER TABLE [dbo].[layout_component_position] DROP CONSTRAINT [PK_layout_component_position]
 GO
-ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [FK_[component_view_view_id]
-GO
-ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [FK_[component_view_component_id]
-GO
 ALTER TABLE [dbo].[component_view] DROP CONSTRAINT [PK_component_view]
 GO
 ALTER TABLE [dbo].[component_positions] DROP CONSTRAINT [FK_component_position_component_id]

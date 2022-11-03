@@ -53,16 +53,19 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Get With Dep (without view)
-        public Layout? Get(int id)
+        public Layout? GetWithDep(int id)
         {
-            return _db.Layouts.FirstOrDefault(p => p.ViewId == id);
+            return _db.Layouts
+                .Include(layout => layout.ComponentPositions)
+                .ThenInclude(componentPosition => componentPosition.Component)
+                .FirstOrDefault(layout => layout.ViewId == id);
         }
 
         //-----------------------------------------------------------------------------
-        /* Create / Post                                                             */
-        //-----------------------------------------------------------------------------
+            /* Create / Post                                                             */
+            //-----------------------------------------------------------------------------
 
-        //Create
+            //Create
         public bool Create(Layout entity)
         {
             _db.Layouts.Add(entity);

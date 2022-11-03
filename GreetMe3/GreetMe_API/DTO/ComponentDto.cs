@@ -6,7 +6,6 @@ namespace GreetMe_API.DTO
     {
         public int Id { get; set; }
         public string ComponentName { get; set; } = null!;
-        public virtual ICollection<ComponentPositionDto> ComponentPositionDtos { get; set; }
 
         public ComponentDto()
         {

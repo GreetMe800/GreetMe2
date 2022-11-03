@@ -8,13 +8,13 @@ namespace GreetMe_API.ModelConverter
 
         public static ComponentPositionDto ConvertToDto(ComponentPosition componentPosition) 
         {
-            ComponentPositionDto componentPositionDto = new ComponentPositionDto() 
+            ComponentPositionDto componentPositionDto = new ComponentPositionDto()
             {
                 Id = componentPosition.Id,
                 Position = componentPosition.Position,
                 Width = componentPosition.Width,
                 Height = componentPosition.Height,
-                ComponentId = componentPosition.ComponentId
+                ComponentDto = ComponentDtoConverter.ConvertToDto(componentPosition.Component)
             };
             return componentPositionDto;
         }

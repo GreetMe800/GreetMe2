@@ -8,9 +8,18 @@ namespace GreetMe_API.ModelConverter
         //Convert to LayoutDto (convert from database, getdata) /\
         public static LayoutDto ConvertToDto(Layout layout)
         {
-            LayoutDto layoutDto = new LayoutDto() 
+            List<ComponentPositionDto> componentPositions = new List<ComponentPositionDto>();
+            foreach(ComponentPosition cp in layout.ComponentPositions) 
             {
+                componentPositions.Add(ComponentPositionConverter.ConvertToDto(cp));
+            }
+
+
+            LayoutDto layoutDto = new LayoutDto()
+            {
+                ViewId = layout.ViewId,
                 LayoutName = layout.LayoutName,
+                ComponentPositionDtos = componentPositions
             };
             return layoutDto;
         }

@@ -6,9 +6,9 @@ namespace GreetMe_API.DTO
 {
     public class ViewDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public virtual LayoutDto? LayoutDto { get; set; }
+        public virtual LayoutDto LayoutDto { get; set; }
 
         public ViewDto()
         {

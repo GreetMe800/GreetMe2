@@ -66,6 +66,33 @@ namespace GreetMe_API.Controllers
             }
         }
 
+        //Get by ID
+        [HttpGet]
+        [Route("getwithdep/{id}")]
+        public ActionResult GetWithDep(int id)
+        {
+            //Input Validator, if 0
+            if (id <= 0)
+            {
+                return Conflict();
+            }
+
+            View? foundView = _viewRepository.GetWithDep(id);
+
+            //Input Validator, if not null
+            if (foundView is not null)
+            {
+                ViewDto viewDto = ViewDtoConverter.ConvertToDto(foundView);
+                return Ok(viewDto);
+            }
+
+            //Input Validator, if null
+            else
+            {
+                return Conflict();
+            }
+        }
+
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
