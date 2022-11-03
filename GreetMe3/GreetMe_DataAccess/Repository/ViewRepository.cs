@@ -18,14 +18,14 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
-        //getall
+        //GetAll
         public IEnumerable<View> GetAll()
         {
             var views = _db.Views;
             return views.ToList();
         }
 
-        //getall Async
+        //GetAll Async
         public async Task<IEnumerable<View>> GetAllAsync()
         {
             return await _db.Views.ToListAsync();
@@ -35,22 +35,33 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //get
+        //Get
         public View? Get(int id)
         {
             return _db.Views.Find(id);
         }
 
-        //get async
+        //Get Async
         public async Task<View?> GetAsync(int id)
         {
             return await _db.Views.FindAsync(id);
+        }
+
+        //Get With Dep
+        public View? GetWithDep(int id)
+        {
+            return _db.Views
+                .Include(view => view.Layout)
+                .ThenInclude(layout => layout.ComponentPositions)
+                .ThenInclude(componentPosition => componentPosition.Component)
+                .FirstOrDefault(view => view.Id == id);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
+        //Create
         public bool Create(View entity)
         {
             bool isSuccceeded = false;
@@ -69,6 +80,7 @@ namespace GreetMe_DataAccess.Repository
 
         }
 
+        //Create Async
         public async Task<bool> CreateAsync(View entity)
         {
             _db.Views.Add(entity);
@@ -79,12 +91,14 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //Update
         public bool Update(View entity)
         {
             _db.Views.Update(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
+        //Update Async
         public async Task<bool> UpdateAsync(View entity)
         {
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
@@ -94,12 +108,14 @@ namespace GreetMe_DataAccess.Repository
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
+        //Delete
         public bool Delete(int id)
         {
             _db.Views.Remove(Get(id));
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
+        //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
             _db.Views.Remove(await GetAsync(id));

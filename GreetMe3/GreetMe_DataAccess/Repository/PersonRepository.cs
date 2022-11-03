@@ -66,21 +66,25 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //Get
         public Person? Get(int id)
         {
             return _db.People.FirstOrDefault(p => p.Id == id);
         }
 
+        //Get Async
         public async Task<Person?> GetAsync(int id)
         {
             return await _db.People.FirstOrDefaultAsync(p => p.Id == id);
         }
 
+        //Get By Email
         public Person? GetByEmail(string email)
         {
             return _db.People.FirstOrDefault(p => p.Email == email);
         }
 
+        //Get By Email Async
         public async Task<Person?> GetByEmailAsync(string email)
         {
             return await _db.People.FirstOrDefaultAsync(p => p.Email == email);
@@ -90,6 +94,7 @@ namespace GreetMe_DataAccess.Repository
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
+        //Create
         public bool Create(Person entity)
         {
             _db.People.Add(entity);
@@ -97,6 +102,7 @@ namespace GreetMe_DataAccess.Repository
            
         }
 
+        //Create Async
         public async Task<bool> CreateAsync(Person entity)
         {
             _db.People.Add(entity);
@@ -107,12 +113,14 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //Update
         public bool Update(Person entity)
         {
             _db.People.Update(entity);
             return _db.SaveChanges() != 0;
         }
 
+        //Update Async
         public async Task<bool> UpdateAsync(Person entity)
         {
             return await _db.SaveChangesAsync() != 0; //returns true if numb of effected rows is not 0
@@ -122,12 +130,14 @@ namespace GreetMe_DataAccess.Repository
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
+        //Delete
         public bool Delete(int id)
         {
             _db.People.Remove(Get(id));
             return _db.SaveChanges() != 0; //returns true if numb of effected rows is not 0
         }
 
+        //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
             _db.People.Remove(await GetAsync(id));

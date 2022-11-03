@@ -23,12 +23,14 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
+        //GetAll
         public IEnumerable<Component> GetAll()
         {
             var components = _db.Components;
             return components.ToList();
         }
 
+        //GetAll Async
         public async Task<IEnumerable<Component>> GetAllAsync()
         {
             return await _db.Components.ToListAsync();
@@ -38,11 +40,13 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //Get
         public Component? Get(int id)
         {
             return _db.Components.FirstOrDefault(p => p.Id == id);
         }
 
+        //Get Async
         public async Task<Component?> GetAsync(int id)
         {
             return await _db.Components.FirstOrDefaultAsync(p => p.Id == id);
@@ -52,12 +56,14 @@ namespace GreetMe_DataAccess.Repository
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
+        //Create
         public bool Create(Component entity)
         {
             throw new NotImplementedException();
 
         }
 
+        //Create Async
         public async Task<bool> CreateAsync(Component entity)
         {
             throw new NotImplementedException();
@@ -67,11 +73,13 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //Update
         public bool Update(Component entity)
         {
             throw new NotImplementedException();
         }
 
+        //Update Async
         public async Task<bool> UpdateAsync(Component entity)
         {
             throw new NotImplementedException();
@@ -81,11 +89,13 @@ namespace GreetMe_DataAccess.Repository
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
+        //Delete
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
+        //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
