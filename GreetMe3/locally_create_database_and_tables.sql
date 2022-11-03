@@ -44,16 +44,6 @@ CREATE TABLE [dbo].[component_positions](
 )
 GO
 
-CREATE TABLE [dbo].[component_view](
-	[component_id] [int] NOT NULL,
-	[view_id] [int] NOT NULL,
-
-	CONSTRAINT [PK_component_view] PRIMARY KEY([component_id], [view_id]),
-	CONSTRAINT [FK_[component_view_component_id] FOREIGN KEY ([component_id]) REFERENCES [components] (id),
-	CONSTRAINT [FK_[component_view_view_id] FOREIGN KEY ([view_id]) REFERENCES [views] (id)
-)
-GO
-
 CREATE TABLE [dbo].[layout_component_position](
 	[layout_id] [int] NOT NULL,
 	[component_position_id] [int] NOT NULL,
