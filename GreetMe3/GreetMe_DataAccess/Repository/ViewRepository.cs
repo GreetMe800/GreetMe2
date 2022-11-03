@@ -49,7 +49,7 @@ namespace GreetMe_DataAccess.Repository
 
         //Get With Dep
         public View? GetWithDep(int id)
-        {
+        {           
             return _db.Views
                 .Include(view => view.Layout)
                 .ThenInclude(layout => layout.ComponentPositions)
@@ -64,16 +64,8 @@ namespace GreetMe_DataAccess.Repository
         //Create
         public bool Create(View entity)
         {
-            bool isSuccceeded = false;
-            try 
-            {
-                _db.Views.Add(entity);
-                return _db.SaveChanges() != 0;
-            } 
-            catch (Exception e)
-            {
-                int i = 1;
-            }
+          
+           
 
             _db.Views.Add(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
@@ -83,6 +75,17 @@ namespace GreetMe_DataAccess.Repository
         //Create Async
         public async Task<bool> CreateAsync(View entity)
         {
+
+            try
+            {
+                _db.Views.Add(entity);
+                return _db.SaveChanges() != 0;
+            }
+            catch (Exception e)
+            {
+                int i = 1;
+            }
+
             _db.Views.Add(entity);
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }

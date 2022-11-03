@@ -3,6 +3,7 @@ using GreetMe_API.DTO;
 using GreetMe_API.ModelConverter;
 using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
+using GreetMe_DataAccess.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GreetMe_API.Controllers
@@ -82,10 +83,20 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
+        //Create View
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody]PersonDto personDto)
+        public async Task<ActionResult> Create([FromBody] PersonDto personDto)
         {
-            throw new NotImplementedException();
+            Person person = PersonDtoConverter.ConvertFromDto(personDto);
+            bool personCreated = await _personRepository.CreateAsync(person);
+            if (personCreated)
+            {
+                return Ok();
+            }
+            else
+            {
+                return Conflict();
+            }
         }
 
         //-----------------------------------------------------------------------------

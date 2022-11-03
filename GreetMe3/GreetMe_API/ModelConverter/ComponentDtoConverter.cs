@@ -10,8 +10,8 @@ namespace GreetMe_API.ModelConverter
         {
             ComponentDto componentDto = new ComponentDto()
             {
-                ComponentName = component.ComponentName,
                 Id = component.Id,
+                ComponentName = component.ComponentName
             };
 
             return componentDto;
@@ -20,8 +20,10 @@ namespace GreetMe_API.ModelConverter
         //Convert from ComponentDto (convert to database, savedata) \/
         public static Component ConvertFromDto(ComponentDto componentDto)
         {
-            Component component = new Component();
-            component.ComponentName = componentDto.ComponentName;
+            Component component = new Component()
+            {
+                ComponentName = componentDto.ComponentName,
+            };
             return component;
         }
     }

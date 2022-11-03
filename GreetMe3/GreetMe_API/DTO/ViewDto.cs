@@ -20,5 +20,11 @@ namespace GreetMe_API.DTO
             ViewName = viewName;
             LayoutDto = layoutDto;
         }
+
+        public ViewDto(int id, string viewName)
+        {
+            Id = id;
+            ViewName = viewName;
+        }
     }
 }
