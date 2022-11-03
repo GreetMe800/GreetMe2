@@ -14,7 +14,7 @@ namespace GreetMe_API.DTO
         public ComponentPositionDto()
         {
 
-        }//
+        }
         public ComponentPositionDto(int id, int position, ComponentDto componentDto)
         {
             Id = id;
