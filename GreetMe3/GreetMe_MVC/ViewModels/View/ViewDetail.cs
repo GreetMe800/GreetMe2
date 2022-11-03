@@ -16,7 +16,7 @@ namespace GreetMe_MVC.ViewModels.View
         {
             CurrentLocation = 0;
             components = new List<IComponent>();
-            foreach(ComponentDto cDto in viewDto.Components) 
+            foreach(ComponentDto cDto in viewDto.ComponentDtos) 
             {
 
                 ////testCode

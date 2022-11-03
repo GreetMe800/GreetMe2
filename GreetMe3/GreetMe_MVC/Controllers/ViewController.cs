@@ -20,6 +20,9 @@ namespace GreetMe_MVC.Controllers
         // GET: ViewController
         public ActionResult Index()
         {
+
+
+
             return View();
         }
 
