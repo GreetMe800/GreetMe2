@@ -12,8 +12,6 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = componentPosition.Id,
                 Position = componentPosition.Position,
-                Width = componentPosition.Width,
-                Height = componentPosition.Height,
                 ComponentDto = ComponentDtoConverter.ConvertToDto(componentPosition.Component)
             };
             return componentPositionDto;
@@ -25,8 +23,6 @@ namespace GreetMe_API.ModelConverter
             ComponentPosition componentPosition = new ComponentPosition() 
             {
                 Position = componentPositionDto.Position,
-                Width = componentPositionDto.Width,
-                Height= componentPositionDto.Height,
                 ComponentId = componentPositionDto.ComponentId,
             };
             return componentPosition;
