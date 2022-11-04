@@ -37,8 +37,6 @@ CREATE TABLE [dbo].[component_positions](
 	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[position] [int] NOT NULL,
 	[component_id] [int] NOT NULL,
-	[width] [int] NULL,
-	[height] [int] NULL,
 
 	CONSTRAINT [FK_component_position_component_id] FOREIGN KEY ([component_id]) REFERENCES [components] (id)
 )
