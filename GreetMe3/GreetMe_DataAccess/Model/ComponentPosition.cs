@@ -18,8 +18,6 @@ namespace GreetMe_DataAccess.Model
         public int Id { get; set; }
         public int Position { get; set; }
         public int ComponentId { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
 
         public virtual Component Component { get; set; } = null!;
 

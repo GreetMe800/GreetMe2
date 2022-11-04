@@ -1,4 +1,5 @@
 ﻿using GreetMe_API.DTO;
+using GreetMe_API.ModelConverter;
 using GreetMe_DataAccess.Model;
 
 namespace GreetMe_API.ModelConverter
@@ -8,27 +9,47 @@ namespace GreetMe_API.ModelConverter
         //Convert to ViewDto (convert from database, getdata) /\
         public static ViewDto ConvertToDto(View view)
         {
-            List<ComponentDto> componentDtos = new List<ComponentDto>();
-            foreach(Component c in view.Components) 
-            {
-                componentDtos.Add(ComponentDtoConverter.ConvertToDto(c));
-            }
 
-            ViewDto viewDto = new ViewDto(
-                view.Id,
-                view.ViewName,
-                LayoutDtoConverter.ConvertToDto(view.Layout),
-                componentDtos
-                );
+            ViewDto viewDto = new ViewDto()
+            {
+                Id = view.Id,
+                ViewName = view.ViewName,
+            };
+            return viewDto;
+        }
+
+        //Convert to ViewDto with Dep (convert from database, getdata) /\
+        public static ViewDto ConvertToDtoWithDep(View view)
+        {
+            ViewDto viewDto = new ViewDto()
+            {
+                Id = view.Id,
+                ViewName = view.ViewName,
+                LayoutDto = LayoutDtoConverter.ConvertToDto(view.Layout)
+            };
             return viewDto;
         }
 
         //Convert from ViewDto (convert to database, savedata) \/
         public static View ConvertFromDto(ViewDto viewDto)
         {
-            View view = new View();
-            view.ViewName = viewDto.ViewName;
+            View view = new View()
+            {
+                ViewName = viewDto.ViewName,
+            };
+            return view;
+        }
+
+        //Convert from ViewDto with Dep (convert to database, savedata) \/
+        public static View ConvertFromDtoWithDep(ViewDto viewDto)
+        {
+            View view = new View()
+            {
+                ViewName = viewDto.ViewName,
+                Layout = LayoutDtoConverter.ConvertFromDtoWithDep(viewDto.LayoutDto),
+            };
             return view;
         }
     }
 }
+

@@ -8,25 +8,11 @@ namespace GreetMe_API.ModelConverter
         //Convert to ComponentDto (convert from database, getdata) /\
         public static ComponentDto ConvertToDto(Component component)
         {
-            List<ComponentPositionDto> positions = new List<ComponentPositionDto>();
-            foreach (ComponentPosition cp in component.ComponentPositions)
-            {
-                positions.Add(ComponentPositionConverter.ConvertToDto(cp));
-            }
-            
-
-
             ComponentDto componentDto = new ComponentDto()
             {
-                ComponentName = component.ComponentName,
-                Id = component.Id,               
+                Id = component.Id,
+                ComponentName = component.ComponentName
             };
-
-            
-          
-            
-            
-
 
             return componentDto;
         }
@@ -34,8 +20,10 @@ namespace GreetMe_API.ModelConverter
         //Convert from ComponentDto (convert to database, savedata) \/
         public static Component ConvertFromDto(ComponentDto componentDto)
         {
-            Component component = new Component();
-            component.ComponentName = componentDto.ComponentName;
+            Component component = new Component()
+            {
+                ComponentName = componentDto.ComponentName,
+            };
             return component;
         }
     }

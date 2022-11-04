@@ -7,13 +7,12 @@ namespace GreetMe_API.DTO
         public int Id { get; set; }
         public string ComponentName { get; set; } = null!;
 
-  
-        public virtual ICollection<ViewDto> ViewDtos { get; set; }
-
         public ComponentDto()
         {
-            
+
         }
+
+        
         
 
 

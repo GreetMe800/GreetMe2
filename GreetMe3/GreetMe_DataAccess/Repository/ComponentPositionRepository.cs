@@ -23,12 +23,14 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
+        //GetAll
         public IEnumerable<ComponentPosition> GetAll()
         {
             var componentPositions = _db.ComponentPositions;
             return componentPositions.ToList();
         }
 
+        //Getall Async
         public async Task<IEnumerable<ComponentPosition>> GetAllAsync()
         {
             return await _db.ComponentPositions.ToListAsync();
@@ -38,11 +40,13 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //Get
         public ComponentPosition? Get(int id)
         {
             return _db.ComponentPositions.FirstOrDefault(p => p.Id == id);
         }
 
+        //Get Async
         public async Task<ComponentPosition?> GetAsync(int id)
         {
             return await _db.ComponentPositions.FirstOrDefaultAsync(p => p.Id == id);
@@ -52,6 +56,7 @@ namespace GreetMe_DataAccess.Repository
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
+        //Create
         public bool Create(ComponentPosition entity)
         {
             _db.ComponentPositions.Add(entity);
@@ -59,6 +64,7 @@ namespace GreetMe_DataAccess.Repository
 
         }
 
+        //Create Async
         public async Task<bool> CreateAsync(ComponentPosition entity)
         {
             _db.ComponentPositions.Add(entity);
@@ -69,12 +75,14 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //Update
         public bool Update(ComponentPosition entity)
         {
             _db.ComponentPositions.Update(entity);
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
+        //Update Async
         public async Task<bool> UpdateAsync(ComponentPosition entity)
         {
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
@@ -84,12 +92,14 @@ namespace GreetMe_DataAccess.Repository
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
+        //Delete
         public bool Delete(int id)
         {
             _db.ComponentPositions.Remove(Get(id));
             return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
         }
 
+        //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
             _db.ComponentPositions.Remove(await GetAsync(id));

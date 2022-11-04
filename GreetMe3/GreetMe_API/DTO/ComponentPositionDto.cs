@@ -7,9 +7,7 @@ namespace GreetMe_API.DTO
         public int Id { get; set; }
         public int Position { get; set; }
         public int ComponentId { get; set; }
-        public int? Width { get; set; }
-        public int? Height { get; set; }
-        public virtual ComponentDto ComponentDto { get; set; } = null!;
+        public virtual ComponentDto? ComponentDto { get; set; } 
 
 
         public ComponentPositionDto()
@@ -20,8 +18,6 @@ namespace GreetMe_API.DTO
         {
             Id = id;
             Position = position;
-            Width = width;
-            Height = height;
             ComponentDto = componentDto;
         }
 

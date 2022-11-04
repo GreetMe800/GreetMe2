@@ -45,23 +45,6 @@ namespace GreetMe_DataAccess.Model
                 entity.Property(e => e.ComponentName)
                     .HasMaxLength(50)
                     .HasColumnName("component_name");
-
-                entity.HasMany(d => d.Views)
-                    .WithMany(p => p.Components)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "ComponentView",
-                        l => l.HasOne<View>().WithMany().HasForeignKey("ViewId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_[component_view_view_id"),
-                        r => r.HasOne<Component>().WithMany().HasForeignKey("ComponentId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_[component_view_component_id"),
-                        j =>
-                        {
-                            j.HasKey("ComponentId", "ViewId");
-
-                            j.ToTable("component_view");
-
-                            j.IndexerProperty<int>("ComponentId").HasColumnName("component_id");
-
-                            j.IndexerProperty<int>("ViewId").HasColumnName("view_id");
-                        });
             });
 
             modelBuilder.Entity<ComponentPosition>(entity =>
@@ -72,11 +55,7 @@ namespace GreetMe_DataAccess.Model
 
                 entity.Property(e => e.ComponentId).HasColumnName("component_id");
 
-                entity.Property(e => e.Height).HasColumnName("height");
-
                 entity.Property(e => e.Position).HasColumnName("position");
-
-                entity.Property(e => e.Width).HasColumnName("width");
 
                 entity.HasOne(d => d.Component)
                     .WithMany(p => p.ComponentPositions)
@@ -88,7 +67,7 @@ namespace GreetMe_DataAccess.Model
             modelBuilder.Entity<Layout>(entity =>
             {
                 entity.HasKey(e => e.ViewId)
-                    .HasName("PK__layouts__B5A34EE26251DCA7");
+                    .HasName("PK__layouts__B5A34EE2989CEF8C");
 
                 entity.ToTable("layouts");
 
@@ -151,7 +130,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E616494C94683")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E6164033AC681")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");

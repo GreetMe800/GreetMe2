@@ -23,12 +23,14 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
+        //GetAll
         public IEnumerable<Menu> GetAll()
         {
             var menus = _db.Menus;
             return menus.ToList();
         }
 
+        //GetAll Async
         public async Task<IEnumerable<Menu>> GetAllAsync()
         {
             return await _db.Menus.ToListAsync();
@@ -38,11 +40,13 @@ namespace GreetMe_DataAccess.Repository
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        //Get
         public Menu? Get(int id)
         {
             return _db.Menus.FirstOrDefault(p => p.Id == id);
         }
 
+        //Get Async
         public async Task<Menu?> GetAsync(int id)
         {
             return await _db.Menus.FirstOrDefaultAsync(p => p.Id == id);
@@ -52,12 +56,14 @@ namespace GreetMe_DataAccess.Repository
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
+        //Create
         public bool Create(Menu entity)
         {
             throw new NotImplementedException();
 
         }
 
+        //Create Async
         public async Task<bool> CreateAsync(Menu entity)
         {
             throw new NotImplementedException();
@@ -67,11 +73,13 @@ namespace GreetMe_DataAccess.Repository
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //Update
         public bool Update(Menu entity)
         {
             throw new NotImplementedException();
         }
 
+        //Update Async
         public async Task<bool> UpdateAsync(Menu entity)
         {
             throw new NotImplementedException();
@@ -81,11 +89,13 @@ namespace GreetMe_DataAccess.Repository
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
+        //Delete
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
+        //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();

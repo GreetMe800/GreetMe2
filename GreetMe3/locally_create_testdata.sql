@@ -34,54 +34,28 @@ GO
 
 --component_positions
 	--view1 1
-insert into component_positions (position, component_id, width, height) values (1, 1, null, null);
+insert into component_positions (position, component_id) values (1, 1);
 	--view2 2 3
-insert into component_positions (position, component_id, width, height) values (1, 1, null, null);
-insert into component_positions (position, component_id, width, height) values (2, 2, null, null);
+insert into component_positions (position, component_id) values (1, 1);
+insert into component_positions (position, component_id) values (2, 2);
 	--view3 4
-insert into component_positions (position, component_id, width, height) values (1, 2, null, null);
+insert into component_positions (position, component_id) values (1, 2);
 	--view4 5
-insert into component_positions (position, component_id, width, height) values (1, 3, null, null);
+insert into component_positions (position, component_id) values (1, 3);
 	--view5 6 7
-insert into component_positions (position, component_id, width, height) values (1, 1, null, null);
-insert into component_positions (position, component_id, width, height) values (2, 3, null, null);
+insert into component_positions (position, component_id) values (1, 1);
+insert into component_positions (position, component_id) values (2, 3);
 	--view6 8 9
-insert into component_positions (position, component_id, width, height) values (1, 2, null, null);
-insert into component_positions (position, component_id, width, height) values (2, 3, null, null);
+insert into component_positions (position, component_id) values (1, 2);
+insert into component_positions (position, component_id) values (2, 3);
 	--view7 10 11 12
-insert into component_positions (position, component_id, width, height) values (1, 1, null, null);
-insert into component_positions (position, component_id, width, height) values (2, 2, null, null);
-insert into component_positions (position, component_id, width, height) values (3, 3, null, null);
+insert into component_positions (position, component_id) values (1, 1);
+insert into component_positions (position, component_id) values (2, 2);
+insert into component_positions (position, component_id) values (3, 3);
 	--view8 13 14 15
-insert into component_positions (position, component_id, width, height) values (1, 3, null, null);
-insert into component_positions (position, component_id, width, height) values (2, 1, null, null);
-insert into component_positions (position, component_id, width, height) values (3, 2, null, null);
-GO
-
---component_view (brigde)
-	--view1
-insert into component_view (component_id, view_id) values (1, 1);
-	--view2
-insert into component_view (component_id, view_id) values (1, 2);
-insert into component_view (component_id, view_id) values (2, 2);
-	--view3
-insert into component_view (component_id, view_id) values (2, 3);
-	--view4
-insert into component_view (component_id, view_id) values (3, 4);
-	--view5
-insert into component_view (component_id, view_id) values (1, 5);
-insert into component_view (component_id, view_id) values (3, 5);
-	--view6
-insert into component_view (component_id, view_id) values (2, 6);
-insert into component_view (component_id, view_id) values (3, 6);
-	--view7
-insert into component_view (component_id, view_id) values (1, 7);
-insert into component_view (component_id, view_id) values (2, 7);
-insert into component_view (component_id, view_id) values (3, 7);
-	--view8
-insert into component_view (component_id, view_id) values (1, 8);
-insert into component_view (component_id, view_id) values (2, 8);
-insert into component_view (component_id, view_id) values (3, 8);
+insert into component_positions (position, component_id) values (1, 3);
+insert into component_positions (position, component_id) values (2, 1);
+insert into component_positions (position, component_id) values (3, 2);
 GO
 
 --layout_component_position (brigde)
