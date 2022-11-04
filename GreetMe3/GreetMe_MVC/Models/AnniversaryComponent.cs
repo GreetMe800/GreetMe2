@@ -5,10 +5,15 @@ namespace GreetMe_MVC.Models
 {
     public class AnniversaryComponent : IComponent
     {
+
+    
+        public int Position { get; set; }
+
         public List<PersonDto> AnniversaryPeople;
-        public AnniversaryComponent(List<PersonDto> anniversaryPeople)
+        public AnniversaryComponent(List<PersonDto> anniversaryPeople, ComponentPositionDto componentPositionDto)
         {
             AnniversaryPeople = anniversaryPeople;
+            Position = componentPositionDto.Position;
         }
 
         public string getData()
@@ -16,7 +21,7 @@ namespace GreetMe_MVC.Models
             string birthdays = "";
             foreach (PersonDto person in AnniversaryPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idag";
+                birthdays += person.FullName + "har jubilæum";
             }
             return birthdays;
         }
@@ -26,7 +31,7 @@ namespace GreetMe_MVC.Models
             string birthdays = "";
             foreach (PersonDto person in AnniversaryPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idag extra langt";
+                birthdays += person.FullName + "har jubilæum idag";
             }
             return birthdays;
         }

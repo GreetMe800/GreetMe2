@@ -8,24 +8,27 @@ namespace GreetMe_API.ModelConverter
         //Convert to MenuDto (convert from database, getdata) /\
         public static MenuDto ConvertToDto(Menu menu)
         {
-            MenuDto menuDto = new MenuDto(
-                menu.Id,
-                menu.MenuName,
-                menu.StartDate,
-                menu.EndDate,
-                menu.Description
-                );
+            MenuDto menuDto = new MenuDto() 
+            {
+                Id = menu.Id,
+                MenuName = menu.MenuName,
+                StartDate = menu.StartDate,
+                EndDate = menu.EndDate,
+                Description = menu.Description
+            };
             return menuDto;
         }
 
         //Convert from MenuDto (convert to database, savedata) \/
         public static Menu ConvertFromDto(MenuDto dto)
         {
-            Menu menu = new Menu();
-            menu.MenuName = dto.MenuName;
-            menu.StartDate = dto.StartDate;
-            menu.EndDate = dto.EndDate;
-            menu.Description = dto.Description;
+            Menu menu = new Menu()
+            {
+                MenuName = dto.MenuName,
+                EndDate = dto.EndDate,
+                StartDate = dto.StartDate,
+                Description = dto.Description
+            };
             return menu;
         }
     }

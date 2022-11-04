@@ -1,46 +1,47 @@
 ﻿using GreetMe_API.DTO;
 using GreetMe_MVC.Interfaces;
 using GreetMe_MVC.Models;
+using GreetMe_MVC.Stylesheet;
 
 namespace GreetMe_MVC.ViewModels.View
 {
     public class ViewDetail
     {
-        public List<IComponent> components { get; set; }
+        public List<IComponent> Components { get; set; }
 
-        public string[,] Style { get; set; }
+        public List<int> Style { get; set; }
 
         public int CurrentLocation { get; set; }    
 
         public ViewDetail(ViewDto viewDto) 
         {
             CurrentLocation = 0;
-            components = new List<IComponent>();
-            foreach(ComponentDto cDto in viewDto.ComponentDtos) 
+            Components = new List<IComponent>();
+            foreach(ComponentPositionDto cDto in viewDto.LayoutDto.ComponentPositionDtos) 
             {
 
                 ////testCode
                 PersonDto personDto = new PersonDto() 
                 {
                     DateOfBirth = DateTime.Now,
-                FullName = "testperson1"
+                    FullName = "testperson1"
                 };
                 List<PersonDto> personDtos = new List<PersonDto>();
                 personDtos.Add(personDto);
                 viewDto.BirthdaysToday = personDtos;
+                viewDto.AnniversariesToday = personDtos;
 
-                if (cDto.ComponentName == "birthday")
-                
+                if (cDto.ComponentDto.ComponentName == "birthday")               
                 {
-                    components.Add(new BirthdayComponent(viewDto.BirthdaysToday));
+                    Components.Add(new BirthdayComponent(viewDto.BirthdaysToday, cDto));
                 } 
-                else if (cDto.ComponentName == "anniversary")
+                else if (cDto.ComponentDto.ComponentName == "anniversary")
                 {
-                    components.Add(new BirthdayComponent(viewDto.AnniversarysToday));
+                    Components.Add(new AnniversaryComponent(viewDto.AnniversariesToday, cDto));
                 }
-                else if (cDto.ComponentName == "Menu") 
+                else if (cDto.ComponentDto.ComponentName == "Menu") 
                 {
-                    components.Add(new MenuComponent(viewDto.Menu));
+                    Components.Add(new MenuComponent(viewDto.Menu, cDto));
                 }     
             }
         }

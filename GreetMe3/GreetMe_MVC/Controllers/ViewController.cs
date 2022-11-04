@@ -27,24 +27,16 @@ namespace GreetMe_MVC.Controllers
         }
 
         // GET: ViewController/Details/5
-        public ActionResult Details(/*int id*/)
+        public async Task<ActionResult> Details(int id)
         {
-
-            ViewDto viewDto = new ViewDto();
-            ComponentDto componentDto = new ComponentDto() 
-            {
-                ComponentName = "birthday"
-            };
-            viewDto.Components = new List<ComponentDto>();
-            viewDto.Components.Add(componentDto);
-            viewDto.Components.Add(componentDto);
-            viewDto.Components.Add(componentDto);
-            viewDto.Components.Add(componentDto);
+            var request = new RestRequest("api/View/getWithCompontents/" + id, Method.Get);
+            var response = await ApiService.ExecuteAsync<ViewDto>(request);
+            
 
 
 
-            ViewDetail detailView = new ViewDetail(viewDto);
-            detailView.Style = StyleLogic.getStyle("style1");
+            ViewDetail detailView = new ViewDetail(response.Data);
+            detailView.Style = StyleLogic.getStyle();
 
 
             return View(detailView);

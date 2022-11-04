@@ -8,24 +8,26 @@ namespace GreetMe_API.ModelConverter
         //Convert to PersonDto (convert from database, getdata) /\
         public static PersonDto ConvertToDto(Person person)
         {
-            PersonDto personDto = new PersonDto(
-                person.Id,
-                person.FullName,
-                person.DateOfBirth,
-                person.HiringDate,
-                person.Email
-                );
+            PersonDto personDto = new PersonDto()
+            {
+                FullName = person.FullName,
+                DateOfBirth =  person.DateOfBirth,
+                HiringDate = person.HiringDate,
+                Email = person.Email
+            };
             return personDto;
         }
 
         //Convert from PersonDto (convert to database, savedata) \/
         public static Person ConvertFromDto(PersonDto dto)
         {
-            Person person = new Person();
-            person.FullName = dto.FullName;
-            person.DateOfBirth = dto.DateOfBirth;
-            person.HiringDate = dto.HiringDate;
-            person.Email = dto.Email;
+            Person person = new Person() 
+            {
+                FullName = dto.FullName,
+                DateOfBirth = dto.DateOfBirth,
+                HiringDate = dto.HiringDate,
+                Email = dto.Email
+            };            
             return person;
         }
     }

@@ -1,14 +1,19 @@
 ﻿using GreetMe_API.DTO;
 using GreetMe_MVC.Interfaces;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GreetMe_MVC.Models
 {
     public class BirthdayComponent : IComponent
     {
         public List<PersonDto> BirthdayPeople;
-        public BirthdayComponent(List<PersonDto> birthdayPeople)
+
+
+        public int Position { get; set; }
+        public BirthdayComponent(List<PersonDto> birthdayPeople, ComponentPositionDto componentPositionDto)
         {
             BirthdayPeople = birthdayPeople;
+            Position = componentPositionDto.Position;
         }
 
         public string getData()
@@ -16,7 +21,7 @@ namespace GreetMe_MVC.Models
             string birthdays = "";
             foreach (PersonDto person in BirthdayPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idag ";
+                birthdays += person.FullName + "har fødselsdag idaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag ";
             }
             return birthdays;
         }
@@ -26,7 +31,7 @@ namespace GreetMe_MVC.Models
             string birthdays = "";
             foreach (PersonDto person in BirthdayPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idag eksta laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaangt";
+                birthdays += person.FullName + "har fødselsdag idag eksta langt";
             }
             return birthdays;
         }

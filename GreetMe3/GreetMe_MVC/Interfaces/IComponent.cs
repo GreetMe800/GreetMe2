@@ -3,7 +3,7 @@
     public interface IComponent
     {
 
-
+        public int Position { get; set; }
         public string getData();
 
         public string getDataDouble();

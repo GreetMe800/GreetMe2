@@ -1,4 +1,5 @@
-﻿@model GreetMe_MVC.ViewModels.View.ViewDetail
+﻿@using GreetMe_MVC.Interfaces
+@model GreetMe_MVC.ViewModels.View.ViewDetail
 
 @{
     ViewData["Title"] = "Details";
@@ -11,34 +12,68 @@
         padding 0;
     }
     #container{
-        width:1500px;
+        overflow:hidden;
+
         margin:0 auto;
     }
     .col1{
-        width:750px;
+        width:500px;
+        height: 100px;
         float: left;
     }
 
-    .col3 {
-        width: 1500px;
+    .col2 {
+        width: 1000px;
+        height: 100px;
         float: left;
     }
 </style>
 
 
 
-<h1>Details</h1>
 
-<div>
-    <h4>ViewDetail</h4>
-    <hr />
-    <dl class="row">
-    </dl>
-</div>
 
 
 <body>
+
     @{
+        int style = 0;
+        int component = 0;
+        foreach(int s in Model.Style)
+        {
+            if(Model.Style[style] == 0)
+            {
+
+                                      <br></br>
+                style++;
+            }
+            else if (Model.Components[component] is BirthdayComponent)
+            {
+                @Html.Partial("_Birthday", Model.Components[component]);
+                
+                
+                
+                style++;
+                component++;
+            }
+            else if (Model.Components[component] is AnniversaryComponent)
+            {
+                @Html.Partial("_Anniversary", Model.Components[component])
+                ;
+                style++;
+                component++;
+            }
+            else if (Model.Components[component] is MenuComponent)
+            {
+                <p>throw not implementet Menu, panik</p>
+                style++;
+                component++;
+            }
+        }
+    }
+
+
+    @*@{
         for(int i = 0; i < Model.Style.Length/2; i++)
         {
             for (int j = 0; j < 2; j++)
@@ -92,7 +127,7 @@
 
 
         }
-    }
+    }*@
 
 
     @*@{

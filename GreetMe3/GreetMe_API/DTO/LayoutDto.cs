@@ -10,7 +10,7 @@ namespace GreetMe_API.DTO
 
         public LayoutDto()
         {
-
+            ComponentPositionDtos = new List<ComponentPositionDto>();
         }
 
         public LayoutDto(int id, string layoutName, ICollection<ComponentPositionDto> componentPositionDtos)
