@@ -10,6 +10,10 @@ namespace GreetMe_API.DTO
         public string ViewName { get; set; } = null!;
         public virtual LayoutDto LayoutDto { get; set; }
 
+        public List<PersonDto> BirthdaysToday { get; set; }
+
+        public List<PersonDto> AnniversariesToday { get; set; }
+
         public ViewDto()
         {
 

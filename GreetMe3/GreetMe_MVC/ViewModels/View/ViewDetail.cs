@@ -41,7 +41,7 @@ namespace GreetMe_MVC.ViewModels.View
                 }
                 else if (cDto.ComponentDto.ComponentName == "Menu") 
                 {
-                    Components.Add(new MenuComponent(viewDto.Menu, cDto));
+                    //Components.Add(new MenuComponent(viewDto.Menu, cDto));
                 }     
             }
         }

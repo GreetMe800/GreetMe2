@@ -7,6 +7,8 @@ namespace GreetMe_API.DTO
         public int Id { get; set; }
         public string ComponentName { get; set; } = null!;
 
+        //public List<object> ComponentObjects { get; set; } lav senere
+
         public ComponentDto()
         {
 

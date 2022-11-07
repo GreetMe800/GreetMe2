@@ -12,7 +12,7 @@ namespace GreetMe_MVC.Controllers
 
         private RestClient ApiService;
 
-        public ViewController( IConfiguration configuration)
+        public ViewController(IConfiguration configuration)
         {
             ApiService = new RestClient(configuration.GetConnectionString("api"));
         }
@@ -29,17 +29,79 @@ namespace GreetMe_MVC.Controllers
         // GET: ViewController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var request = new RestRequest("api/View/getWithCompontents/" + id, Method.Get);
-            var response = await ApiService.ExecuteAsync<ViewDto>(request);
-            
+            //var request = new RestRequest("api/View/getWithCompontents/" + id, Method.Get);
+            //var response = await ApiService.ExecuteAsync<ViewDto>(request);
+            //ViewDetail detailView = new ViewDetail(response.Data);
 
 
+            ViewDto viewDto = new ViewDto();
+            LayoutDto layoutDto = new LayoutDto();
+            ComponentPositionDto componentPositionDto = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "birthday"
+                },
 
-            ViewDetail detailView = new ViewDetail(response.Data);
-            detailView.Style = StyleLogic.getStyle();
+                Position = 1
+            };
+            ComponentPositionDto componentPositionDto1 = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "birthday"
+                },
+
+                Position = 2
+            };
+            ComponentPositionDto componentPositionDto2 = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "birthday"
+                },
+
+                Position = 3
+            };
+            ComponentPositionDto componentPositionDto3 = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "birthday"
+                },
+
+                Position = 4
+            };
+            ComponentPositionDto componentPositionDto4 = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "anniversary"
+                },
+
+                Position = 5
+            };
+            ComponentPositionDto componentPositionDto5 = new ComponentPositionDto()
+            {
+                ComponentDto = new ComponentDto()
+                {
+                    ComponentName = "birthday"
+                },
+
+                Position = 6
+            };
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto);
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto1);
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto2);
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto3);
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto4);
+            layoutDto.ComponentPositionDtos.Add(componentPositionDto5);
+            viewDto.LayoutDto = layoutDto;
+            ViewDetail viewDetail = new ViewDetail(viewDto);
+            viewDetail.Style = StyleLogic.getStyle();
 
 
-            return View(detailView);
+            return View(viewDetail);
         }
 
         // GET: ViewController/Create

@@ -8,6 +8,7 @@ namespace GreetMe_API.DTO
         public string LayoutName { get; set; } = null!;
         public virtual List<ComponentPositionDto> ComponentPositionDtos { get; set; }
 
+
         public LayoutDto()
         {
             ComponentPositionDtos = new List<ComponentPositionDto>();
