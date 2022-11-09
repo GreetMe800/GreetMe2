@@ -80,7 +80,7 @@ namespace GreetMe_Test.RepositoryTest
         [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen2@hotmail.com")]
         public void CreatePerson_Successfull_object_return(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
-            //Assert
+            //Arrange
             PersonRepository personRepository = new PersonRepository();
             Person expected = new Person
             {
@@ -90,10 +90,10 @@ namespace GreetMe_Test.RepositoryTest
                 Email = email,
             };
 
-            //Arrange
+            //Act
             var actual = personRepository.CreateTest(expected);
 
-            //act
+            //Assert
             Assert.NotNull(actual);
             Assert.Equal(expected.FullName, actual.FullName);
             Assert.Equal(expected.DateOfBirth, actual.DateOfBirth);
