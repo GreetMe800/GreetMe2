@@ -16,6 +16,7 @@ namespace GreetMe_Test.RepositoryTest
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
+        /* Get Object Test */
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -32,21 +33,22 @@ namespace GreetMe_Test.RepositoryTest
             //Act
             Assert.NotNull(actual);
             Assert.IsType<Person>(actual);
-            Assert.NotNull(actual.FullName);
-            Assert.NotNull(actual.DateOfBirth);
-            Assert.NotNull(actual.HiringDate);
-            Assert.NotNull(actual.Email);
+            Assert.Equal(actual.Id, expected);
+            Assert.IsType<string>(actual.FullName);
+            Assert.IsType<DateTime>(actual.DateOfBirth);
+            Assert.IsType<DateTime>(actual.HiringDate);
+            Assert.IsType<string>(actual.Email);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-        /* Create Person Test */
+        /* Create Object Test */
         [Theory]
-        [InlineData("George", "10-20-2011", "10-20-2011", "George123@hotmail.com")]
-        [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik123@hotmail.com")]
-        [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen123@hotmail.com")]
+        [InlineData("George", "10-20-2011", "10-20-2011", "George1@hotmail.com")]
+        [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik1@hotmail.com")]
+        [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen1@hotmail.com")]
         public void CreatePerson_Successfull(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             //Arrange
@@ -67,16 +69,16 @@ namespace GreetMe_Test.RepositoryTest
 
         }
 
-        /* Create Person Async Test */
+        /* Create Object Async Test */
             //TODO
 
-        /* Create Person, with validation for each antribrute */
+        /* Create Object, with object return */
 
         [Theory]
-        [InlineData("George", "10-20-2011", "10-20-2011", "George123@hotmail.com")]
-        [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik123@hotmail.com")]
-        [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen123@hotmail.com")]
-        public void CreatePerson_Successfull2(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
+        [InlineData("George", "10-20-2011", "10-20-2011", "George2@hotmail.com")]
+        [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik2@hotmail.com")]
+        [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen2@hotmail.com")]
+        public void CreatePerson_Successfull_object_return(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
         {
             //Assert
             PersonRepository personRepository = new PersonRepository();
@@ -100,7 +102,7 @@ namespace GreetMe_Test.RepositoryTest
 
         }
 
-        /* Create Person Test - Expected Fail */
+        /* Create Object Test - Expected Fail */
         [Theory]
         [InlineData("George", "10-20-2011", "10-20-2011", "George123@hotmail.com")]
         [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik123@hotmail.com")]
@@ -131,8 +133,12 @@ namespace GreetMe_Test.RepositoryTest
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
+        //todo
+
         //-----------------------------------------------------------------------------
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
+
+        //todo
     }
 }

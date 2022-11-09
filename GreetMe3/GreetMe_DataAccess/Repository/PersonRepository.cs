@@ -109,7 +109,7 @@ namespace GreetMe_DataAccess.Repository
             return await _db.SaveChangesAsync() != 0; //returns true if numb of effected rows is not 0
         }
 
-        //Create (Returns person for test)
+        //Create (Returns object insted of bool - for test)
         public Person CreateTest(Person entity)
         {
             _db.People.Add(entity);
