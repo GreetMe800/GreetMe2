@@ -69,6 +69,14 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
+        //Create (Returns object insted of bool - for test)
+        public Component CreateTest(Component entity)
+        {
+            _db.Components.Add(entity);
+            _db.SaveChanges();
+            return entity;
+        }
+
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------

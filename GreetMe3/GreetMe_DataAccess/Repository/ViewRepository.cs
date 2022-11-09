@@ -90,6 +90,14 @@ namespace GreetMe_DataAccess.Repository
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
 
+        //Create (Returns object insted of bool - for test)
+        public View CreateTest(View entity)
+        {
+            _db.Views.Add(entity);
+            _db.SaveChanges();
+            return entity;
+        }
+
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------

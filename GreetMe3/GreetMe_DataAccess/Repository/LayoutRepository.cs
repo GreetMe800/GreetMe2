@@ -62,8 +62,8 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //-----------------------------------------------------------------------------
-            /* Create / Post                                                             */
-            //-----------------------------------------------------------------------------
+        /* Create / Post                                                             */
+        //-----------------------------------------------------------------------------
 
             //Create
         public bool Create(Layout entity)
@@ -78,6 +78,14 @@ namespace GreetMe_DataAccess.Repository
         {
             _db.Layouts.Add(entity);
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+        }
+
+        //Create (Returns object insted of bool - for test)
+        public Layout CreateTest(Layout entity)
+        {
+            _db.Layouts.Add(entity);
+            _db.SaveChanges();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------

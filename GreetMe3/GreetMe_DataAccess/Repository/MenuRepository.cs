@@ -69,6 +69,14 @@ namespace GreetMe_DataAccess.Repository
             throw new NotImplementedException();
         }
 
+        //Create (Returns object insted of bool - for test)
+        public Menu CreateTest(Menu entity)
+        {
+            _db.Menus.Add(entity);
+            _db.SaveChanges();
+            return entity;
+        }
+
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
