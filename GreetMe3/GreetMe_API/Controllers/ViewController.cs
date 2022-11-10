@@ -102,8 +102,8 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
         {
             View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
-            bool viewCreated = await _viewRepository.CreateAsync(view);
-            if (viewCreated)
+            View viewCreated = await _viewRepository.CreateAsync(view);
+            if (viewCreated is not null)
             {
                 return Ok();
             }
@@ -122,8 +122,8 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult> Update(ViewDto viewDto)
         {
             View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
-            bool viewUpdated = await _viewRepository.UpdateAsync(view);
-            if (viewUpdated)
+            View viewUpdated = await _viewRepository.UpdateAsync(view);
+            if (viewUpdated is not null)
             {
                 return Ok();
             }

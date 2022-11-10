@@ -88,8 +88,8 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult> Create([FromBody] PersonDto personDto)
         {
             Person person = PersonDtoConverter.ConvertFromDto(personDto);
-            bool personCreated = await _personRepository.CreateAsync(person);
-            if (personCreated)
+            Person personCreated = await _personRepository.CreateAsync(person);
+            if (personCreated is not null)
             {
                 return Ok();
             }

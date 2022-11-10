@@ -63,14 +63,13 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-        [HttpPost]
         //Create View
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] MenuDto menuDto)
         {
             Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuCreated = await _menuRepository.CreateAsync(menu);
-            if (menuCreated)
+            Menu menuCreated = await _menuRepository.CreateAsync(menu);
+            if (menuCreated is not null)
             {
                 return Ok();
             }
@@ -85,8 +84,8 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult> Update(MenuDto menuDto)
         {
             Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuUpdated = await _menuRepository.UpdateAsync(menu);
-            if (menuUpdated)
+            Menu menuUpdated = await _menuRepository.UpdateAsync(menu);
+            if (menuUpdated is null)
             {
                 return Ok();
             }
