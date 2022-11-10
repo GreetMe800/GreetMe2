@@ -1,11 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -30,7 +25,7 @@ namespace GreetMe_DataAccess.Repository
             return componentPositions.ToList();
         }
 
-        //Getall Async
+        //GetAll Async
         public async Task<IEnumerable<ComponentPosition>> GetAllAsync()
         {
             return await _db.ComponentPositions.ToListAsync();
@@ -43,13 +38,13 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public ComponentPosition? Get(int id)
         {
-            return _db.ComponentPositions.FirstOrDefault(p => p.Id == id);
+            return _db.ComponentPositions.Find(id);
         }
 
         //Get Async
         public async Task<ComponentPosition?> GetAsync(int id)
         {
-            return await _db.ComponentPositions.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.ComponentPositions.FindAsync(id);
         }
 
         //-----------------------------------------------------------------------------
@@ -57,25 +52,17 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(ComponentPosition entity)
-        {
-            _db.ComponentPositions.Add(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
-
-        }
-
-        //Create Async
-        public async Task<bool> CreateAsync(ComponentPosition entity)
-        {
-            _db.ComponentPositions.Add(entity);
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
-        }
-
-        //Create (Returns object insted of bool - for test)
-        public ComponentPosition CreateTest(ComponentPosition entity)
+        public ComponentPosition? Create(ComponentPosition entity)
         {
             _db.ComponentPositions.Add(entity);
             _db.SaveChanges();
+            return entity;
+        }
+        //Create Async
+        public async Task<ComponentPosition?> CreateAsync(ComponentPosition entity)
+        {
+            _db.ComponentPositions.Add(entity);
+            await _db.SaveChangesAsync();
             return entity;
         }
 
@@ -84,16 +71,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(ComponentPosition entity)
+        public ComponentPosition Update(ComponentPosition entity)
         {
             _db.ComponentPositions.Update(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(ComponentPosition entity)
+        public async Task<ComponentPosition?> UpdateAsync(ComponentPosition entity)
         {
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            _db.ComponentPositions.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -103,15 +93,13 @@ namespace GreetMe_DataAccess.Repository
         //Delete
         public bool Delete(int id)
         {
-            _db.ComponentPositions.Remove(Get(id));
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
 
         //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
-            _db.ComponentPositions.Remove(await GetAsync(id));
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
     }
 }

@@ -62,32 +62,18 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(View entity)
+        public View? Create(View entity)
         {
-          
-           
-
             _db.Views.Add(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
-
+            _db.SaveChanges();
+            return entity;
         }
-
         //Create Async
-        public async Task<bool> CreateAsync(View entity)
+        public async Task<View?> CreateAsync(View entity)
         {
-
-            try
-            {
-                _db.Views.Add(entity);
-                return _db.SaveChanges() != 0;
-            }
-            catch (Exception e)
-            {
-                int i = 1;
-            }
-
             _db.Views.Add(entity);
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -95,16 +81,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(View entity)
+        public View Update(View entity)
         {
             _db.Views.Update(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(View entity)
+        public async Task<View?> UpdateAsync(View entity)
         {
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            _db.Views.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -114,15 +103,13 @@ namespace GreetMe_DataAccess.Repository
         //Delete
         public bool Delete(int id)
         {
-            _db.Views.Remove(Get(id));
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
 
         //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
-            _db.Views.Remove(await GetAsync(id));
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
     }
 }

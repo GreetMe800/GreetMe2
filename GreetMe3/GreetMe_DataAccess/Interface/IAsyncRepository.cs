@@ -23,13 +23,13 @@ namespace GreetMe_DataAccess.Interface
         //-----------------------------------------------------------------------------
 
         //Create
-        public Task<bool> CreateAsync(T entity);
+        public Task<T> CreateAsync(T entity);
 
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
-        public Task<bool> UpdateAsync(T entity);
+        public Task<T> UpdateAsync(T entity);
 
         //-----------------------------------------------------------------------------
         /* Delete / Remove                                                           */

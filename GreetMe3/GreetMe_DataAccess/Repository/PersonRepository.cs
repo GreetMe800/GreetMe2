@@ -95,25 +95,17 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(Person entity)
-        {
-            _db.People.Add(entity);
-            return _db.SaveChanges() != 0; //returns true if numb of effected rows is not 0
-           
-        }
-
-        //Create Async
-        public async Task<bool> CreateAsync(Person entity)
-        {
-            _db.People.Add(entity);
-            return await _db.SaveChangesAsync() != 0; //returns true if numb of effected rows is not 0
-        }
-
-        //Create (Returns object insted of bool - for test)
-        public Person CreateTest(Person entity)
+        public Person? Create(Person entity)
         {
             _db.People.Add(entity);
             _db.SaveChanges();
+            return entity;
+        }
+        //Create Async
+        public async Task<Person?> CreateAsync(Person entity)
+        {
+            _db.People.Add(entity);
+            await _db.SaveChangesAsync();
             return entity;
         }
 
@@ -122,16 +114,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(Person entity)
+        public Person Update(Person entity)
         {
             _db.People.Update(entity);
-            return _db.SaveChanges() != 0;
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(Person entity)
+        public async Task<Person?> UpdateAsync(Person entity)
         {
-            return await _db.SaveChangesAsync() != 0; //returns true if numb of effected rows is not 0
+            _db.People.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -141,15 +136,13 @@ namespace GreetMe_DataAccess.Repository
         //Delete
         public bool Delete(int id)
         {
-            _db.People.Remove(Get(id));
-            return _db.SaveChanges() != 0; //returns true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
 
         //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
-            _db.People.Remove(await GetAsync(id));
-            return await _db.SaveChangesAsync() != 0; //returns true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
     }
 }

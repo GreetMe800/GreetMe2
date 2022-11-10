@@ -1,11 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -43,13 +38,13 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public Menu? Get(int id)
         {
-            return _db.Menus.FirstOrDefault(p => p.Id == id);
+            return _db.Menus.Find(id);
         }
 
         //Get Async
         public async Task<Menu?> GetAsync(int id)
         {
-            return await _db.Menus.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.Menus.FindAsync(id);
         }
 
         //-----------------------------------------------------------------------------
@@ -57,23 +52,17 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(Menu entity)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        //Create Async
-        public async Task<bool> CreateAsync(Menu entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Create (Returns object insted of bool - for test)
-        public Menu CreateTest(Menu entity)
+        public Menu? Create(Menu entity)
         {
             _db.Menus.Add(entity);
             _db.SaveChanges();
+            return entity;
+        }
+        //Create Async
+        public async Task<Menu?> CreateAsync(Menu entity)
+        {
+            _db.Menus.Add(entity);
+            await _db.SaveChangesAsync();
             return entity;
         }
 
@@ -82,15 +71,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(Menu entity)
+        public Menu Update(Menu entity)
         {
-            throw new NotImplementedException();
+            _db.Menus.Update(entity);
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(Menu entity)
+        public async Task<Menu?> UpdateAsync(Menu entity)
         {
-            throw new NotImplementedException();
+            _db.Menus.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------

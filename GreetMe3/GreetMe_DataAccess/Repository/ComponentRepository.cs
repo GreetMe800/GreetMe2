@@ -1,11 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -43,13 +38,13 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public Component? Get(int id)
         {
-            return _db.Components.FirstOrDefault(p => p.Id == id);
+            return _db.Components.Find(id);
         }
 
         //Get Async
         public async Task<Component?> GetAsync(int id)
         {
-            return await _db.Components.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.Components.FindAsync(id);
         }
 
         //-----------------------------------------------------------------------------
@@ -57,23 +52,17 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(Component entity)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        //Create Async
-        public async Task<bool> CreateAsync(Component entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Create (Returns object insted of bool - for test)
-        public Component CreateTest(Component entity)
+        public Component? Create(Component entity)
         {
             _db.Components.Add(entity);
             _db.SaveChanges();
+            return entity;
+        }
+        //Create Async
+        public async Task<Component?> CreateAsync(Component entity)
+        {
+            _db.Components.Add(entity);
+            await _db.SaveChangesAsync();
             return entity;
         }
 
@@ -82,15 +71,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(Component entity)
+        public Component Update(Component entity)
         {
-            throw new NotImplementedException();
+            _db.Components.Update(entity);
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(Component entity)
+        public async Task<Component?> UpdateAsync(Component entity)
         {
-            throw new NotImplementedException();
+            _db.Components.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------

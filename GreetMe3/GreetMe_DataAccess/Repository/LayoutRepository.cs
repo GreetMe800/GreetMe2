@@ -1,11 +1,6 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -43,41 +38,32 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public Layout? Get(int id)
         {
-            return _db.Layouts.FirstOrDefault(p => p.ViewId == id);
+            return _db.Layouts.Find(id);
         }
 
         //Get Async
         public async Task<Layout?> GetAsync(int id)
         {
-            return await _db.Layouts.FirstOrDefaultAsync(p => p.ViewId == id);
-        }
-
-        //Get With Dep (without view)
-        public Layout? GetWithDep(int id)
-        {
-            return _db.Layouts
-                .Include(layout => layout.ComponentPositions)
-                .ThenInclude(componentPosition => componentPosition.Component)
-                .FirstOrDefault(layout => layout.ViewId == id);
+            return await _db.Layouts.FindAsync(id);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-            //Create
-        public bool Create(Layout entity)
+        //Create
+        public Layout? Create(Layout entity)
         {
             _db.Layouts.Add(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
-
+            _db.SaveChanges();
+            return entity;
         }
-
         //Create Async
-        public async Task<bool> CreateAsync(Layout entity)
+        public async Task<Layout?> CreateAsync(Layout entity)
         {
             _db.Layouts.Add(entity);
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -85,16 +71,19 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(Layout entity)
+        public Layout Update(Layout entity)
         {
             _db.Layouts.Update(entity);
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            _db.SaveChanges();
+            return entity;
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(Layout entity)
+        public async Task<Layout?> UpdateAsync(Layout entity)
         {
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            _db.Layouts.Update(entity);
+            await _db.SaveChangesAsync();
+            return entity;
         }
 
         //-----------------------------------------------------------------------------
@@ -104,15 +93,13 @@ namespace GreetMe_DataAccess.Repository
         //Delete
         public bool Delete(int id)
         {
-            _db.Layouts.Remove(Get(id));
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
 
         //Delete Async
         public async Task<bool> DeleteAsync(int id)
         {
-            _db.Layouts.Remove(await GetAsync(id));
-            return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
+            throw new NotImplementedException();
         }
     }
 }
