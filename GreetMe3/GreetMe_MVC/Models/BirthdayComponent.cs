@@ -15,17 +15,17 @@ namespace GreetMe_MVC.Models
             BirthdayPeople = birthdayPeople;
             Position = componentPositionDto.Position;
         }
-
+        //Data for normal sized box.
         public string getData()
         {
             string birthdays = "";
             foreach (PersonDto person in BirthdayPeople)
             {
-                birthdays += person.FullName + "har fødselsdag idaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag ";
+                birthdays += person.FullName + "har fødselsdag idag ";
             }
             return birthdays;
         }
-
+        //Size increase only.
         public string getDataDouble()
         {
             string birthdays = "";
