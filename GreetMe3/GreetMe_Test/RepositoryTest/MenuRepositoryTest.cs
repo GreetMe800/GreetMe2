@@ -22,32 +22,6 @@ namespace GreetMe_Test.RepositoryTest
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-        /* Create Object Test */
-        [Theory]
-        [InlineData("Dagens Menu", "10-20-2011", null, "kodboller i karry")]
-        [InlineData("Dagens Menu2", "11-20-2011", null, "kodboller i tomatsuppe")]
-        [InlineData("Dagens Menu3", "15-20-2011", "19-20-2011", "kodboller i sovs")]
-        [InlineData("Dagens Menu3", "20-20-2011", "25-20-2011", "kodboller i sovs")]
-
-        public void CreateMenu_Successfull(string menuName, DateTime startDate, DateTime endDate, string desription)
-        {
-            //Arrange
-            MenuRepository menuRepository = new MenuRepository();
-            Menu expected = new Menu()
-            {
-                MenuName = menuName,
-                StartDate = startDate,
-                EndDate = endDate,
-                Description = desription
-            };
-
-            //Act
-            bool actual = menuRepository.Create(expected);
-
-            //Assert
-            Assert.True(actual);
-        }
-
         /* Create Object Async Test */
         //TODO
 
@@ -70,7 +44,7 @@ namespace GreetMe_Test.RepositoryTest
             };
 
             //Act
-            Menu actual = menuRepository.CreateTest(expected);
+            Menu actual = menuRepository.Create(expected);
 
             //Assert
             Assert.NotNull(actual);
