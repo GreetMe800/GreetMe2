@@ -44,31 +44,6 @@ namespace GreetMe_Test.RepositoryTest
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-        /* Create Object Test */
-        [Theory]
-        [InlineData("George", "10-20-2011", "10-20-2011", "George1@hotmail.com")]
-        [InlineData("Henrik", "11-21-2011", "11-21-2011", "Henrik1@hotmail.com")]
-        [InlineData("Larsen", "12-22-2011", "12-22-2011", "Larsen1@hotmail.com")]
-        public void CreatePerson_Successfull(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
-        {
-            //Arrange
-            PersonRepository personRepository = new PersonRepository();
-            Person person = new Person
-            {
-                FullName = fullName,
-                DateOfBirth = dateOfBirth,
-                HiringDate = hiringDate,
-                Email = email,
-            };
-
-            //Assert
-            bool actual = personRepository.Create(person);
-
-            //Act
-            Assert.True(actual);
-
-        }
-
         /* Create Object Async Test */
             //TODO
 
@@ -91,7 +66,7 @@ namespace GreetMe_Test.RepositoryTest
             };
 
             //Act
-            var actual = personRepository.CreateTest(expected);
+            var actual = personRepository.Create(expected);
 
             //Assert
             Assert.NotNull(actual);
@@ -121,7 +96,7 @@ namespace GreetMe_Test.RepositoryTest
             };
 
             //Act
-            var ex = Record.Exception(() => personRepository.CreateTest(expected));
+            var ex = Record.Exception(() => personRepository.Create(expected));
 
             //Assert
             Assert.NotNull(ex);
