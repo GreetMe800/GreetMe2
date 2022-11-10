@@ -1,4 +1,8 @@
-﻿<form asp-controller="View" asp-action="Create" method="post">
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-controller="View" asp-action="Create" method="post">
     <p>Input name here:</p>
     <input type="text" name="ViewName" value="" />
     <input type="submit" value="Submit">
