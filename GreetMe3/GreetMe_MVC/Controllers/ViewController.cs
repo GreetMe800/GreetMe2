@@ -3,6 +3,7 @@ using GreetMe_MVC.Stylesheet;
 using GreetMe_MVC.ViewModels.View;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage;
 using RestSharp;
 
 namespace GreetMe_MVC.Controllers
@@ -26,9 +27,19 @@ namespace GreetMe_MVC.Controllers
         // GET: ViewController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            //var request = new RestRequest("api/View/getWithCompontents/" + id, Method.Get);
-            //var response = await ApiService.ExecuteAsync<ViewDto>(request);
-            //ViewDetail detailView = new ViewDetail(response.Data);
+            throw new NotImplementedException();
+            //(Brians example kode, slet ikke selvom ikke fungere)
+            /*
+            var view = Database.getView(id);
+            if(view.Type = "birthday")
+            {
+                
+                //bygge viewmodel til birthday, med dens data 
+                var birthdayViewModel = new BirthdayViewModel();
+                birthdayViewModel.AllBirthdays = Database.LoadAllBirthday();
+                return View(birthdayViewModel);
+            }
+            
 
 
             ViewDto viewDto = new ViewDto();
@@ -107,7 +118,7 @@ namespace GreetMe_MVC.Controllers
             return View();
         }
 
-        // POST: ViewController/Create
+        // POST: ViewController/Create // Rename enten den her eller andet
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -120,6 +131,7 @@ namespace GreetMe_MVC.Controllers
             {
                 return View();
             }
+            */
         }
 
         // GET: ViewController/Edit/5
