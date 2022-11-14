@@ -110,10 +110,12 @@ namespace GreetMe_MVC.Controllers
 
 
             return View(viewDetail);
+            */
         }
+            
 
         // GET: ViewController/Create
-        public ActionResult Create()
+        public ActionResult CreateView()
         {
             return View();
         }
@@ -131,7 +133,7 @@ namespace GreetMe_MVC.Controllers
             {
                 return View();
             }
-            */
+           
         }
 
         // GET: ViewController/Edit/5
