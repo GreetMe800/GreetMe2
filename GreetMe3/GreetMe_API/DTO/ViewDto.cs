@@ -8,7 +8,6 @@ namespace GreetMe_API.DTO
     {
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public virtual LayoutDto LayoutDto { get; set; }
 
         public List<PersonDto> BirthdaysToday { get; set; }
 
@@ -18,13 +17,6 @@ namespace GreetMe_API.DTO
         {
 
         }
-        public ViewDto(int id, string viewName, LayoutDto layoutDto)
-        {
-            Id = id;
-            ViewName = viewName;
-            LayoutDto = layoutDto;
-        }
-
         public ViewDto(int id, string viewName)
         {
             Id = id;

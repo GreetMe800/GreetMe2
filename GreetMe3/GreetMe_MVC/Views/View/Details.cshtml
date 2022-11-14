@@ -37,35 +37,7 @@
 <body>
 
     @{
-        int style = 0;
-        int component = 0;
-        foreach(int s in Model.Style)
-        {
-            if(Model.Style[style] == 0)
-            {
-                <br></br>
-                style++;
-            }
-            else if (Model.Components[component] is BirthdayComponent)
-            {
-                @Html.Partial("_Birthday", Model.Components[component]);
-                style++;
-                component++;
-            }
-            else if (Model.Components[component] is AnniversaryComponent)
-            {
-                @Html.Partial("_Anniversary", Model.Components[component])
-                ;
-                style++;
-                component++;
-            }
-            else if (Model.Components[component] is MenuComponent)
-            {
-                <p>throw not implementet Menu, panik</p>
-                style++;
-                component++;
-            }
-        }
+        //ToBeDone
     }
 
 

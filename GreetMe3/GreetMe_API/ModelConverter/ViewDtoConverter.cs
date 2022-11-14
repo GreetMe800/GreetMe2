@@ -25,7 +25,6 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = view.Id,
                 ViewName = view.ViewName,
-                LayoutDto = LayoutDtoConverter.ConvertToDto(view.Layout)
             };
             return viewDto;
         }
@@ -46,7 +45,6 @@ namespace GreetMe_API.ModelConverter
             View view = new View()
             {
                 ViewName = viewDto.ViewName,
-                Layout = LayoutDtoConverter.ConvertFromDtoWithDep(viewDto.LayoutDto),
             };
             return view;
         }

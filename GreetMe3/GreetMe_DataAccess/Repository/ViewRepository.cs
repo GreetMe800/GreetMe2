@@ -49,12 +49,8 @@ namespace GreetMe_DataAccess.Repository
 
         //Get With Dep
         public View? GetWithDep(int id)
-        {           
-            return _db.Views
-                .Include(view => view.Layout)
-                .ThenInclude(layout => layout.ComponentPositions)
-                .ThenInclude(componentPosition => componentPosition.Component)
-                .FirstOrDefault(view => view.Id == id);
+        {
+            return _db.Views.Find(id);        
         }
 
         //-----------------------------------------------------------------------------

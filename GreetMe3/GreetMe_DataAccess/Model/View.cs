@@ -9,7 +9,5 @@ namespace GreetMe_DataAccess.Model
     {
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-
-        public virtual Layout? Layout { get; set; }
     }
 }

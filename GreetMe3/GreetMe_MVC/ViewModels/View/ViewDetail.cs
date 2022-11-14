@@ -7,7 +7,6 @@ namespace GreetMe_MVC.ViewModels.View
 {
     public class ViewDetail
     {
-        public List<IComponent> Components { get; set; }
 
         public List<int> Style { get; set; }
 
@@ -15,11 +14,6 @@ namespace GreetMe_MVC.ViewModels.View
 
         public ViewDetail(ViewDto viewDto) 
         {
-            CurrentLocation = 0;
-            Components = new List<IComponent>();
-            foreach(ComponentPositionDto cDto in viewDto.LayoutDto.ComponentPositionDtos) 
-            {
-
                 ////testCode
                 PersonDto personDto = new PersonDto() 
                 {
@@ -30,20 +24,10 @@ namespace GreetMe_MVC.ViewModels.View
                 personDtos.Add(personDto);
                 viewDto.BirthdaysToday = personDtos;
                 viewDto.AnniversariesToday = personDtos;
-
-                if (cDto.ComponentDto.ComponentName == "birthday")               
-                {
-                    Components.Add(new BirthdayComponent(viewDto.BirthdaysToday, cDto));
-                } 
-                else if (cDto.ComponentDto.ComponentName == "anniversary")
-                {
-                    Components.Add(new AnniversaryComponent(viewDto.AnniversariesToday, cDto));
-                }
-                else if (cDto.ComponentDto.ComponentName == "Menu") 
                 {
                     //Components.Add(new MenuComponent(viewDto.Menu, cDto));
                 }     
             }
         }
     }
-}
+

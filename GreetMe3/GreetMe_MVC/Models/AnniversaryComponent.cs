@@ -10,10 +10,9 @@ namespace GreetMe_MVC.Models
         public int Position { get; set; }
 
         public List<PersonDto> AnniversaryPeople;
-        public AnniversaryComponent(List<PersonDto> anniversaryPeople, ComponentPositionDto componentPositionDto)
+        public AnniversaryComponent(List<PersonDto> anniversaryPeople)
         {
             AnniversaryPeople = anniversaryPeople;
-            Position = componentPositionDto.Position;
         }
 
         public string getData()

@@ -12,10 +12,9 @@ namespace GreetMe_MVC.Models
 
         public int Position { get; set; }
 
-        public MenuComponent(MenuDto menuDto, ComponentPositionDto componentPositionDto)
+        public MenuComponent(MenuDto menuDto)
         {
             MenuDto = menuDto;
-            Position = componentPositionDto.Position;
         }
 
         public string getData()

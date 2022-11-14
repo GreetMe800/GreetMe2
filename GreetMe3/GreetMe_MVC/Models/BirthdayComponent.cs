@@ -10,10 +10,9 @@ namespace GreetMe_MVC.Models
 
 
         public int Position { get; set; }
-        public BirthdayComponent(List<PersonDto> birthdayPeople, ComponentPositionDto componentPositionDto)
+        public BirthdayComponent(List<PersonDto> birthdayPeople)
         {
             BirthdayPeople = birthdayPeople;
-            Position = componentPositionDto.Position;
         }
         //Data for normal sized box.
         public string getData()
