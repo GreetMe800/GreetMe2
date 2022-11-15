@@ -110,7 +110,7 @@ namespace GreetMe_API.Controllers
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
 
-        //Delete Async
+        //Delete Async //
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
