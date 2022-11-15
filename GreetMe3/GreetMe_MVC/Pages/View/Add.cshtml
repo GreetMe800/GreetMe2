@@ -1,0 +1,13 @@
+﻿@page
+@model GreetMe_MVC.Pages.View.AddModel
+@{
+    ViewData["Title"] = "Add View";
+}
+
+<h1>Add View</h1>
+<form method="post">
+    <input type="text" asp-for="View.ViewName" placeholder="View Name"/>
+    <input type="checkbox" asp-for="View.HasBirthday" placeholder="Has Birthday" />
+    <input type="checkbox" asp-for="View.HasAnniversary" placeholder="Has Anniversary" />
+    <button type="submit">Submit</button>
+</form>

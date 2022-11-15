@@ -11,9 +11,9 @@ namespace GreetMe_API.DTO
         public bool HasBirthday { get; set; }
         public bool HasAnniversary { get; set; }
 
-        public List<PersonDto> BirthdaysToday { get; set; }
+        //public List<PersonDto> BirthdaysToday { get; set; }
 
-        public List<PersonDto> AnniversariesToday { get; set; }
+        //public List<PersonDto> AnniversariesToday { get; set; }
 
         public ViewDto()
         {
