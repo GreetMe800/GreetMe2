@@ -66,33 +66,6 @@ namespace GreetMe_API.Controllers
             }
         }
 
-        //Get With Dep
-        [HttpGet]
-        [Route("getwithdep/{id}")]
-        public ActionResult GetWithDep(int id)
-        {
-            //Input Validator, if 0
-            if (id <= 0)
-            {
-                return Conflict();
-            }
-
-            View? foundView = _viewRepository.GetWithDep(id);
-
-            //Input Validator, if not null
-            if (foundView is not null)
-            {
-                ViewDto viewDto = ViewDtoConverter.ConvertToDtoWithDep(foundView);
-                return Ok(viewDto);
-            }
-
-            //Input Validator, if null
-            else
-            {
-                return Conflict();
-            }
-        }
-
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
@@ -101,7 +74,7 @@ namespace GreetMe_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
         {
-            View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
+            View view = ViewDtoConverter.ConvertFromDto(viewDto);
             bool viewCreated = await _viewRepository.CreateAsync(view);
             if (viewCreated)
             {
@@ -121,7 +94,7 @@ namespace GreetMe_API.Controllers
         [HttpPut]
         public async Task<ActionResult> Update(ViewDto viewDto)
         {
-            View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
+            View view = ViewDtoConverter.ConvertFromDto(viewDto);
             bool viewUpdated = await _viewRepository.UpdateAsync(view);
             if (viewUpdated)
             {

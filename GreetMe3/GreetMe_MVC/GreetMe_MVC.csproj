@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
-    <PackageReference Include="RestSharp" Version="108.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GreetMe_API\GreetMe_API.csproj" />
   </ItemGroup>
 

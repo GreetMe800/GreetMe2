@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//error generate again
 namespace GreetMe_DataAccess.Model
 {
     public partial class WEXO_GreetMeContext : DbContext
@@ -18,9 +19,6 @@ namespace GreetMe_DataAccess.Model
         {
         }
 
-        public virtual DbSet<Component> Components { get; set; } = null!;
-        public virtual DbSet<ComponentPosition> ComponentPositions { get; set; } = null!;
-        public virtual DbSet<Layout> Layouts { get; set; } = null!;
         public virtual DbSet<Menu> Menus { get; set; } = null!;
         public virtual DbSet<Person> People { get; set; } = null!;
         public virtual DbSet<View> Views { get; set; } = null!;
@@ -36,72 +34,7 @@ namespace GreetMe_DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Component>(entity =>
-            {
-                entity.ToTable("components");
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.ComponentName)
-                    .HasMaxLength(50)
-                    .HasColumnName("component_name");
-            });
-
-            modelBuilder.Entity<ComponentPosition>(entity =>
-            {
-                entity.ToTable("component_positions");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.ComponentId).HasColumnName("component_id");
-
-                entity.Property(e => e.Position).HasColumnName("position");
-
-                entity.HasOne(d => d.Component)
-                    .WithMany(p => p.ComponentPositions)
-                    .HasForeignKey(d => d.ComponentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_component_position_component_id");
-            });
-
-            modelBuilder.Entity<Layout>(entity =>
-            {
-                entity.HasKey(e => e.ViewId)
-                    .HasName("PK__layouts__B5A34EE2989CEF8C");
-
-                entity.ToTable("layouts");
-
-                entity.Property(e => e.ViewId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("view_id");
-
-                entity.Property(e => e.LayoutName)
-                    .HasMaxLength(50)
-                    .HasColumnName("layout_name");
-
-                entity.HasOne(d => d.View)
-                    .WithOne(p => p.Layout)
-                    .HasForeignKey<Layout>(d => d.ViewId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_layout_view_id");
-
-                entity.HasMany(d => d.ComponentPositions)
-                    .WithMany(p => p.Layouts)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "LayoutComponentPosition",
-                        l => l.HasOne<ComponentPosition>().WithMany().HasForeignKey("ComponentPositionId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_component_position_id"),
-                        r => r.HasOne<Layout>().WithMany().HasForeignKey("LayoutId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_layout_component_position_layout_id"),
-                        j =>
-                        {
-                            j.HasKey("LayoutId", "ComponentPositionId");
-
-                            j.ToTable("layout_component_position");
-
-                            j.IndexerProperty<int>("LayoutId").HasColumnName("layout_id");
-
-                            j.IndexerProperty<int>("ComponentPositionId").HasColumnName("component_position_id");
-                        });
-            });
 
             modelBuilder.Entity<Menu>(entity =>
             {
@@ -156,11 +89,20 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("views");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id");
 
                 entity.Property(e => e.ViewName)
                     .HasMaxLength(50)
                     .HasColumnName("view_name");
+
+                entity.Property(e => e.HasBirthday)
+                    .HasColumnType("bit")
+                    .HasColumnName("has_birthday");
+
+                entity.Property(e => e.HasAnniversary)
+                    .HasColumnType("bit")
+                    .HasColumnName("has_anniversary");
             });
 
             OnModelCreatingPartial(modelBuilder);

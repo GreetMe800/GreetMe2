@@ -14,18 +14,8 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = view.Id,
                 ViewName = view.ViewName,
-            };
-            return viewDto;
-        }
-
-        //Convert to ViewDto with Dep (convert from database, getdata) /\
-        public static ViewDto ConvertToDtoWithDep(View view)
-        {
-            ViewDto viewDto = new ViewDto()
-            {
-                Id = view.Id,
-                ViewName = view.ViewName,
-                LayoutDto = LayoutDtoConverter.ConvertToDto(view.Layout)
+                HasBirthday = view.HasBirthday,
+                HasAnniversary = view.HasAnniversary
             };
             return viewDto;
         }
@@ -36,17 +26,8 @@ namespace GreetMe_API.ModelConverter
             View view = new View()
             {
                 ViewName = viewDto.ViewName,
-            };
-            return view;
-        }
-
-        //Convert from ViewDto with Dep (convert to database, savedata) \/
-        public static View ConvertFromDtoWithDep(ViewDto viewDto)
-        {
-            View view = new View()
-            {
-                ViewName = viewDto.ViewName,
-                Layout = LayoutDtoConverter.ConvertFromDtoWithDep(viewDto.LayoutDto),
+                HasBirthday = viewDto.HasBirthday,
+                HasAnniversary = viewDto.HasAnniversary
             };
             return view;
         }

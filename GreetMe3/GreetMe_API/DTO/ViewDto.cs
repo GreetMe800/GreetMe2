@@ -8,7 +8,8 @@ namespace GreetMe_API.DTO
     {
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
-        public virtual LayoutDto LayoutDto { get; set; }
+        public bool HasBirthday { get; set; }
+        public bool HasAnniversary { get; set; }
 
         public List<PersonDto> BirthdaysToday { get; set; }
 
@@ -18,17 +19,19 @@ namespace GreetMe_API.DTO
         {
 
         }
-        public ViewDto(int id, string viewName, LayoutDto layoutDto)
+        public ViewDto(int id, string viewName, bool hasBirthday, bool hasAnniversary)
         {
             Id = id;
             ViewName = viewName;
-            LayoutDto = layoutDto;
+            HasBirthday = hasBirthday;
+            HasAnniversary = hasAnniversary;
         }
 
-        public ViewDto(int id, string viewName)
+        public ViewDto(string viewName, bool hasBirthday, bool hasAnniversary)
         {
-            Id = id;
             ViewName = viewName;
+            HasBirthday = hasBirthday;
+            HasAnniversary = hasAnniversary;
         }
     }
 }
