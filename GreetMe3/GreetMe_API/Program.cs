@@ -15,9 +15,6 @@ builder.Services.AddDbContext<WEXO_GreetMeContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("GreetMeLocal"));
 });
-builder.Services.AddScoped<IComponentRepository, ComponentRepository>();
-builder.Services.AddScoped<IComponentPositionRepository, ComponentPositionRepository>();
-builder.Services.AddScoped<ILayoutRepository, LayoutRepository>();
 builder.Services.AddScoped<IViewRepository, ViewRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
