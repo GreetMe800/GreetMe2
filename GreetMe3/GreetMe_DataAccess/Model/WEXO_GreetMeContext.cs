@@ -34,8 +34,6 @@ namespace GreetMe_DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             modelBuilder.Entity<Menu>(entity =>
             {
                 entity.ToTable("menus");
@@ -63,7 +61,7 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("people");
 
-                entity.HasIndex(e => e.Email, "UQ__people__AB6E6164033AC681")
+                entity.HasIndex(e => e.Email, "UQ__people__AB6E61642120B07F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -89,20 +87,15 @@ namespace GreetMe_DataAccess.Model
             {
                 entity.ToTable("views");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.HasAnniversary).HasColumnName("has_anniversary");
+
+                entity.Property(e => e.HasBirthday).HasColumnName("has_birthday");
 
                 entity.Property(e => e.ViewName)
                     .HasMaxLength(50)
                     .HasColumnName("view_name");
-
-                entity.Property(e => e.HasBirthday)
-                    .HasColumnType("bit")
-                    .HasColumnName("has_birthday");
-
-                entity.Property(e => e.HasAnniversary)
-                    .HasColumnType("bit")
-                    .HasColumnName("has_anniversary");
             });
 
             OnModelCreatingPartial(modelBuilder);
