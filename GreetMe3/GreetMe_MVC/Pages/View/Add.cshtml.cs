@@ -21,6 +21,8 @@ namespace GreetMe_MVC.Pages.View
                 return Page();
             }
 
+            //post method missing
+
             return RedirectToPage("/Index");
         }
     }
