@@ -21,7 +21,7 @@ namespace GreetMe_MVC.Pages.View
                 return Page();
             }
 
-            return RedirectToPage("./index");
+            return RedirectToPage(".");
         }
     }
 }
