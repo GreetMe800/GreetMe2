@@ -10,11 +10,11 @@ namespace GreetMe_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PersonController : Controller
+    public class PersonsController : Controller
     {
         private readonly IPersonRepository _personRepository;
         [ActivatorUtilitiesConstructor]
-        public PersonController(IPersonRepository personRepository)
+        public PersonsController(IPersonRepository personRepository)
         {
             _personRepository = personRepository;
         }

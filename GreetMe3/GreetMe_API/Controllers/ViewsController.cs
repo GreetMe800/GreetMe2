@@ -1,58 +1,65 @@
-﻿using GreetMe_API;
+﻿using GreetMe_DataAccess.Interface;
+using GreetMe_DataAccess.Model;
+using Microsoft.AspNetCore.Mvc;
 using GreetMe_API.DTO;
 using GreetMe_API.ModelConverter;
-using GreetMe_DataAccess.Interface;
-using GreetMe_DataAccess.Model;
-using GreetMe_DataAccess.Repository;
-using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace GreetMe_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class MenuController : Controller
+    [Route("api/[controller]")]
+
+    public class ViewsController : Controller
     {
-        private readonly IMenuRepository _menuRepository;
+        private readonly IViewRepository _viewRepository;
+        private readonly IPersonRepository _personrepository;
+
         [ActivatorUtilitiesConstructor]
-        public MenuController(IMenuRepository menuRepository)
+
+        public ViewsController(IViewRepository viewRepository, IPersonRepository personRepository)
         {
-            _menuRepository = menuRepository;
+            _viewRepository = viewRepository;
+            _personrepository = personRepository;
         }
+
         //-----------------------------------------------------------------------------
-        /* GetAll                                                                    */
+        /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
         //GetAll Async
-        [HttpGet(Name = "GetAllMenusAsync")]
-        public IEnumerable<Menu> GetAllAsync()
+        [HttpGet(Name = "GetAllViewsAsync")]
+        public async Task<IEnumerable<View>> GetAllAsync()
         {
-            return _menuRepository.GetAll();
+            return await _viewRepository.GetAllAsync();
         }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get By Id
-        [HttpGet, Route("id")]
-        public ActionResult<MenuDto> GetById(int id)
+        //Get
+        [HttpGet]
+        [Route("get/{id}")]
+        public ActionResult Get(int id)
         {
-            //Input validator, 0 <
+            //Input Validator, if 0
             if (id <= 0)
             {
                 return Conflict();
             }
 
-            Menu? foundMenu = _menuRepository.Get(id);
+            View? foundView = _viewRepository.Get(id);
 
-            //if menu is found
-            if (foundMenu is not null)
+            //Input Validator, if not null
+            if (foundView is not null)
             {
-                MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
-                return Ok(menuDto);
+                ViewDto viewDto = ViewDtoConverter.ConvertToDto(foundView);
+                return Ok(viewDto);
             }
 
-            //if not found
+            //Input Validator, if null
             else
             {
                 return Conflict();
@@ -63,14 +70,13 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-        [HttpPost]
         //Create View
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] MenuDto menuDto)
+        public ActionResult Create([FromBody] ViewDto viewDto)
         {
-            Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuCreated = await _menuRepository.CreateAsync(menu);
-            if (menuCreated)
+            View view = ViewDtoConverter.ConvertFromDto(viewDto);
+            bool viewCreated = _viewRepository.Create(view);
+            if (viewCreated)
             {
                 return Ok();
             }
@@ -80,13 +86,17 @@ namespace GreetMe_API.Controllers
             }
         }
 
+        //-----------------------------------------------------------------------------
+        /* Update                                                                    */
+        //-----------------------------------------------------------------------------
+
         //Update Async
         [HttpPut]
-        public async Task<ActionResult> Update(MenuDto menuDto)
+        public async Task<ActionResult> Update(ViewDto viewDto)
         {
-            Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuUpdated = await _menuRepository.UpdateAsync(menu);
-            if (menuUpdated)
+            View view = ViewDtoConverter.ConvertFromDto(viewDto);
+            bool viewUpdated = await _viewRepository.UpdateAsync(view);
+            if (viewUpdated)
             {
                 return Ok();
             }
@@ -104,8 +114,8 @@ namespace GreetMe_API.Controllers
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
-            bool menuDeleted = await _menuRepository.DeleteAsync(id);
-            if (menuDeleted)
+            bool viewDeleted = await _viewRepository.DeleteAsync(id);
+            if (viewDeleted)
             {
                 return Ok();
             }

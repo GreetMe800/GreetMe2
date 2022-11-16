@@ -11,5 +11,10 @@ namespace GreetMe_MVC.Controllers
             PersonViewModel person = new PersonViewModel();
             return View(person);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

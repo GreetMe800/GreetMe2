@@ -1,5 +1,8 @@
-﻿using GreetMe_MVC.Models;
+﻿using GreetMe_API.Controllers;
+using GreetMe_API.ModelConverter;
+using GreetMe_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 namespace GreetMe_MVC.Controllers
 {
@@ -9,18 +12,39 @@ namespace GreetMe_MVC.Controllers
 
     public class ViewController : Controller
     {
+        private RestClient ApiService;
+
+
         //Will use view that has the same name as the method (./View/Index)
+
+        //View Index Page
         public IActionResult Index()
         {
-            ViewViewModel view = new ViewViewModel()
-            //test code
-            { ViewName = "Awesome View1", ViewName2 = "Awesome View2"};
+            ViewViewModel view = new ViewViewModel();
             return View(view);
         }
 
+        //Create View Page
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ViewViewModel model)
+        {
+
+            var request = new RestRequest("api/View", Method.Post);
+            request.AddJsonBody(model);
+            var response = ApiService.Execute(request);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Exception();
+            }
+
+
+            ViewData["Message"] = string.Format("View Oprettet");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -15,7 +15,7 @@
 
 //            IEnumerable<Person> birthdayPeople = personRepository.GetAllByBirthday(dateToday);
 //            List<PersonDto> birthdayPeopleDto = new List<PersonDto>();
-//            foreach(Person p in birthdayPeople)
+//            foreach (Person p in birthdayPeople)
 //            {
 //                birthdayPeopleDto.Add(PersonDtoConverter.ConvertToDto(p));
 //            }
@@ -30,7 +30,7 @@
 
 //            IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(dateToday);
 //            List<PersonDto> anniversaryPeopleDto = new List<PersonDto>();
-//            foreach(Person p in anniversaryPeople)
+//            foreach (Person p in anniversaryPeople)
 //            {
 //                anniversaryPeopleDto.Add(PersonDtoConverter.ConvertToDto(p));
 //            }
