@@ -72,10 +72,10 @@ namespace GreetMe_API.Controllers
 
         //Create View
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
+        public ActionResult Create([FromBody] ViewDto viewDto)
         {
             View view = ViewDtoConverter.ConvertFromDto(viewDto);
-            bool viewCreated = await _viewRepository.CreateAsync(view);
+            bool viewCreated = _viewRepository.Create(view);
             if (viewCreated)
             {
                 return Ok();
