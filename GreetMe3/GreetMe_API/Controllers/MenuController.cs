@@ -10,11 +10,11 @@ namespace GreetMe_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MenusController : Controller
+    public class MenuController : Controller
     {
         private readonly IMenuRepository _menuRepository;
         [ActivatorUtilitiesConstructor]
-        public MenusController(IMenuRepository menuRepository)
+        public MenuController(IMenuRepository menuRepository)
         {
             _menuRepository = menuRepository;
         }
@@ -24,7 +24,7 @@ namespace GreetMe_API.Controllers
 
         //GetAll Async
         [HttpGet(Name = "GetAllMenusAsync")]
-        public IEnumerable<Menu> GetAllAsync()
+        public IEnumerable<Menu> GetAll()
         {
             return _menuRepository.GetAll();
         }
@@ -33,67 +33,36 @@ namespace GreetMe_API.Controllers
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get By Id
-        [HttpGet, Route("id")]
-        public ActionResult<MenuDto> GetById(int id)
+        //Get - api/Menus/5
+        [HttpGet("{id}")]
+        public async Task<MenuDto> Get(int id)
         {
-            //Input validator, 0 <
-            if (id <= 0)
-            {
-                return Conflict();
-            }
-
-            Menu? foundMenu = _menuRepository.Get(id);
-
-            //if menu is found
-            if (foundMenu is not null)
-            {
-                MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
-                return Ok(menuDto);
-            }
-
-            //if not found
-            else
-            {
-                return Conflict();
-            }
+            Menu foundMenu = _menuRepository.Get(id);
+            MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
+            return menuDto;
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
+        //Create Menu - api/Menus
         [HttpPost]
-        //Create View
-        [HttpPost]
-        public async Task<ActionResult> Create([FromBody] MenuDto menuDto)
+        public async Task<Menu> Create([FromBody] MenuDto menuDto)
         {
-            Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuCreated = await _menuRepository.CreateAsync(menu);
-            if (menuCreated)
+            if (ModelState.IsValid)
             {
-                return Ok();
+                Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
+                return await _menuRepository.CreateAsync(menu);
             }
-            else
-            {
-                return Conflict();
-            }
+            return null;
         }
 
         //Update Async
         [HttpPut]
         public async Task<ActionResult> Update(MenuDto menuDto)
         {
-            Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
-            bool menuUpdated = await _menuRepository.UpdateAsync(menu);
-            if (menuUpdated)
-            {
-                return Ok();
-            }
-            else
-            {
-                return Conflict();
-            }
+            throw new NotImplementedException();
         }
 
         //-----------------------------------------------------------------------------
@@ -102,17 +71,9 @@ namespace GreetMe_API.Controllers
 
         //Delete Async
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
+        public async Task Delete(int id)
         {
-            bool menuDeleted = await _menuRepository.DeleteAsync(id);
-            if (menuDeleted)
-            {
-                return Ok();
-            }
-            else
-            {
-                return Conflict();
-            }
+            throw new NotImplementedException();
         }
     }
 }

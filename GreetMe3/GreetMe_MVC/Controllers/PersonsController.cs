@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GreetMe_MVC.Controllers
 {
-    public class PersonController : Controller
+    public class PersonsController : Controller
     {
         //Will use view that has the same name as the method (./View/Index)
         public IActionResult Index()

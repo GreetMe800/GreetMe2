@@ -57,14 +57,14 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public bool Create(Menu entity)
+        public Menu Create(Menu entity)
         {
             throw new NotImplementedException();
 
         }
 
         //Create Async
-        public async Task<bool> CreateAsync(Menu entity)
+        public async Task<Menu> CreateAsync(Menu entity)
         {
             throw new NotImplementedException();
         }
@@ -74,13 +74,13 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public bool Update(Menu entity)
+        public Menu Update(Menu entity)
         {
             throw new NotImplementedException();
         }
 
         //Update Async
-        public async Task<bool> UpdateAsync(Menu entity)
+        public async Task<Menu> UpdateAsync(Menu entity)
         {
             throw new NotImplementedException();
         }
