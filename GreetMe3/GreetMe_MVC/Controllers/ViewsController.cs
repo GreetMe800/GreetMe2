@@ -36,6 +36,7 @@ namespace GreetMe_MVC.Controllers
             return View();
         }
 
+        //Getall
         [HttpGet]
         public async Task<List<ViewViewModel>> GetAll()
         {

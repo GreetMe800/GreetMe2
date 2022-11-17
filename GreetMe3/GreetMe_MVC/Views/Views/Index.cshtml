@@ -1,8 +1,13 @@
-﻿@model IEnumerable<GreetMe_MVC.Models.ViewViewModel>
+﻿@using GreetMe_MVC.Controllers
+@model IEnumerable<GreetMe_MVC.Models.ViewViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 
 <h1>Index</h1>
 
@@ -27,7 +32,6 @@
         @foreach (var item in Model)
         {
             <tr>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.ViewName)
                 </td>
@@ -38,9 +42,9 @@
                     @Html.DisplayFor(modelItem => item.HasAnniversary)
                 </td>
                 <td>
-                    @Html.ActionLink("See view", "Detail", "View", new { id = item.Id })
-                    @Html.ActionLink("Edit", "Edit", "View", new { id = item.Id })
-                    @Html.ActionLink("Delete", "Delete","View",   new { id =  item.Id})
+                    @Html.ActionLink("See view", "Get", "Views", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Update", "Views", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete","Views",   new { id =  item.Id})
                 </td>
             </tr>
         }
