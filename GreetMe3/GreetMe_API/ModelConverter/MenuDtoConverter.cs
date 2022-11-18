@@ -20,7 +20,7 @@ namespace GreetMe_API.ModelConverter
         }
 
         //Convert from MenuDto (convert to database, savedata) \/
-        public static Menu ConvertFromDto(MenuDto dto)
+        public static Menu ConvertToModel(MenuDto dto)
         {
             Menu menu = new Menu()
             {

@@ -14,6 +14,7 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = view.Id,
                 ViewName = view.ViewName,
+<<<<<<< HEAD
             };
             return viewDto;
         }
@@ -25,16 +26,21 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = view.Id,
                 ViewName = view.ViewName,
+=======
+                HasBirthday = view.HasBirthday,
+                HasAnniversary = view.HasAnniversary
+>>>>>>> Main_Sprint_3_asp_Spike
             };
             return viewDto;
         }
 
         //Convert from ViewDto (convert to database, savedata) \/
-        public static View ConvertFromDto(ViewDto viewDto)
+        public static View ConvertToModel(ViewDto viewDto)
         {
             View view = new View()
             {
                 ViewName = viewDto.ViewName,
+<<<<<<< HEAD
             };
             return view;
         }
@@ -45,6 +51,10 @@ namespace GreetMe_API.ModelConverter
             View view = new View()
             {
                 ViewName = viewDto.ViewName,
+=======
+                HasBirthday = viewDto.HasBirthday,
+                HasAnniversary = viewDto.HasAnniversary
+>>>>>>> Main_Sprint_3_asp_Spike
             };
             return view;
         }

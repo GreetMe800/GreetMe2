@@ -52,14 +52,22 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
+<<<<<<< HEAD
         public Menu? Create(Menu entity)
+=======
+        public Menu Create(Menu entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Menus.Add(entity);
             _db.SaveChanges();
             return entity;
         }
         //Create Async
+<<<<<<< HEAD
         public async Task<Menu?> CreateAsync(Menu entity)
+=======
+        public async Task<Menu> CreateAsync(Menu entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Menus.Add(entity);
             await _db.SaveChangesAsync();
@@ -79,7 +87,11 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Update Async
+<<<<<<< HEAD
         public async Task<Menu?> UpdateAsync(Menu entity)
+=======
+        public async Task<Menu> UpdateAsync(Menu entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Menus.Update(entity);
             await _db.SaveChangesAsync();

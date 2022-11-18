@@ -33,30 +33,13 @@ namespace GreetMe_API.Controllers
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get By Id
-        [HttpGet, Route("id")]
-        public ActionResult<PersonDto> GetById(int id)
+        //Get - api/Persons/5
+        [HttpGet("{id}")]
+        public async Task<PersonDto> Get(int id)
         {
-            //Input validator, 0 <
-            if (id <= 0)
-            {
-                return Conflict();
-            }
-
-            Person? foundPerson = _personRepository.Get(id);
-
-            //if person is found
-            if (foundPerson is not null)
-            {
-                PersonDto personDto = PersonDtoConverter.ConvertToDto(foundPerson);
-                return Ok(personDto);
-            }
-
-            //if not found
-            else
-            {
-                return Conflict();
-            }
+            Person foundPerson = _personRepository.Get(id);
+            PersonDto personDto = PersonDtoConverter.ConvertToDto(foundPerson);
+            return personDto;
         }
 
         //Get By Email
@@ -83,20 +66,22 @@ namespace GreetMe_API.Controllers
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-        //Create View
+        //Create Person - api/People
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] PersonDto personDto)
+        public async Task<Person> Create([FromBody] PersonDto personDto)
         {
+<<<<<<< HEAD
             Person person = PersonDtoConverter.ConvertFromDto(personDto);
             Person personCreated = await _personRepository.CreateAsync(person);
             if (personCreated is not null)
+=======
+            if (ModelState.IsValid)
+>>>>>>> Main_Sprint_3_asp_Spike
             {
-                return Ok();
+                Person person = PersonDtoConverter.ConvertToModel(personDto);
+                return await _personRepository.CreateAsync(person);
             }
-            else
-            {
-                return Conflict();
-            }
+            return null;
         }
 
         //-----------------------------------------------------------------------------
@@ -104,7 +89,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpPut]
-        public async Task<ActionResult> Update(PersonDto personDto)
+        public async Task<Person> Update([FromBody] PersonDto personDto)
         {
             throw new NotImplementedException();
         }
@@ -114,7 +99,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(PersonDto personDto)
+        public async Task Delete(int id)
         {
             throw new NotImplementedException();
         }

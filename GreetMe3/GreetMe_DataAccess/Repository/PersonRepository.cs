@@ -95,14 +95,26 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
+<<<<<<< HEAD
         public Person? Create(Person entity)
+=======
+        public Person Create(Person entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.People.Add(entity);
             _db.SaveChanges();
             return entity;
+<<<<<<< HEAD
+=======
+           
+>>>>>>> Main_Sprint_3_asp_Spike
         }
         //Create Async
+<<<<<<< HEAD
         public async Task<Person?> CreateAsync(Person entity)
+=======
+        public async Task<Person> CreateAsync(Person entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.People.Add(entity);
             await _db.SaveChangesAsync();
@@ -116,6 +128,7 @@ namespace GreetMe_DataAccess.Repository
         //Update
         public Person Update(Person entity)
         {
+<<<<<<< HEAD
             _db.People.Update(entity);
             _db.SaveChanges();
             return entity;
@@ -127,6 +140,15 @@ namespace GreetMe_DataAccess.Repository
             _db.People.Update(entity);
             await _db.SaveChangesAsync();
             return entity;
+=======
+            throw new NotImplementedException();
+        }
+
+        //Update Async
+        public async Task<Person> UpdateAsync(Person entity)
+        {
+            throw new NotImplementedException();
+>>>>>>> Main_Sprint_3_asp_Spike
         }
 
         //-----------------------------------------------------------------------------

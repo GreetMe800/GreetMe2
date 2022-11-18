@@ -1,0 +1,54 @@
+﻿@model ViewViewModel
+@{
+}
+
+<h1>Create</h1>
+
+<div class="row">
+    <div class="col-6">
+
+        @*Card element*@
+        <div class="card">
+
+            @*Header*@
+            <div class="card-header">
+                <h5>Create a new view</h5>
+            </div>
+
+            @*Body*@
+            <div class="card-body">
+
+                @*Calls Controller "View", and calls the method "CreateView" in the controller*@
+                <form id="sectionForm" asp-controller="View" asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">View Name</label>
+                        <input asp-for="ViewName" type="text" class="form-control" placeholder="View Name" minlength="4" maxlength="50" required pattern="[a-z A-Z 0-9 ]+"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">List of Birthdays</label>
+                        <input asp-for="HasBirthday" type="checkbox" class="form-check" placeholder="Has Birthday" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">List of Anniversarys</label>
+                        <input asp-for="HasAnniversary" type="checkbox" class="form-check" placeholder="Has Anniversary" />
+                    </div>
+
+                    <div class="mb-3">
+                        <Button type="submit" class="btn btn-primary">Submit</Button>
+                    </div>
+                </form>
+
+                @*Imported script to validate atleast one checkbox must be checked*@
+                @*make sure form id="sectionForm"*@
+                <script src="~/js/CheckboxValidator.js"></script>
+            </div>
+
+            @*Footer*@
+            <div class="card-footer">
+            </div>
+
+        </div>
+    </div>
+</div>

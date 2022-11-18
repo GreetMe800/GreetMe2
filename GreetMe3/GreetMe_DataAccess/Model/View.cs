@@ -9,5 +9,10 @@ namespace GreetMe_DataAccess.Model
     {
         public int Id { get; set; }
         public string ViewName { get; set; } = null!;
+<<<<<<< HEAD
+=======
+        public bool HasBirthday { get; set; }
+        public bool HasAnniversary { get; set; }
+>>>>>>> Main_Sprint_3_asp_Spike
     }
 }

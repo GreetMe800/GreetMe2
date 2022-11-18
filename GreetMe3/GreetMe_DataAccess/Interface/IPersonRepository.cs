@@ -28,10 +28,10 @@ namespace GreetMe_DataAccess.Interface
 
 
         //Get by Email
-        Person GetByEmail(string email);
+        Person? GetByEmail(string email);
 
         //Get by Email Async
-        Task<Person> GetByEmailAsync(string email);
+        Task<Person?> GetByEmailAsync(string email);
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */

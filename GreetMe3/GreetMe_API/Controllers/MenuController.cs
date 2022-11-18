@@ -24,7 +24,7 @@ namespace GreetMe_API.Controllers
 
         //GetAll Async
         [HttpGet(Name = "GetAllMenusAsync")]
-        public IEnumerable<Menu> GetAllAsync()
+        public IEnumerable<Menu> GetAll()
         {
             return _menuRepository.GetAll();
         }
@@ -33,36 +33,20 @@ namespace GreetMe_API.Controllers
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get By Id
-        [HttpGet, Route("id")]
-        public ActionResult<MenuDto> GetById(int id)
+        //Get - api/Menus/5
+        [HttpGet("{id}")]
+        public async Task<MenuDto> Get(int id)
         {
-            //Input validator, 0 <
-            if (id <= 0)
-            {
-                return Conflict();
-            }
-
-            Menu? foundMenu = _menuRepository.Get(id);
-
-            //if menu is found
-            if (foundMenu is not null)
-            {
-                MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
-                return Ok(menuDto);
-            }
-
-            //if not found
-            else
-            {
-                return Conflict();
-            }
+            Menu foundMenu = _menuRepository.Get(id);
+            MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
+            return menuDto;
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
+<<<<<<< HEAD
         //Create View
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] MenuDto menuDto)
@@ -70,19 +54,25 @@ namespace GreetMe_API.Controllers
             Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
             Menu menuCreated = await _menuRepository.CreateAsync(menu);
             if (menuCreated is not null)
+=======
+        //Create Menu - api/Menus
+        [HttpPost]
+        public async Task<Menu> Create([FromBody] MenuDto menuDto)
+        {
+            if (ModelState.IsValid)
+>>>>>>> Main_Sprint_3_asp_Spike
             {
-                return Ok();
+                Menu menu = MenuDtoConverter.ConvertToModel(menuDto);
+                return await _menuRepository.CreateAsync(menu);
             }
-            else
-            {
-                return Conflict();
-            }
+            return null;
         }
 
         //Update Async
         [HttpPut]
         public async Task<ActionResult> Update(MenuDto menuDto)
         {
+<<<<<<< HEAD
             Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
             Menu menuUpdated = await _menuRepository.UpdateAsync(menu);
             if (menuUpdated is null)
@@ -93,6 +83,9 @@ namespace GreetMe_API.Controllers
             {
                 return Conflict();
             }
+=======
+            throw new NotImplementedException();
+>>>>>>> Main_Sprint_3_asp_Spike
         }
 
         //-----------------------------------------------------------------------------
@@ -101,17 +94,9 @@ namespace GreetMe_API.Controllers
 
         //Delete Async
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
+        public async Task Delete(int id)
         {
-            bool menuDeleted = await _menuRepository.DeleteAsync(id);
-            if (menuDeleted)
-            {
-                return Ok();
-            }
-            else
-            {
-                return Conflict();
-            }
+            throw new NotImplementedException();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace GreetMe_API.ModelConverter
         }
 
         //Convert from PersonDto (convert to database, savedata) \/
-        public static Person ConvertFromDto(PersonDto dto)
+        public static Person ConvertToModel(PersonDto dto)
         {
             Person person = new Person() 
             {

@@ -3,8 +3,8 @@ using GreetMe_DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 using GreetMe_API.DTO;
 using GreetMe_API.ModelConverter;
-
-
+using System.Security.Cryptography.X509Certificates;
+using System.Reflection.Metadata.Ecma335;
 
 namespace GreetMe_API.Controllers
 {
@@ -28,128 +28,101 @@ namespace GreetMe_API.Controllers
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
-        //GetAll Async
-        [HttpGet(Name = "GetAllViewsAsync")]
-        public async Task<IEnumerable<View>> GetAllAsync()
+        //GetAll - api/View
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ViewDto>>> GetAll()
         {
-            return await _viewRepository.GetAllAsync();
+            
+            IEnumerable<View> viewList = await _viewRepository.GetAllAsync();
+            foreach (View view in viewList)
+            {
+                ViewDtoConverter.ConvertToDto(view);
+            }
+            IList<GreetMe_DataAccess.Model.View> viewDtoList = viewList.ToList();
+
+            if (viewDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewDtoList);
         }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get
-        [HttpGet]
-        [Route("get/{id}")]
-        public ActionResult Get(int id)
+        //Get - api/View/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ViewDto>> Get(int id)
         {
-            //Input Validator, if 0
-            if (id <= 0)
+            View View = await _viewRepository.GetAsync(id);
+            ViewDto viewDto = ViewDtoConverter.ConvertToDto(View);
+
+            if (viewDto == null)
             {
-                return Conflict();
+                return NotFound();
             }
 
-            View? foundView = _viewRepository.Get(id);
-
-            //Input Validator, if not null
-            if (foundView is not null)
-            {
-                ViewDto viewDto = ViewDtoConverter.ConvertToDto(foundView);
-                return Ok(viewDto);
-            }
-
-            //Input Validator, if null
-            else
-            {
-                return Conflict();
-            }
-        }
-
-        //Get With Dep
-        [HttpGet]
-        [Route("getwithdep/{id}")]
-        public ActionResult GetWithDep(int id)
-        {
-            //Input Validator, if 0
-            if (id <= 0)
-            {
-                return Conflict();
-            }
-
-            View? foundView = _viewRepository.GetWithDep(id);
-
-            //Input Validator, if not null
-            if (foundView is not null)
-            {
-                ViewDto viewDto = ViewDtoConverter.ConvertToDtoWithDep(foundView);
-                return Ok(viewDto);
-            }
-
-            //Input Validator, if null
-            else
-            {
-                return Conflict();
-            }
+            return Ok(viewDto);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-        //Create View
+        //TODO update method
+        //Create View - api/View
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] ViewDto viewDto)
+        public async Task<View> Create([FromBody] ViewDto viewDto)
         {
+<<<<<<< HEAD
             View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
             View viewCreated = await _viewRepository.CreateAsync(view);
             if (viewCreated is not null)
+=======
+            if (ModelState.IsValid)
+>>>>>>> Main_Sprint_3_asp_Spike
             {
-                return Ok();
+                View view = ViewDtoConverter.ConvertToModel(viewDto);
+                return await _viewRepository.CreateAsync(view);
             }
-            else
-            {
-                return Conflict();
-            }
+            return null;
         }
 
         //-----------------------------------------------------------------------------
         /* Update                                                                    */
         //-----------------------------------------------------------------------------
 
-        //Update Async
+        //TODO update method
+        //Update
         [HttpPut]
-        public async Task<ActionResult> Update(ViewDto viewDto)
+        public async Task<View> Update([FromBody] ViewDto viewDto)
         {
+<<<<<<< HEAD
             View view = ViewDtoConverter.ConvertFromDtoWithDep(viewDto);
             View viewUpdated = await _viewRepository.UpdateAsync(view);
             if (viewUpdated is not null)
+=======
+            if (ModelState.IsValid)
+>>>>>>> Main_Sprint_3_asp_Spike
             {
-                return Ok();
+                View view = ViewDtoConverter.ConvertToModel(viewDto);
+                return await _viewRepository.UpdateAsync(view);
             }
-            else
-            {
-                return Conflict();
-            }
+            return null;
         }
 
         //-----------------------------------------------------------------------------
         /* Delete                                                                    */
         //-----------------------------------------------------------------------------
 
-        //Delete Async
+        //Delete
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
+        public async Task Delete(int id)
         {
-            bool viewDeleted = await _viewRepository.DeleteAsync(id);
-            if (viewDeleted)
-            {
-                return Ok();
-            }
-            else
-            {
-                return Conflict();
-            }
+            bool deleted = await _viewRepository.DeleteAsync(id);
+           
         }
     }
 }

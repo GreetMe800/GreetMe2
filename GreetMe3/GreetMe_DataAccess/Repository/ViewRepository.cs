@@ -1,6 +1,7 @@
 ﻿using GreetMe_DataAccess.Interface;
 using GreetMe_DataAccess.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace GreetMe_DataAccess.Repository
 {
@@ -47,25 +48,40 @@ namespace GreetMe_DataAccess.Repository
             return await _db.Views.FindAsync(id);
         }
 
+<<<<<<< HEAD
         //Get With Dep
         public View? GetWithDep(int id)
         {
             return _db.Views.Find(id);        
         }
 
+=======
+>>>>>>> Main_Sprint_3_asp_Spike
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
         //Create
+<<<<<<< HEAD
         public View? Create(View entity)
+=======
+        public View Create(View entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Views.Add(entity);
             _db.SaveChanges();
             return entity;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Main_Sprint_3_asp_Spike
         }
         //Create Async
+<<<<<<< HEAD
         public async Task<View?> CreateAsync(View entity)
+=======
+        public async Task<View> CreateAsync(View entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Views.Add(entity);
             await _db.SaveChangesAsync();
@@ -85,7 +101,11 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //Update Async
+<<<<<<< HEAD
         public async Task<View?> UpdateAsync(View entity)
+=======
+        public async Task<View> UpdateAsync(View entity)
+>>>>>>> Main_Sprint_3_asp_Spike
         {
             _db.Views.Update(entity);
             await _db.SaveChangesAsync();
