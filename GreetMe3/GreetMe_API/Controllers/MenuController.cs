@@ -12,7 +12,7 @@ namespace GreetMe_API.Controllers
     [Route("[controller]")]
     public class MenuController : Controller
     {
-        private readonly IMenuRepository _menuRepository;
+        private readonly IMenuRepository _menuRepository; //test
         [ActivatorUtilitiesConstructor]
         public MenuController(IMenuRepository menuRepository)
         {
