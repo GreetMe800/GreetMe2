@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_Test", "GreetMe_Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{AA537214-73FA-4666-911F-028D012329E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetMe_MVC", "GreetMe_MVC\GreetMe_MVC.csproj", "{24961829-0F62-47AF-BD43-61C4900DE56F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreetMe_MVC", "GreetMe_MVC\GreetMe_MVC.csproj", "{24961829-0F62-47AF-BD43-61C4900DE56F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

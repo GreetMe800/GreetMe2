@@ -15,95 +15,67 @@ namespace GreetMe_MVC.Controllers
     //Will use the folder with the same name as the Controller (./View)
     //To access page with out being the default use route "/localhost:1234/CONTROLLERNAME" - "/localhost:1234/View"
     //To access method within this controller use "/localhost:1234/CONTROLLERNAME/METHODNAME"
+    //localhost allan - https://localhost:7232/
 
     public class ViewsController : Controller
     {
-        HttpClientHandler _clientHandler = new HttpClientHandler();
-
-        ViewViewModel _viewModel = new ViewViewModel();
-        List<ViewViewModel> _viewModels = new List<ViewViewModel>();
 
         public ViewsController()
         {
-            _clientHandler.ServerCertificateCustomValidationCallback = (sender ,cert , chain, sslPolicyErrors) => { return true; };
+            
         }
 
         //Will use view that has the same name as the method (./View/Index)
         //View Index Page
-        public async Task<ActionResult> Index()
+
+        //View Main Page - GetAll
+        public async Task<IActionResult> Index()
         {
-            GetAll();
-            return View();
+            IEnumerable<ViewViewModel> ViewList = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5184/api/");
+                //HTTP GET
+                var responseTask = client.GetAsync("view");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<ViewViewModel>>();
+                    readTask.Wait();
+
+                    ViewList = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    ViewList = Enumerable.Empty<ViewViewModel>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View(ViewList);
         }
 
-        //Getall
-        [HttpGet]
-        public async Task<List<ViewViewModel>> GetAll()
+        //Get
+        public async Task<IActionResult> Get(int id)
         {
-            _viewModels = new List<ViewViewModel>();
-
-            using (var httpClient = new HttpClient(_clientHandler))
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:7232/api/view"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    _viewModels = JsonConvert.DeserializeObject<List<ViewViewModel>>(apiResponse);
-                }
-
-                return _viewModels;
-            }
+            throw new NotImplementedException();
         }
 
-        [HttpGet]
-        public async Task<ViewViewModel> Get(int id)
+        //Create
+        public async Task<IActionResult> Create(ViewViewModel view)
         {
-            _viewModel = new ViewViewModel();
-
-            using (var httpClient = new HttpClient(_clientHandler))
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:7232/api/view" + "/" + id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    _viewModel = JsonConvert.DeserializeObject<ViewViewModel>(apiResponse);
-                }
-
-                return _viewModel;
-            }
+            throw new NotImplementedException();
         }
 
-        [HttpPost]
-        public async Task<ViewViewModel> Create(ViewViewModel view)
+        //Delete
+        public async Task<IActionResult> Delete(int id)
         {
-            _viewModel = new ViewViewModel();
-
-            using (var httpClient = new HttpClient(_clientHandler))
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(view), Encoding.UTF8, "application/json");
-
-                using (var response = await httpClient.PostAsync("https://localhost:7232/api/view", content))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    _viewModel = JsonConvert.DeserializeObject<ViewViewModel>(apiResponse);
-                }
-
-                return _viewModel;
-            }
-        }
-
-        [HttpDelete]
-        public async Task<string> Delete(int id)
-        {
-            string message = "";
-
-            using (var httpClient = new HttpClient(_clientHandler))
-            {
-                using (var response = await httpClient.DeleteAsync("https://localhost:7232/api/view" + "/" + id))
-                {
-                    message = await response.Content.ReadAsStringAsync();
-                }
-
-                return message;
-            }
+            throw new NotImplementedException();
         }
     }
 }
