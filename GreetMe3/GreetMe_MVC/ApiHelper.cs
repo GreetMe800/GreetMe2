@@ -11,13 +11,14 @@ namespace GreetMe_MVC
         //we make it static because we only want one per application
         //opens up a tcp ip port
         //thread save, and support multiable concurrent calls
-        public static HttpClient ApiClient { get; set; } 
-        public static void InitializeClient()
+        //public static HttpClient ApiClient { get; set; } 
+        public static HttpClient InitializeClient(string url)
         {
-            ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri("");
+            var ApiClient = new HttpClient();
+            ApiClient.BaseAddress = new Uri("http://localhost:5184/api/");
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return ApiClient;
         }
     }
 }

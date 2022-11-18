@@ -32,31 +32,23 @@ namespace GreetMe_MVC.Controllers
         public async Task<IActionResult> Index()
         {
             IEnumerable<ViewViewModel> ViewList = null;
-
-            using (var client = new HttpClient())
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+            var responseTask = await client.GetAsync("view");
+            if (responseTask.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("http://localhost:5184/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("view");
-                responseTask.Wait();
+                var viewViewModelList = await responseTask.Content.ReadAsAsync<IList<ViewViewModel>>();
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<IList<ViewViewModel>>();
-                    readTask.Wait();
-
-                    ViewList = readTask.Result;
-                }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    ViewList = Enumerable.Empty<ViewViewModel>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
+                ViewList = viewViewModelList;
             }
+            else //web api sent error response 
+            {
+                //log response status here..
+
+                ViewList = Enumerable.Empty<ViewViewModel>();
+
+                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+            }
+
             return View(ViewList);
         }
 
