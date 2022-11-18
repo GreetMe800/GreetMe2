@@ -72,7 +72,7 @@ namespace GreetMe_API.Controllers
         {
             if (ModelState.IsValid)
             {
-                Person person = PersonDtoConverter.ConvertFromDto(personDto);
+                Person person = PersonDtoConverter.ConvertToModel(personDto);
                 return await _personRepository.CreateAsync(person);
             }
             return null;

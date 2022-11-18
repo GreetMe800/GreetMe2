@@ -52,7 +52,7 @@ namespace GreetMe_API.Controllers
         {
             if (ModelState.IsValid)
             {
-                Menu menu = MenuDtoConverter.ConvertFromDto(menuDto);
+                Menu menu = MenuDtoConverter.ConvertToModel(menuDto);
                 return await _menuRepository.CreateAsync(menu);
             }
             return null;

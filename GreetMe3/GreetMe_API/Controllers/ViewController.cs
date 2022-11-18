@@ -28,37 +28,57 @@ namespace GreetMe_API.Controllers
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
-        //GetAll - api/Views
+        //GetAll - api/View
         [HttpGet]
-        public async Task<IEnumerable<View>> GetAll()
+        public async Task<ActionResult<IEnumerable<ViewDto>>> GetAll()
         {
-            return await _viewRepository.GetAllAsync();
+            
+            IEnumerable<View> viewList = await _viewRepository.GetAllAsync();
+            foreach (View view in viewList)
+            {
+                ViewDtoConverter.ConvertToDto(view);
+            }
+            IList<GreetMe_DataAccess.Model.View> viewDtoList = viewList.ToList();
+
+            if (viewDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewDtoList);
         }
 
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get - api/Views/5
+        //Get - api/View/5
         [HttpGet("{id}")]
-        public async Task<ViewDto> Get(int id)
+        public async Task<ActionResult<ViewDto>> Get(int id)
         {
-            View foundView = _viewRepository.Get(id);
-            ViewDto viewDto = ViewDtoConverter.ConvertToDto(foundView);
-            return viewDto;
+            View View = await _viewRepository.GetAsync(id);
+            ViewDto viewDto = ViewDtoConverter.ConvertToDto(View);
+
+            if (viewDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewDto);
         }
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                              */
         //-----------------------------------------------------------------------------
 
-        //Create View - api/Views
+        //TODO update method
+        //Create View - api/View
         [HttpPost]
         public async Task<View> Create([FromBody] ViewDto viewDto)
         {
             if (ModelState.IsValid)
             {
-                View view = ViewDtoConverter.ConvertFromDto(viewDto);
+                View view = ViewDtoConverter.ConvertToModel(viewDto);
                 return await _viewRepository.CreateAsync(view);
             }
             return null;
@@ -68,13 +88,14 @@ namespace GreetMe_API.Controllers
         /* Update                                                                    */
         //-----------------------------------------------------------------------------
 
+        //TODO update method
         //Update
         [HttpPut]
         public async Task<View> Update([FromBody] ViewDto viewDto)
         {
             if (ModelState.IsValid)
             {
-                View view = ViewDtoConverter.ConvertFromDto(viewDto);
+                View view = ViewDtoConverter.ConvertToModel(viewDto);
                 return await _viewRepository.UpdateAsync(view);
             }
             return null;

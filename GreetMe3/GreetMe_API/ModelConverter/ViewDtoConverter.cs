@@ -21,7 +21,7 @@ namespace GreetMe_API.ModelConverter
         }
 
         //Convert from ViewDto (convert to database, savedata) \/
-        public static View ConvertFromDto(ViewDto viewDto)
+        public static View ConvertToModel(ViewDto viewDto)
         {
             View view = new View()
             {
