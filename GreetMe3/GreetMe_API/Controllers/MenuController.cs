@@ -9,24 +9,37 @@ using Microsoft.AspNetCore.Mvc;
 namespace GreetMe_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MenuController : Controller
     {
         private readonly IMenuRepository _menuRepository;
         [ActivatorUtilitiesConstructor]
         public MenuController(IMenuRepository menuRepository)
         {
-            _menuRepository = menuRepository; //
+            _menuRepository = menuRepository;
         }
         //-----------------------------------------------------------------------------
         /* GetAll                                                                    */
         //-----------------------------------------------------------------------------
 
         //GetAll Async
-        [HttpGet(Name = "GetAllMenusAsync")]
-        public IEnumerable<Menu> GetAll()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MenuDto>>> GetAll()
         {
-            return _menuRepository.GetAll();
+
+            IEnumerable<Menu> menuList = await _menuRepository.GetAllAsync();
+            foreach (Menu menu in menuList)
+            {
+                MenuDtoConverter.ConvertToDto(menu);
+            }
+            IList<Menu> menuDtoList = menuList.ToList();
+
+            if (menuDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(menuDtoList);
         }
 
         //-----------------------------------------------------------------------------

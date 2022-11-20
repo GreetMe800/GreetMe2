@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GreetMe_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PersonController : Controller
     {
         private readonly IPersonRepository _personRepository;
@@ -23,10 +23,23 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         //GetAll Async
-        [HttpGet(Name = "GetAllPeopleAsync")]
-        public IEnumerable<Person> GetAllAsync()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAll()
         {
-            return _personRepository.GetAll();
+
+            IEnumerable<Person> personList = await _personRepository.GetAllAsync();
+            foreach (Person person in personList)
+            {
+                PersonDtoConverter.ConvertToDto(person);
+            }
+            IList<Person> personDtoList = personList.ToList();
+
+            if (personDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDtoList);
         }
 
         //-----------------------------------------------------------------------------
@@ -43,7 +56,7 @@ namespace GreetMe_API.Controllers
         }
 
         //Get By Email
-        [HttpGet, Route("email")]
+        [HttpGet, Route("{email}")]
         public ActionResult<PersonDto> GetByEmail(string email)
         {
             Person? foundPerson = _personRepository.GetByEmail(email);
