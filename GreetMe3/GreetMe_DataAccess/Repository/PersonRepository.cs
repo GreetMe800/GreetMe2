@@ -27,8 +27,7 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<Person> GetAll()
         {
-            var persons = _db.People;
-            return persons.ToList();
+            return _db.People;
         }
         //GetAll Async
         public async Task<IEnumerable<Person>> GetAllAsync()
@@ -44,8 +43,8 @@ namespace GreetMe_DataAccess.Repository
         //GetAll by Birthday Async
         public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
         {
-            throw new NotImplementedException();
-            //return await _db.People.Where(p => p.DateOfBirth.Equals(datetime.Month) && p.DateOfBirth.Equals(datetime.Day)).ToListAsync();
+            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            return await _db.People.Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day).ToListAsync();
         }
 
         //GetAll by Anniversary
@@ -58,8 +57,8 @@ namespace GreetMe_DataAccess.Repository
         //GetAll by Anniversary Async
         public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
         {
-            throw new NotImplementedException();
-            //return await _db.People.Where(p => p.HiringDate.Equals(datetime.Month) && p.HiringDate.Equals(datetime.Day)).ToListAsync();
+            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            return await _db.People.Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day).ToListAsync();
         }
 
         //-----------------------------------------------------------------------------

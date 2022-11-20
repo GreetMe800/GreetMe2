@@ -22,8 +22,7 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<View> GetAll()
         {
-            var views = _db.Views;
-            return views.ToList();
+            return _db.Views;
         }
 
         //GetAll Async

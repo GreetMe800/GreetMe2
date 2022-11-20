@@ -26,8 +26,7 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<Menu> GetAll()
         {
-            var menus = _db.Menus;
-            return menus.ToList();
+            return _db.Menus;
         }
 
         //GetAll Async
