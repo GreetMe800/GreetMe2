@@ -7,31 +7,20 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Interface
 {
-    public interface IPersonRepository : IRepository<Person>, IAsyncRepository<Person>
+    public interface IPersonRepository : IAsyncRepository<Person>
     {
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
         //GetAll by Birthday
-        IEnumerable<Person> GetAllByBirthday(DateTime datetime);
-
-        //GetAll by Birthday Async
-        Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime);
+        Task<IEnumerable<Person>> GetAllByBirthday(DateTime datetime);
 
         //GetAll by Birthday
-        IEnumerable<Person> GetAllByAnniversary(DateTime datetime);
-
-        //GetAll by Birthday Async
-        Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime);
-
-
-
-        //Get by Email
-        Person? GetByEmail(string email);
+        Task<IEnumerable<Person>> GetAllByAnniversary(DateTime datetime);
 
         //Get by Email Async
-        Task<Person?> GetByEmailAsync(string email);
+        Task<Person?> GetByEmail(string email);
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */

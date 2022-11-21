@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Interface
 {
-    public interface IViewRepository : IRepository<View>, IAsyncRepository<View>
+    public interface IViewRepository : IAsyncRepository<View>
     {
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
+
 
 
         //-----------------------------------------------------------------------------

@@ -20,13 +20,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //GetAll
-        public IEnumerable<View> GetAll()
-        {
-            return _db.Views.OrderBy(p => p.ViewName).ToList();
-        }
-
-        //GetAll Async
-        public async Task<IEnumerable<View>> GetAllAsync()
+        public async Task<IEnumerable<View>> GetAll()
         {
             return await _db.Views.OrderBy(p => p.ViewName).ToListAsync();
         }
@@ -36,13 +30,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Get
-        public View? Get(int id)
-        {
-            return _db.Views.Find(id);
-        }
-
-        //Get Async
-        public async Task<View?> GetAsync(int id)
+        public async Task<View?> Get(int id)
         {
             return await _db.Views.FindAsync(id);
         }
@@ -52,16 +40,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public View Create(View entity)
-        {
-            _db.Views.Add(entity);
-            _db.SaveChanges();
-            return entity;
-
-        }
-
-        //Create Async
-        public async Task<View> CreateAsync(View entity)
+        public async Task<View> Create(View entity)
         {
             _db.Views.Add(entity);
             await _db.SaveChangesAsync();
@@ -73,15 +52,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public View Update(View entity)
-        {
-            _db.Views.Update(entity);
-            _db.SaveChanges();
-            return entity;
-        }
-
-        //Update Async
-        public async Task<View> UpdateAsync(View entity)
+        public async Task<View> Update(View entity)
         {
             _db.Views.Update(entity);
             await _db.SaveChangesAsync();
@@ -93,16 +64,9 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Delete
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            _db.Views.Remove(Get(id));
-            return _db.SaveChanges() != 0; //retuens true if numb of effected rows is not 0
-        }
-
-        //Delete Async
-        public async Task<bool> DeleteAsync(int id)
-        {
-            _db.Views.Remove(await GetAsync(id));
+            _db.Views.Remove(await Get(id));
             return await _db.SaveChangesAsync() != 0; //retuens true if numb of effected rows is not 0
         }
     }

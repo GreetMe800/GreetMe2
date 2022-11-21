@@ -23,16 +23,8 @@ namespace GreetMe_DataAccess.Repository
         /* GetAll / Read                                                             */
         //-----------------------------------------------------------------------------
 
-        //GetAll
-        public IEnumerable<Menu> GetAll()
-        {
-            return _db.Menus
-                .OrderBy(p => p.MenuName)
-                .ToList();
-        }
-
         //GetAll Async
-        public async Task<IEnumerable<Menu>> GetAllAsync()
+        public async Task<IEnumerable<Menu>> GetAll()
         {
             return await _db.Menus
                 .OrderBy(p => p.MenuName)
@@ -44,14 +36,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Get
-        public Menu? Get(int id)
-        {
-            return _db.Menus
-                .FirstOrDefault(p => p.Id == id);
-        }
-
-        //Get Async
-        public async Task<Menu?> GetAsync(int id)
+        public async Task<Menu?> Get(int id)
         {
             return await _db.Menus
                 .FirstOrDefaultAsync(p => p.Id == id);
@@ -62,14 +47,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public Menu Create(Menu entity)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        //Create Async
-        public async Task<Menu> CreateAsync(Menu entity)
+        public /*async*/ Task<Menu> Create(Menu entity)
         {
             throw new NotImplementedException();
         }
@@ -79,13 +57,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public Menu Update(Menu entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Update Async
-        public async Task<Menu> UpdateAsync(Menu entity)
+        public /*async*/ Task<Menu> Update(Menu entity)
         {
             throw new NotImplementedException();
         }
@@ -95,13 +67,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Delete
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Delete Async
-        public async Task<bool> DeleteAsync(int id)
+        public /*async*/ Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }

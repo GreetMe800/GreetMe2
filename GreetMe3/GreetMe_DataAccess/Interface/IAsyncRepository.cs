@@ -13,28 +13,28 @@ namespace GreetMe_DataAccess.Interface
         //-----------------------------------------------------------------------------
 
         //Get All
-        public Task<IEnumerable<T>> GetAllAsync();
+        public Task<IEnumerable<T>> GetAll();
 
         //Get
-        public Task<T?> GetAsync(int id);
+        public Task<T?> Get(int id);
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
         //Create
-        public Task<T> CreateAsync(T entity);
+        public Task<T> Create(T entity);
 
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
         //-----------------------------------------------------------------------------
 
-        public Task<T> UpdateAsync(T entity);
+        public Task<T> Update(T entity);
 
         //-----------------------------------------------------------------------------
         /* Delete / Remove                                                           */
         //-----------------------------------------------------------------------------
 
-        public Task<bool> DeleteAsync(int id);
+        public Task<bool> Delete(int id);
     }
 }

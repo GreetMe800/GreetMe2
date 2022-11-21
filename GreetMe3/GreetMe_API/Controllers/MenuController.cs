@@ -27,7 +27,7 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult<IEnumerable<MenuDto>>> GetAll()
         {
 
-            IEnumerable<Menu> menuList = await _menuRepository.GetAllAsync();
+            IEnumerable<Menu> menuList = await _menuRepository.GetAll();
             foreach (Menu menu in menuList)
             {
                 MenuDtoConverter.ConvertToDto(menu);
@@ -48,15 +48,21 @@ namespace GreetMe_API.Controllers
 
         //Get - api/Menus/5
         [HttpGet("{id}")]
-        public async Task<MenuDto> Get(int id)
+        public async Task<ActionResult<MenuDto>> Get(int id)
         {
-            Menu foundMenu = _menuRepository.Get(id);
-            MenuDto menuDto = MenuDtoConverter.ConvertToDto(foundMenu);
-            return menuDto;
+            Menu Menu = await _menuRepository.Get(id);
+            MenuDto menuDto = MenuDtoConverter.ConvertToDto(Menu);
+
+            if (menuDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(menuDto);
         }
 
         //-----------------------------------------------------------------------------
-        /* Create / Post                                                              */
+        /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
         //Create Menu - api/Menus
@@ -66,7 +72,7 @@ namespace GreetMe_API.Controllers
             if (ModelState.IsValid)
             {
                 Menu menu = MenuDtoConverter.ConvertToModel(menuDto);
-                return await _menuRepository.CreateAsync(menu);
+                return await _menuRepository.Create(menu);
             }
             return null;
         }

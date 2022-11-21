@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GreetMe_DataAccess.Interface
 {
-    public interface IMenuRepository : IRepository<Menu>, IAsyncRepository<Menu>
+    public interface IMenuRepository : IAsyncRepository<Menu>
     {
         //-----------------------------------------------------------------------------
         /* Get / Read                                                                */

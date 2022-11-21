@@ -27,7 +27,7 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAll()
         {
 
-            IEnumerable<Person> personList = await _personRepository.GetAllAsync();
+            IEnumerable<Person> personList = await _personRepository.GetAll();
             foreach (Person person in personList)
             {
                 PersonDtoConverter.ConvertToDto(person);
@@ -48,31 +48,32 @@ namespace GreetMe_API.Controllers
 
         //Get - api/Persons/5
         [HttpGet("{id}")]
-        public async Task<PersonDto> Get(int id)
+        public async Task<ActionResult<PersonDto>> Get(int id)
         {
-            Person foundPerson = _personRepository.Get(id);
-            PersonDto personDto = PersonDtoConverter.ConvertToDto(foundPerson);
-            return personDto;
+            Person Person = await _personRepository.Get(id);
+            PersonDto personDto = PersonDtoConverter.ConvertToDto(Person);
+
+            if (personDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDto);
         }
 
         //Get By Email
-        [HttpGet, Route("{email}")]
-        public ActionResult<PersonDto> GetByEmail(string email)
+        [HttpGet("{email}")]
+        public async Task<ActionResult<PersonDto>> GetByEmail(string email)
         {
-            Person? foundPerson = _personRepository.GetByEmail(email);
+            Person Person = await _personRepository.GetByEmail(email);
+            PersonDto PersonDto = PersonDtoConverter.ConvertToDto(Person);
 
-            //if person is found
-            if (foundPerson is not null)
+            if (PersonDto == null)
             {
-                PersonDto personDto = PersonDtoConverter.ConvertToDto(foundPerson);
-                return Ok(personDto);
+                return NotFound();
             }
 
-            //if not found
-            else
-            {
-                return Conflict();
-            }
+            return Ok(PersonDto);
         }
 
         //-----------------------------------------------------------------------------
@@ -86,7 +87,7 @@ namespace GreetMe_API.Controllers
             if (ModelState.IsValid)
             {
                 Person person = PersonDtoConverter.ConvertToModel(personDto);
-                return await _personRepository.CreateAsync(person);
+                return await _personRepository.Create(person);
             }
             return null;
         }

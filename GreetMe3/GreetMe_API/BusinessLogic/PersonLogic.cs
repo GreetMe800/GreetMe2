@@ -8,12 +8,12 @@ namespace GreetMe_API.BusinessLogic
     public static class PersonLogic
     {
         //Birthday component logic
-        public static void GetAllByBirthday(IPersonRepository personRepository, ViewDto viewDto)
+        public async static void GetAllByBirthday(IPersonRepository personRepository, ViewDto viewDto)
         {
             DateTime datetimeToday = DateTime.Now.ToUniversalTime();
             DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
 
-            IEnumerable<Person> birthdayPeople = personRepository.GetAllByBirthday(dateToday);
+            IEnumerable<Person> birthdayPeople = await personRepository.GetAllByBirthday(dateToday);
             List<PersonDto> birthdayPeopleDto = new List<PersonDto>();
             foreach (Person p in birthdayPeople)
             {
@@ -23,12 +23,12 @@ namespace GreetMe_API.BusinessLogic
         }
 
         //Anniversary component logic
-        public static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
+        public async static void GetAllByAnniversary(IPersonRepository personRepository, ViewDto viewDto)
         {
             DateTime datetimeToday = DateTime.Now;
             DateTime dateToday = new DateTime(datetimeToday.Year, datetimeToday.Month, datetimeToday.Day);
 
-            IEnumerable<Person> anniversaryPeople = personRepository.GetAllByAnniversary(dateToday);
+            IEnumerable<Person> anniversaryPeople = await personRepository.GetAllByAnniversary(dateToday);
             List<PersonDto> anniversaryPeopleDto = new List<PersonDto>();
             foreach (Person p in anniversaryPeople)
             {

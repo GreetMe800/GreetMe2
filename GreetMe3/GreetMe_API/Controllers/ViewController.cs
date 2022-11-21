@@ -33,7 +33,7 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult<IEnumerable<ViewDto>>> GetAll()
         {
             
-            IEnumerable<View> viewList = await _viewRepository.GetAllAsync();
+            IEnumerable<View> viewList = await _viewRepository.GetAll();
             foreach (View view in viewList)
             {
                 ViewDtoConverter.ConvertToDto(view);
@@ -56,7 +56,7 @@ namespace GreetMe_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ViewDto>> Get(int id)
         {
-            View View = await _viewRepository.GetAsync(id);
+            View View = await _viewRepository.Get(id);
             ViewDto viewDto = ViewDtoConverter.ConvertToDto(View);
 
             if (viewDto == null)
@@ -79,7 +79,7 @@ namespace GreetMe_API.Controllers
             if (ModelState.IsValid)
             {
                 View view = ViewDtoConverter.ConvertToModel(viewDto);
-                return await _viewRepository.CreateAsync(view);
+                return await _viewRepository.Create(view);
             }
             return null;
         }
@@ -96,7 +96,7 @@ namespace GreetMe_API.Controllers
             if (ModelState.IsValid)
             {
                 View view = ViewDtoConverter.ConvertToModel(viewDto);
-                return await _viewRepository.UpdateAsync(view);
+                return await _viewRepository.Update(view);
             }
             return null;
         }
@@ -109,7 +109,7 @@ namespace GreetMe_API.Controllers
         [HttpDelete]
         public async Task Delete(int id)
         {
-            bool deleted = await _viewRepository.DeleteAsync(id);
+            bool deleted = await _viewRepository.Delete(id);
            
         }
     }

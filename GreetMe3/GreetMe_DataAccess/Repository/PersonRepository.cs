@@ -25,30 +25,15 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //GetAll
-        public IEnumerable<Person> GetAll()
-        {
-            return _db.People
-                .OrderBy(p => p.FullName)
-                .ToList();
-        }
-        //GetAll Async
-        public async Task<IEnumerable<Person>> GetAllAsync()
+        public async Task<IEnumerable<Person>> GetAll()
         {
             return await _db.People
                 .OrderBy(p => p.FullName)
                 .ToListAsync();
         }
+
         //GetAll by Birthday
-        public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
-        {
-            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return _db.People
-                .OrderBy(p => p.FullName)
-                .Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day)
-                .ToList();
-        }
-        //GetAll by Birthday Async
-        public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
+        public async Task<IEnumerable<Person>> GetAllByBirthday(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
             return await _db.People
@@ -58,17 +43,7 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //GetAll by Anniversary
-        public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
-        {
-            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return _db.People
-                .OrderBy(p => p.FullName)
-                .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)
-                .ToList();
-        }
-
-        //GetAll by Anniversary Async
-        public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
+        public async Task<IEnumerable<Person>> GetAllByAnniversary(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
             return await _db.People
@@ -82,28 +57,14 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Get
-        public Person? Get(int id)
-        {
-            return _db.People
-                .FirstOrDefault(p => p.Id == id);
-        }
-
-        //Get Async
-        public async Task<Person?> GetAsync(int id)
+        public async Task<Person?> Get(int id)
         {
             return await _db.People
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //Get By Email
-        public Person? GetByEmail(string email)
-        {
-            return _db.People
-                .FirstOrDefault(p => p.Email == email);
-        }
-
-        //Get By Email Async
-        public async Task<Person?> GetByEmailAsync(string email)
+        public async Task<Person?> GetByEmail(string email)
         {
             return await _db.People
                 .FirstOrDefaultAsync(p => p.Email == email);
@@ -114,16 +75,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Create
-        public Person Create(Person entity)
-        {
-            _db.People.Add(entity);
-            _db.SaveChanges();
-            return entity;
-           
-        }
-
-        //Create Async
-        public async Task<Person> CreateAsync(Person entity)
+        public async Task<Person> Create(Person entity)
         {
             _db.People.Add(entity);
             await _db.SaveChangesAsync();
@@ -135,13 +87,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public Person Update(Person entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Update Async
-        public async Task<Person> UpdateAsync(Person entity)
+        public async Task<Person> Update(Person entity)
         {
             throw new NotImplementedException();
         }
@@ -151,13 +97,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Delete
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Delete Async
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }
