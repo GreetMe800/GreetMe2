@@ -27,38 +27,54 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<Person> GetAll()
         {
-            return _db.People;
+            return _db.People
+                .OrderBy(p => p.FullName)
+                .ToList();
         }
         //GetAll Async
         public async Task<IEnumerable<Person>> GetAllAsync()
         {
-            return await _db.People.ToListAsync();
+            return await _db.People
+                .OrderBy(p => p.FullName)
+                .ToListAsync();
         }
         //GetAll by Birthday
         public IEnumerable<Person> GetAllByBirthday(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return _db.People.Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day);
+            return _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day)
+                .ToList();
         }
         //GetAll by Birthday Async
         public async Task<IEnumerable<Person>> GetAllByBirthdayAsync(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return await _db.People.Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day).ToListAsync();
+            return await _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day)
+                .ToListAsync();
         }
 
         //GetAll by Anniversary
         public IEnumerable<Person> GetAllByAnniversary(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return _db.People.Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day);
+            return _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)
+                .ToList();
         }
 
         //GetAll by Anniversary Async
         public async Task<IEnumerable<Person>> GetAllByAnniversaryAsync(DateTime datetime)
         {
             DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            return await _db.People.Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day).ToListAsync();
+            return await _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)
+                .ToListAsync();
         }
 
         //-----------------------------------------------------------------------------
@@ -68,25 +84,29 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public Person? Get(int id)
         {
-            return _db.People.FirstOrDefault(p => p.Id == id);
+            return _db.People
+                .FirstOrDefault(p => p.Id == id);
         }
 
         //Get Async
         public async Task<Person?> GetAsync(int id)
         {
-            return await _db.People.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.People
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //Get By Email
         public Person? GetByEmail(string email)
         {
-            return _db.People.FirstOrDefault(p => p.Email == email);
+            return _db.People
+                .FirstOrDefault(p => p.Email == email);
         }
 
         //Get By Email Async
         public async Task<Person?> GetByEmailAsync(string email)
         {
-            return await _db.People.FirstOrDefaultAsync(p => p.Email == email);
+            return await _db.People
+                .FirstOrDefaultAsync(p => p.Email == email);
         }
 
         //-----------------------------------------------------------------------------

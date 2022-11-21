@@ -26,13 +26,17 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<Menu> GetAll()
         {
-            return _db.Menus;
+            return _db.Menus
+                .OrderBy(p => p.MenuName)
+                .ToList();
         }
 
         //GetAll Async
         public async Task<IEnumerable<Menu>> GetAllAsync()
         {
-            return await _db.Menus.ToListAsync();
+            return await _db.Menus
+                .OrderBy(p => p.MenuName)
+                .ToListAsync();
         }
 
         //-----------------------------------------------------------------------------
@@ -42,13 +46,15 @@ namespace GreetMe_DataAccess.Repository
         //Get
         public Menu? Get(int id)
         {
-            return _db.Menus.FirstOrDefault(p => p.Id == id);
+            return _db.Menus
+                .FirstOrDefault(p => p.Id == id);
         }
 
         //Get Async
         public async Task<Menu?> GetAsync(int id)
         {
-            return await _db.Menus.FirstOrDefaultAsync(p => p.Id == id);
+            return await _db.Menus
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         //-----------------------------------------------------------------------------

@@ -5,8 +5,11 @@ GO
 
 --views
 insert into [views] (view_name, has_birthday, has_anniversary) values ('birthday view', 1, 0);
+insert into [views] (view_name, has_birthday, has_anniversary) values ('birthday view2', 1, 0);
 insert into [views] (view_name, has_birthday, has_anniversary) values ('birthdayAnniversery view', 1, 1);
+insert into [views] (view_name, has_birthday, has_anniversary) values ('birthdayAnniversery view2', 1, 1);
 insert into [views] (view_name, has_birthday, has_anniversary) values ('Anniversery view', 0, 1);
+insert into [views] (view_name, has_birthday, has_anniversary) values ('Anniversery view2', 0, 1);
 GO
 
 --people

@@ -22,13 +22,13 @@ namespace GreetMe_DataAccess.Repository
         //GetAll
         public IEnumerable<View> GetAll()
         {
-            return _db.Views;
+            return _db.Views.OrderBy(p => p.ViewName).ToList();
         }
 
         //GetAll Async
         public async Task<IEnumerable<View>> GetAllAsync()
         {
-            return await _db.Views.ToListAsync();
+            return await _db.Views.OrderBy(p => p.ViewName).ToListAsync();
         }
 
         //-----------------------------------------------------------------------------
