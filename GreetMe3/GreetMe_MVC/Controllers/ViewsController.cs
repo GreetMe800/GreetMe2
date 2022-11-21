@@ -28,44 +28,68 @@ namespace GreetMe_MVC.Controllers
         //Will use view that has the same name as the method (./View/Index)
         //View Index Page
 
-        //View Main Page - GetAll
+        /* Getall */
+        //Page / Getall Method 
         public async Task<IActionResult> Index()
         {
+            //Establish Connection
             IEnumerable<ViewViewModel> ViewList = null;
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP GET
             var responseTask = await client.GetAsync("view");
             if (responseTask.IsSuccessStatusCode)
             {
                 var viewViewModelList = await responseTask.Content.ReadAsAsync<IList<ViewViewModel>>();
-
                 ViewList = viewViewModelList;
             }
-            else //web api sent error response 
+            else // If Error
             {
-                //log response status here..
-
                 ViewList = Enumerable.Empty<ViewViewModel>();
-
                 ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
             }
 
+            //Return
             return View(ViewList);
         }
 
-        //Get
-        public async Task<IActionResult> Get(int id)
+        /* Get */
+        public /*async*/ Task<IActionResult> Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        //Create
+        /* Create */
+
+        //Page
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //Method
+        [HttpPost]
         public async Task<IActionResult> Create(ViewViewModel view)
         {
-            throw new NotImplementedException();
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP POST
+            var postTask = await client.PostAsJsonAsync<ViewViewModel>("view", view);
+            if (postTask.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            //Return
+            return View(view);
+            
         }
 
-        //Delete
-        public async Task<IActionResult> Delete(int id)
+        /* Delete */
+        public /*async*/ Task<IActionResult> Delete(int id)
         {
             throw new NotImplementedException();
         }

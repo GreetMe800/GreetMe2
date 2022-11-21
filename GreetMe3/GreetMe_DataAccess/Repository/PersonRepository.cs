@@ -87,7 +87,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Update
-        public async Task<Person> Update(Person entity)
+        public /*async*/ Task<Person> Update(Person entity)
         {
             throw new NotImplementedException();
         }
@@ -97,7 +97,7 @@ namespace GreetMe_DataAccess.Repository
         //-----------------------------------------------------------------------------
 
         //Delete
-        public async Task<bool> Delete(int id)
+        public /*async*/ Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }

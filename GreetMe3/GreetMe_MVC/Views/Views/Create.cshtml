@@ -1,54 +1,43 @@
-﻿@model ViewViewModel
+﻿@model GreetMe_MVC.Models.ViewViewModel
+
 @{
+    ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create View</h1>
 
+<h4>ViewViewModel</h4>
+<hr />
 <div class="row">
-    <div class="col-6">
-
-        @*Card element*@
-        <div class="card">
-
-            @*Header*@
-            <div class="card-header">
-                <h5>Create a new view</h5>
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="ViewName" class="control-label"></label>
+                <input asp-for="ViewName" class="form-control" />
+                <span asp-validation-for="ViewName" class="text-danger"></span>
             </div>
-
-            @*Body*@
-            <div class="card-body">
-
-                @*Calls Controller "View", and calls the method "CreateView" in the controller*@
-                <form id="sectionForm" asp-controller="View" asp-action="Create" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">View Name</label>
-                        <input asp-for="ViewName" type="text" class="form-control" placeholder="View Name" minlength="4" maxlength="50" required pattern="[a-z A-Z 0-9 ]+"/>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">List of Birthdays</label>
-                        <input asp-for="HasBirthday" type="checkbox" class="form-check" placeholder="Has Birthday" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">List of Anniversarys</label>
-                        <input asp-for="HasAnniversary" type="checkbox" class="form-check" placeholder="Has Anniversary" />
-                    </div>
-
-                    <div class="mb-3">
-                        <Button type="submit" class="btn btn-primary">Submit</Button>
-                    </div>
-                </form>
-
-                @*Imported script to validate atleast one checkbox must be checked*@
-                @*make sure form id="sectionForm"*@
-                <script src="~/js/CheckboxValidator.js"></script>
+            <div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasBirthday" /> @Html.DisplayNameFor(model => model.HasBirthday)
+                </label>
             </div>
-
-            @*Footer*@
-            <div class="card-footer">
+            <div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasAnniversary" /> @Html.DisplayNameFor(model => model.HasAnniversary)
+                </label>
             </div>
-
-        </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>
+
+<div class="mb-3">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

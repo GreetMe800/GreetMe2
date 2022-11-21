@@ -97,7 +97,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpPut]
-        public async Task<Person> Update([FromBody] PersonDto personDto)
+        public /*async*/ Task<Person> Update([FromBody] PersonDto personDto)
         {
             throw new NotImplementedException();
         }
@@ -107,7 +107,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         [HttpDelete]
-        public async Task Delete(int id)
+        public /*async*/ Task Delete(int id)
         {
             throw new NotImplementedException();
         }

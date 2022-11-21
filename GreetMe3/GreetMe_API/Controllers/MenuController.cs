@@ -79,7 +79,7 @@ namespace GreetMe_API.Controllers
 
         //Update Async
         [HttpPut]
-        public async Task<ActionResult> Update(MenuDto menuDto)
+        public /*async*/ Task<ActionResult> Update(MenuDto menuDto)
         {
             throw new NotImplementedException();
         }
@@ -90,7 +90,7 @@ namespace GreetMe_API.Controllers
 
         //Delete Async
         [HttpDelete]
-        public async Task Delete(int id)
+        public /*async*/ Task Delete(int id)
         {
             throw new NotImplementedException();
         }
