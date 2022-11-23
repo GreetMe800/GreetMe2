@@ -81,6 +81,7 @@ namespace GreetMe_API.Controllers
                 View view = ViewDtoConverter.ConvertToModel(viewDto);
                 return await _viewRepository.Create(view);
             }
+
             return null;
         }
 
@@ -91,7 +92,7 @@ namespace GreetMe_API.Controllers
         //TODO update method
         //Update
         [HttpPut]
-        public async Task<View> Update([FromBody] ViewDto viewDto)
+        public async Task<View> Edit([FromBody] ViewDto viewDto)
         {
             if (ModelState.IsValid)
             {

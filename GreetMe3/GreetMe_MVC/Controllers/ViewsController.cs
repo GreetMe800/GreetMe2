@@ -25,12 +25,17 @@ namespace GreetMe_MVC.Controllers
 
         }
 
+        //-----------------------------------------------------------------------------
+        /* Index Page & Getall                                                       */
+        //-----------------------------------------------------------------------------
+
         //Will use view that has the same name as the method (./View/Index)
         //View Index Page
 
         /* Getall */
-        //Page / Getall Method 
-        public async Task<IActionResult> Index()
+        //Index Page / Getall Method 
+        //Route: ./Views
+        public async Task<ActionResult> Index()
         {
             IEnumerable<ViewViewModel> ViewList = null;
 
@@ -54,24 +59,44 @@ namespace GreetMe_MVC.Controllers
             return View(ViewList);
         }
 
+        //-----------------------------------------------------------------------------
+        /* View Page & Get                                                           */
+        //-----------------------------------------------------------------------------
+
         /* Get */
-        public /*async*/ Task<IActionResult> Get(int id)
+        //Route: ./Views/Details/{id}
+        public async Task<ActionResult> Details(int id)
         {
-            throw new NotImplementedException();
+            ViewViewModel view = null;
+
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP GET
+            var responseTask = await client.GetAsync("views?id=" + id.ToString());
+            if (responseTask.IsSuccessStatusCode)
+            {
+                var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+            }
+
+            return View(view);
         }
 
-        /* Create */
+        //-----------------------------------------------------------------------------
+        /* Create Page & Create                                                      */
+        //-----------------------------------------------------------------------------
 
         //Page
+        //Route: ./Views/Create
         public ActionResult Create()
         {
             return View();
         }
 
         //Method
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ViewViewModel view)
+        public async Task<ActionResult> Create(ViewViewModel view)
         {
             //Establish Connection
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
@@ -89,14 +114,54 @@ namespace GreetMe_MVC.Controllers
             return View(view);
         }
 
-        /* Delete */
-        public /*async*/ Task<IActionResult> Delete(int id)
+        //-----------------------------------------------------------------------------
+        /* Edit Page/Get & Update                                                      */
+        //-----------------------------------------------------------------------------
+
+        //Page
+        //Route: ./Views/Edit
+        public async Task<ActionResult> Edit(int id)
         {
-            throw new NotImplementedException();
+            ViewViewModel view = null;
+
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP GET
+            var responseTask = await client.GetAsync("views?id=" + id.ToString());
+            if (responseTask.IsSuccessStatusCode)
+            {
+                var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+            }
+
+            return View(view);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        //Method
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ViewViewModel view)
+        {
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP PUT
+            var putTask = await client.PutAsJsonAsync<ViewViewModel>("view", view);
+            if (putTask.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(view);
+        }
+
+        //-----------------------------------------------------------------------------
+        /* Delete Page & Create                                                      */
+        //-----------------------------------------------------------------------------
+
+        /* Delete */
+        //Route: ./Views/Delete/{id}
+        public /*async*/ Task<ActionResult> Delete(int id)
         {
             throw new NotImplementedException();
         }

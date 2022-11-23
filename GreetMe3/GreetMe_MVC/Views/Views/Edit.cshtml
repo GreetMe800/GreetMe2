@@ -1,0 +1,51 @@
+﻿@model GreetMe_MVC.Models.ViewViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Edit View</h1>
+
+<h4>ViewViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group mb-3">
+                <label asp-for="ViewName" class="control-label"></label>
+                <input asp-for="ViewName" class="form-control" />
+                <span asp-validation-for="ViewName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasBirthday" />
+                    @Html.DisplayNameFor(model => model.HasBirthday)
+                </label>
+            </div>
+            <div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasAnniversary" />
+                    @Html.DisplayNameFor(model => model.HasAnniversary)
+                </label>
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+
+        @*Imported script to validate atleast one checkbox must be checked*@
+        @*make sure form id="sectionForm"*@
+        @*<script src="~/js/CheckboxValidator.js"></script>*@
+    </div>
+</div>
+
+<div class="mb-3">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
