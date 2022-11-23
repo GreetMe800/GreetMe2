@@ -32,8 +32,9 @@ namespace GreetMe_MVC.Controllers
         //Page / Getall Method 
         public async Task<IActionResult> Index()
         {
-            //Establish Connection
             IEnumerable<ViewViewModel> ViewList = null;
+
+            //Establish Connection
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
 
             //HTTP GET
@@ -69,6 +70,7 @@ namespace GreetMe_MVC.Controllers
 
         //Method
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ViewViewModel view)
         {
             //Establish Connection
@@ -85,7 +87,6 @@ namespace GreetMe_MVC.Controllers
 
             //Return
             return View(view);
-            
         }
 
         /* Delete */
