@@ -22,7 +22,7 @@ namespace GreetMe_MVC.Controllers
 
         public ViewsController()
         {
-            
+
         }
 
         //Will use view that has the same name as the method (./View/Index)
@@ -91,6 +91,12 @@ namespace GreetMe_MVC.Controllers
 
         /* Delete */
         public /*async*/ Task<IActionResult> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
             throw new NotImplementedException();
         }
