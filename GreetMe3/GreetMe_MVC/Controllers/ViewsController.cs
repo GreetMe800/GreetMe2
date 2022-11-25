@@ -81,25 +81,63 @@ namespace GreetMe_MVC.Controllers
                 if (readTask.Result.HasBirthday)
                 {
                     //Skal erstattes med et kald til Databasen
-                    List<PersonViewModel> birthdayList = new List<PersonViewModel>();
-                    birthdayList.Add(new PersonViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Email = "yes@gmail.com", HiringDate = DateTime.Now, Id = 1 });
+                    List<BirthdayViewModel> birthdayList = new List<BirthdayViewModel>();
+                    birthdayList.Add(new BirthdayViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Id = 1 });
                     //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
                     result.AddRange<IDisplayItem>(birthdayList);
                 }
 
-                    if (readTask.Result.HasAnniversary)
-                    {
-                        //Skal erstattes med et kald til Databasen
-                        List<PersonViewModel> anniversaryList = new List<PersonViewModel>();
-                        anniversaryList.Add(new PersonViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Email = "yes@gmail.com", HiringDate = DateTime.Now, Id = 1 });
-                        //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
-                        result.AddRange<IDisplayItem>(anniversaryList);
-                    }
-                
+                if (readTask.Result.HasAnniversary)
+                {
+                    //Skal erstattes med et kald til Databasen
+                    List<AnniversaryViewModel> anniversaryList = new List<AnniversaryViewModel>();
+                    anniversaryList.Add(new AnniversaryViewModel() { FullName = "Thomas", HiringDate = DateTime.Now, Id = 1 });
+                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    result.AddRange<IDisplayItem>(anniversaryList);
+                }
+
             }
 
             return View(result);
         }
+
+        /* Get */
+        //Route: ./Views/Display/{id}
+        public async Task<ActionResult> Display(int id)
+        {
+            IList<IDisplayItem> result = new List<IDisplayItem>();
+
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP GET
+            var responseTask = await client.GetAsync("view/" + id.ToString());
+            if (responseTask.IsSuccessStatusCode)
+            {
+                var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+                if (readTask.Result.HasBirthday)
+                {
+                    //Skal erstattes med et kald til Databasen
+                    List<BirthdayViewModel> birthdayList = new List<BirthdayViewModel>();
+                    birthdayList.Add(new BirthdayViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Id = 1 });
+                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    result.AddRange<IDisplayItem>(birthdayList);
+                }
+
+                if (readTask.Result.HasAnniversary)
+                {
+                    //Skal erstattes med et kald til Databasen
+                    List<AnniversaryViewModel> anniversaryList = new List<AnniversaryViewModel>();
+                    anniversaryList.Add(new AnniversaryViewModel() { FullName = "Thomas", HiringDate = DateTime.Now, Id = 1 });
+                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    result.AddRange<IDisplayItem>(anniversaryList);
+                }
+
+            }
+
+            return View(result);
+        }
+
 
         //-----------------------------------------------------------------------------
         /* Create Page & Create                                                      */
