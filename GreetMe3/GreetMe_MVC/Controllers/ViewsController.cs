@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Security;
 using System.Text;
+using NuGet.Packaging;
 
 namespace GreetMe_MVC.Controllers
 {
@@ -67,7 +68,7 @@ namespace GreetMe_MVC.Controllers
         //Route: ./Views/Details/{id}
         public async Task<ActionResult> Details(int id)
         {
-            ViewViewModel view = null;
+            IList<IDisplayItem> result = new List<IDisplayItem>();
 
             //Establish Connection
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
@@ -77,9 +78,27 @@ namespace GreetMe_MVC.Controllers
             if (responseTask.IsSuccessStatusCode)
             {
                 var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+                if (readTask.Result.HasBirthday)
+                {
+                    //Skal erstattes med et kald til Databasen
+                    List<PersonViewModel> birthdayList = new List<PersonViewModel>();
+                    birthdayList.Add(new PersonViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Email = "yes@gmail.com", HiringDate = DateTime.Now, Id = 1 });
+                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    result.AddRange<IDisplayItem>(birthdayList);
+                }
+
+                    if (readTask.Result.HasAnniversary)
+                    {
+                        //Skal erstattes med et kald til Databasen
+                        List<PersonViewModel> anniversaryList = new List<PersonViewModel>();
+                        anniversaryList.Add(new PersonViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Email = "yes@gmail.com", HiringDate = DateTime.Now, Id = 1 });
+                        //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                        result.AddRange<IDisplayItem>(anniversaryList);
+                    }
+                
             }
 
-            return View(view);
+            return View(result);
         }
 
         //-----------------------------------------------------------------------------
