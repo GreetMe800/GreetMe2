@@ -12,7 +12,7 @@ namespace GreetMe_DataAccess.Interface
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //Get All
+        //GetAll
         public Task<IEnumerable<T>> GetAll();
 
         //Get
