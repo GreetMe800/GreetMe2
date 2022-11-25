@@ -6,15 +6,15 @@ namespace GreetMe_API.ModelConverter
     public static class MenuDtoConverter
     {
         //Convert to MenuDto (convert from database, getdata) /\
-        public static MenuDto ConvertToDto(Menu menu)
+        public static MenuDto ConvertToDto(Menu model)
         {
             MenuDto menuDto = new MenuDto() 
             {
-                Id = menu.Id,
-                MenuName = menu.MenuName,
-                StartDate = menu.StartDate,
-                EndDate = menu.EndDate,
-                Description = menu.Description
+                Id = model.Id,
+                MenuName = model.MenuName,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                Description = model.Description
             };
             return menuDto;
         }
@@ -24,6 +24,7 @@ namespace GreetMe_API.ModelConverter
         {
             Menu menu = new Menu()
             {
+                Id = dto.Id,
                 MenuName = dto.MenuName,
                 EndDate = dto.EndDate,
                 StartDate = dto.StartDate,

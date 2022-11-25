@@ -2,7 +2,7 @@
 {
     public class PersonDto
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HiringDate { get; set; }

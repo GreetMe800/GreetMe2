@@ -7,27 +7,28 @@ namespace GreetMe_API.ModelConverter
     public static class ViewDtoConverter
     {
         //Convert to ViewDto (convert from database, getdata) /\
-        public static ViewDto ConvertToDto(View view)
+        public static ViewDto ConvertToDto(View model)
         {
 
             ViewDto viewDto = new ViewDto()
             {
-                Id = view.Id,
-                ViewName = view.ViewName,
-                HasBirthday = view.HasBirthday,
-                HasAnniversary = view.HasAnniversary
+                Id = model.Id,
+                ViewName = model.ViewName,
+                HasBirthday = model.HasBirthday,
+                HasAnniversary = model.HasAnniversary
             };
             return viewDto;
         }
 
         //Convert from ViewDto (convert to database, savedata) \/
-        public static View ConvertToModel(ViewDto viewDto)
+        public static View ConvertToModel(ViewDto dto)
         {
             View view = new View()
             {
-                ViewName = viewDto.ViewName,
-                HasBirthday = viewDto.HasBirthday,
-                HasAnniversary = viewDto.HasAnniversary
+                Id = dto.Id,
+                ViewName = dto.ViewName,
+                HasBirthday = dto.HasBirthday,
+                HasAnniversary = dto.HasAnniversary
             };
             return view;
         }
