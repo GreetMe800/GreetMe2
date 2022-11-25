@@ -32,8 +32,8 @@ namespace GreetMe_DataAccess.Repository
                 .ToListAsync();
         }
 
-        //GetAll by Birthday
-        public async Task<IEnumerable<Person>> GetAllByBirthday()
+        //GetAll by Birthday Toaday
+        public async Task<IEnumerable<Person>> GetAllBirthdaysToday()
         {
             DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             return await _db.People
@@ -42,10 +42,28 @@ namespace GreetMe_DataAccess.Repository
                 .ToListAsync();
         }
 
-        //GetAll by Anniversary
-        public async Task<IEnumerable<Person>> GetAllByAnniversary()
+        //GetAll by Anniversary Today
+        public async Task<IEnumerable<Person>> GetAllAnniversarysToday()
         {
             DateOnly date = DateOnly.FromDateTime(DateTime.Now);
+            return await _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)
+                .ToListAsync();
+        }
+
+        //GetAll by Birthday
+        public async Task<IEnumerable<Person>> GetAllBirthdays(DateOnly date)
+        {
+            return await _db.People
+                .OrderBy(p => p.FullName)
+                .Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day)
+                .ToListAsync();
+        }
+
+        //GetAll by Anniversary
+        public async Task<IEnumerable<Person>> GetAllAnniversarys(DateOnly date)
+        {
             return await _db.People
                 .OrderBy(p => p.FullName)
                 .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)

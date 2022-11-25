@@ -13,20 +13,24 @@ namespace GreetMe_DataAccess.Interface
         /* Get / Read                                                                */
         //-----------------------------------------------------------------------------
 
-        //GetAll by Birthday
-        Task<IEnumerable<Person>> GetAllByBirthday();
+        //GetAll Birthdays by Date
+        Task<IEnumerable<Person>> GetAllBirthdays(DateOnly date);
 
-        //GetAll by Birthday
-        Task<IEnumerable<Person>> GetAllByAnniversary();
+        //GetAll Anniversarys by Date
+        Task<IEnumerable<Person>> GetAllAnniversarys(DateOnly date);
 
-        //Get by Email Async
-        Task<Person?> GetByEmail(string email);
+        //GetAll Birthdays Today
+        Task<IEnumerable<Person>> GetAllBirthdaysToday();
+
+        //GetAll Anniversarys Today
+        Task<IEnumerable<Person>> GetAllAnniversarysToday();
 
         //-----------------------------------------------------------------------------
         /* Create / Post                                                             */
         //-----------------------------------------------------------------------------
 
-
+        //Get by Email
+        Task<Person?> GetByEmail(string email);
 
         //-----------------------------------------------------------------------------
         /* Update / Put                                                              */
