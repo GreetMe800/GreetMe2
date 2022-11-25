@@ -23,11 +23,32 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         //GetAll Async
-        [HttpGet]
+        //TODO ROute
+        [HttpGet, Route("GetAll")]
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAll()
         {
 
             IEnumerable<Person> personList = await _personRepository.GetAll();
+            foreach (Person person in personList)
+            {
+                PersonDtoConverter.ConvertToDto(person);
+            }
+            IList<Person> personDtoList = personList.ToList();
+
+            if (personDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDtoList);
+        }
+
+        //GetAll Birthdays Async
+        [HttpGet, Route("GetallBirthdays")]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllBirthdays()
+        {
+
+            IEnumerable<Person> personList = await _personRepository.GetAllByBirthday();
             foreach (Person person in personList)
             {
                 PersonDtoConverter.ConvertToDto(person);
@@ -47,6 +68,7 @@ namespace GreetMe_API.Controllers
         //-----------------------------------------------------------------------------
 
         //Get - api/Persons/5
+        //TODO ROute
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonDto>> Get(int id)
         {

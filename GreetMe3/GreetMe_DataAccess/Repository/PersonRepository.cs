@@ -33,9 +33,9 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //GetAll by Birthday
-        public async Task<IEnumerable<Person>> GetAllByBirthday(DateTime datetime)
+        public async Task<IEnumerable<Person>> GetAllByBirthday()
         {
-            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             return await _db.People
                 .OrderBy(p => p.FullName)
                 .Where(p => p.DateOfBirth.Month == date.Month && p.DateOfBirth.Day == date.Day)
@@ -43,9 +43,9 @@ namespace GreetMe_DataAccess.Repository
         }
 
         //GetAll by Anniversary
-        public async Task<IEnumerable<Person>> GetAllByAnniversary(DateTime datetime)
+        public async Task<IEnumerable<Person>> GetAllByAnniversary()
         {
-            DateTime date = new DateTime(datetime.Year, datetime.Month, datetime.Day);
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             return await _db.People
                 .OrderBy(p => p.FullName)
                 .Where(p => p.HiringDate.Month == date.Month && p.HiringDate.Day == date.Day)

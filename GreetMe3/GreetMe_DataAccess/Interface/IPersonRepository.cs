@@ -14,10 +14,10 @@ namespace GreetMe_DataAccess.Interface
         //-----------------------------------------------------------------------------
 
         //GetAll by Birthday
-        Task<IEnumerable<Person>> GetAllByBirthday(DateTime datetime);
+        Task<IEnumerable<Person>> GetAllByBirthday();
 
         //GetAll by Birthday
-        Task<IEnumerable<Person>> GetAllByAnniversary(DateTime datetime);
+        Task<IEnumerable<Person>> GetAllByAnniversary();
 
         //Get by Email Async
         Task<Person?> GetByEmail(string email);

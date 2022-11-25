@@ -42,7 +42,7 @@ namespace GreetMe_MVC.Controllers
             //Establish Connection
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
 
-            //HTTP GET
+            //HTTP GETALL
             var responseTask = await client.GetAsync("view");
             if (responseTask.IsSuccessStatusCode)
             {
@@ -73,7 +73,7 @@ namespace GreetMe_MVC.Controllers
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
 
             //HTTP GET
-            var responseTask = await client.GetAsync("views?id=" + id.ToString());
+            var responseTask = await client.GetAsync("view/" + id.ToString());
             if (responseTask.IsSuccessStatusCode)
             {
                 var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
@@ -128,10 +128,10 @@ namespace GreetMe_MVC.Controllers
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
 
             //HTTP GET
-            var responseTask = await client.GetAsync("views?id=" + id.ToString());
+            var responseTask = await client.GetAsync("view/" + id.ToString());
             if (responseTask.IsSuccessStatusCode)
             {
-                var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+                view = await responseTask.Content.ReadAsAsync<ViewViewModel>();
             }
 
             return View(view);
