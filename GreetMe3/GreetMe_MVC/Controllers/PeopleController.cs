@@ -11,12 +11,12 @@ namespace GreetMe_MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            IEnumerable<BirthdayViewModel> PersonList = null;
+            IEnumerable<PersonViewModel> PersonList = null;
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
             var responseTask = await client.GetAsync("person");
             if (responseTask.IsSuccessStatusCode)
             {
-                var PersonViewModelList = await responseTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
+                var PersonViewModelList = await responseTask.Content.ReadAsAsync<IList<PersonViewModel>>();
 
                 PersonList = PersonViewModelList;
             }
@@ -24,7 +24,7 @@ namespace GreetMe_MVC.Controllers
             {
                 //log response status here..
 
-                PersonList = Enumerable.Empty<BirthdayViewModel>();
+                PersonList = Enumerable.Empty<PersonViewModel>();
 
                 ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
             }

@@ -48,7 +48,7 @@ namespace GreetMe_API.Controllers
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllBirthdays()
         {
 
-            IEnumerable<Person> personList = await _personRepository.GetAllByBirthday();
+            IEnumerable<Person> personList = await _personRepository.GetAllBirthdaysToday();
             foreach (Person person in personList)
             {
                 PersonDtoConverter.ConvertToDto(person);

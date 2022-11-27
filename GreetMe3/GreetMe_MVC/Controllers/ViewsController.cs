@@ -82,7 +82,7 @@ namespace GreetMe_MVC.Controllers
                 {
                     //Skal erstattes med et kald til Databasen
                     List<BirthdayViewModel> birthdayList = new List<BirthdayViewModel>();
-                    birthdayList.Add(new BirthdayViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Id = 1 });
+                    birthdayList.Add(new BirthdayViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Id = 1 }); ;
                     //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
                     result.AddRange<IDisplayItem>(birthdayList);
                 }
