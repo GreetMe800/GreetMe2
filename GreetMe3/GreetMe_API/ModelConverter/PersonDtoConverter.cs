@@ -5,6 +5,30 @@ namespace GreetMe_API.ModelConverter
 {
     public static class PersonDtoConverter
     {
+        //Convert to PersonDto for BirthdayComponent (convert from database, getdata) /\
+        public static PersonDto ConvertToDto_Birthday(Person model)
+        {
+            PersonDto personDto = new PersonDto()
+            {
+                Id = model.Id,
+                FullName = model.FullName,
+                DateOfBirth =  model.DateOfBirth,
+            };
+            return personDto;
+        }
+
+        //Convert to PersonDto for AnniversaryyComponent (convert from database, getdata) /\
+        public static PersonDto ConvertToDto_Anniversary(Person model)
+        {
+            PersonDto personDto = new PersonDto()
+            {
+                Id = model.Id,
+                FullName = model.FullName,
+                HiringDate = model.HiringDate,
+            };
+            return personDto;
+        }
+
         //Convert to PersonDto (convert from database, getdata) /\
         public static PersonDto ConvertToDto(Person model)
         {
@@ -12,7 +36,7 @@ namespace GreetMe_API.ModelConverter
             {
                 Id = model.Id,
                 FullName = model.FullName,
-                DateOfBirth =  model.DateOfBirth,
+                DateOfBirth = model.DateOfBirth,
                 HiringDate = model.HiringDate,
                 Email = model.Email
             };

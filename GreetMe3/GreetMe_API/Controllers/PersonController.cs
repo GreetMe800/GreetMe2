@@ -22,7 +22,7 @@ namespace GreetMe_API.Controllers
         /* GetAll                                                                    */
         //-----------------------------------------------------------------------------
 
-        //GetAll Async
+        //GetAll
         //TODO ROute
         [HttpGet, Route("GetAll")]
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAll()
@@ -43,15 +43,75 @@ namespace GreetMe_API.Controllers
             return Ok(personDtoList);
         }
 
-        //GetAll Birthdays Async
-        [HttpGet, Route("GetallBirthdays")]
-        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllBirthdays()
+        //GetAll Birthdays Today
+        [HttpGet, Route("GetallBirthdaysToday")]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllBirthdaysToday()
         {
 
-            IEnumerable<Person> personList = await _personRepository.GetAllByBirthday();
+            IEnumerable<Person> personList = await _personRepository.GetAllBirthdaysToday();
             foreach (Person person in personList)
             {
-                PersonDtoConverter.ConvertToDto(person);
+                PersonDtoConverter.ConvertToDto_Birthday(person);
+            }
+            IList<Person> personDtoList = personList.ToList();
+
+            if (personDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDtoList);
+        }
+
+        //GetAll Anniversarys Today
+        [HttpGet, Route("GetallAnniversarysToday")]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllAnniversarysToday()
+        {
+
+            IEnumerable<Person> personList = await _personRepository.GetAllAnniversarysToday();
+            foreach (Person person in personList)
+            {
+                PersonDtoConverter.ConvertToDto_Anniversary(person);
+            }
+            IList<Person> personDtoList = personList.ToList();
+
+            if (personDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDtoList);
+        }
+
+        //GetAll Birthdays
+        [HttpGet, Route("GetallBirthdays")]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllBirthdays(DateOnly date)
+        {
+
+            IEnumerable<Person> personList = await _personRepository.GetAllBirthdays(date);
+            foreach (Person person in personList)
+            {
+                PersonDtoConverter.ConvertToDto_Birthday(person);
+            }
+            IList<Person> personDtoList = personList.ToList();
+
+            if (personDtoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDtoList);
+        }
+
+        //GetAll Anniverserys
+        [HttpGet, Route("GetallAnniversary")]
+        public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllAnniversarys(DateOnly date)
+        {
+
+            IEnumerable<Person> personList = await _personRepository.GetAllAnniversarys(date);
+            foreach (Person person in personList)
+            {
+                PersonDtoConverter.ConvertToDto_Anniversary(person);
             }
             IList<Person> personDtoList = personList.ToList();
 

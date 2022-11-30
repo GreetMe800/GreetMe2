@@ -25,22 +25,22 @@
             Email = email;
         }
 
-        public PersonDto(string fullName, DateTime dateOfBirth, DateTime hiringDate, string email)
+        public PersonDto(string fullName, DateTime dateOfBirth, DateTime hiringDate)
         {
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
             HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
 
             FullName = fullName;
             DateOfBirth = dateOfBirth;
-            HiringDate = hiringDate;
-            Email = email;
         }
-        public PersonDto(string fullName, DateTime dateOfBirth)
+
+        public PersonDto(int id, string fullName, DateTime hiringDate)
         {
             DateOfBirth = new DateTime(DateOfBirth.Year, DateOfBirth.Month, DateOfBirth.Day);
+            HiringDate = new DateTime(HiringDate.Year, HiringDate.Month, HiringDate.Day);
 
             FullName = fullName;
-            DateOfBirth = dateOfBirth;
+            HiringDate = hiringDate;
         }
     }
 }
