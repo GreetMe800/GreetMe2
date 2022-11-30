@@ -1,7 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model GreetMe_MVC.Models.PersonViewModel
+
 @{
+    ViewData["Title"] = "Create";
 }
 
-<h1>Create Person</h1>
+<h1>Create View</h1>
+
+<h4>PersonViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-group-label">Full Name</label>
+                <input class="form-check-input" asp-for="DateOfBirth" /> @Html.DisplayNameFor(model => model.DateOfBirth)
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HiringDate" /> @Html.DisplayNameFor(model => model.HiringDate)
+                </label>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Email" /> @Html.DisplayNameFor(model => model.Email)
+                </label>
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+
+        @*Imported script to validate atleast one checkbox must be checked*@
+        @*make sure form id="sectionForm"*@
+        @*<script src="~/js/CheckboxValidator.js"></script>*@
+    </div>
+</div>
+
+<div class="mb-3">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -7,7 +7,7 @@
 
 <h1>Edit View</h1>
 
-<h4>ViewViewModel @Model.ViewName</h4>
+<h4>Edit @Model.ViewName</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,7 +16,6 @@
             @Html.HiddenFor(model => model.Id)
             <div class="form-group mb-3">
                 <label asp-for="ViewName" class="control-label"></label>
-                <input asp-for="ViewName" class="form-control" />
                 <input value="@Model.ViewName" class="form-control" />
                 <span asp-validation-for="ViewName" class="text-danger"></span>
             </div>
