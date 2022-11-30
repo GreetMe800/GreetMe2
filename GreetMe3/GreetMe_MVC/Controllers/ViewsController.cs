@@ -99,24 +99,22 @@ namespace GreetMe_MVC.Controllers
                 var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
                 if (readTask.Result.HasBirthday)
                 {
-                    //Skal erstattes med et kald til Databasen
-                    List<PersonViewModel> birthdayList = new List<PersonViewModel>();
-                    birthdayList.Add(new PersonViewModel() { FullName = "Thomas", DateOfBirth = DateTime.Now, Id = 1 });
-                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    IEnumerable<BirthdayViewModel> birthdayList = null;
+                    var getTask = await client.GetAsync("person" + "/getallbirthdaystoday");
+                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
+                    birthdayList = birthdayPeopleModelList;
                     result.AddRange<IDisplayItem>(birthdayList);
                 }
 
                 if (readTask.Result.HasAnniversary)
                 {
-                    //Skal erstattes med et kald til Databasen
-                    List<PersonViewModel> anniversaryList = new List<PersonViewModel>();
-                    anniversaryList.Add(new PersonViewModel() { FullName = "Peter", HiringDate = DateTime.Now, Id = 1 });
-                    //Her starter korrekt kode, ovenstående er testkode for at fremvise funktionalitet.
+                    IEnumerable<AnniversaryViewModel> anniversaryList = null;
+                    var getTask = await client.GetAsync("person" + "/getallanniversarystoday");
+                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<AnniversaryViewModel>>();
+                    anniversaryList = birthdayPeopleModelList;
                     result.AddRange<IDisplayItem>(anniversaryList);
                 }
-
             }
-
             return View(result);
         }
 
