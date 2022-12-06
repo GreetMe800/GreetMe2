@@ -30,10 +30,18 @@ function BindViewsToGrid(viewList) {
     var tr;
     $.each(viewList, function (index, view) {
         tr = $('<tr/>');
-        tr.append(`<td>${(index + 1)}</td>`)
+        tr.append(`<th scope="row">${(index + 1)}</th>`)
         tr.append(`<td>${(view.viewName)}</td>`)
         tr.append(`<td>${(view.hasBirthday)}</td>`)
-        tr.append(`<td>${(view.hasAnniversary + 1)}</td>`)
+        tr.append(`<td>${(view.hasAnniversary)}</td>`)
+
+        //tr.append('<td><a href="/ControllerName/ActionName/"' + val.empID + '"></a></td>');
+        tr.append('<td><a href="/Views/Display/"' + view.id + '">Display</a> | <a href="/Views/Details/"' + view.id + '">Details</a> | <a href="/Views/Edit/"' + view.id + '">Edit</a> | <a href="/Views/Delete/"' + view.id + '">Delete</a></td>');
+
         $('#tableViews').append(tr);
     });
 }
+
+//@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+//@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+//@Html.ActionLink("Delete", "Delete", new { id=item.Id })
