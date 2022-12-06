@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<GreetMe_MVC.Models.ViewViewModel>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,45 +6,19 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table class="table" id="tableViews">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ViewName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HasBirthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HasAnniversary)
-        </th>
+        <th scope="col">View Name</th>
+        <th scope="col">Has Birthday</th>
+        <th scope="col">Has Anniversary</th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViewName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasBirthday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasAnniversary)
-            </td>
-            <td>
-                @Html.ActionLink("Display", "Display", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-    <td>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    </td>
-
+    <tbody></tbody>
 </table>
+
+@section Scripts{
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/viewlist.js"></script>
+}
