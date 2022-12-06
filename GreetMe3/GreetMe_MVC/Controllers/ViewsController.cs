@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Security;
 using System.Text;
+using NuGet.Packaging;
 
 namespace GreetMe_MVC.Controllers
 {
@@ -82,6 +83,42 @@ namespace GreetMe_MVC.Controllers
 
             return View(view);
         }
+
+        /* Get */
+        //Route: ./Views/Display/{id}
+        public async Task<ActionResult> Display(int id)
+        {
+            IList<IDisplayItem> result = new List<IDisplayItem>();
+
+            //Establish Connection
+            var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
+
+            //HTTP GET
+            var responseTask = await client.GetAsync("view/" + id.ToString());
+            if (responseTask.IsSuccessStatusCode)
+            {
+                var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
+                if (readTask.Result.HasBirthday)
+                {
+                    IEnumerable<BirthdayViewModel> birthdayList = null;
+                    var getTask = await client.GetAsync("person" + "/getallbirthdaystoday");
+                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
+                    birthdayList = birthdayPeopleModelList;
+                    result.AddRange<IDisplayItem>(birthdayList);
+                }
+
+                if (readTask.Result.HasAnniversary)
+                {
+                    IEnumerable<AnniversaryViewModel> anniversaryList = null;
+                    var getTask = await client.GetAsync("person" + "/getallanniversarystoday");
+                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<AnniversaryViewModel>>();
+                    anniversaryList = birthdayPeopleModelList;
+                    result.AddRange<IDisplayItem>(anniversaryList);
+                }
+            }
+            return View(result);
+        }
+
 
         //-----------------------------------------------------------------------------
         /* Create Page & Create                                                      */
