@@ -100,8 +100,8 @@ namespace GreetMe_MVC.Controllers
                 if (readTask.Result.HasBirthday)
                 {
                     IEnumerable<BirthdayViewModel> birthdayList = null;
-                    var getTask = await client.GetAsync("person" + "/getallbirthdaystoday");
-                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
+                    var getbirthdayTask = await client.GetAsync("person" + "/GetallBirthdaysToday");
+                    var birthdayPeopleModelList = await getbirthdayTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
                     birthdayList = birthdayPeopleModelList;
                     result.AddRange<IDisplayItem>(birthdayList);
                 }
@@ -109,9 +109,9 @@ namespace GreetMe_MVC.Controllers
                 if (readTask.Result.HasAnniversary)
                 {
                     IEnumerable<AnniversaryViewModel> anniversaryList = null;
-                    var getTask = await client.GetAsync("person" + "/getallanniversarystoday");
-                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<AnniversaryViewModel>>();
-                    anniversaryList = birthdayPeopleModelList;
+                    var getanniversaryTask = await client.GetAsync("person" + "/GetallAnniversarysToday");
+                    var anniversaryPeopleModelList = await getanniversaryTask.Content.ReadAsAsync<IList<AnniversaryViewModel>>();
+                    anniversaryList = anniversaryPeopleModelList;
                     result.AddRange<IDisplayItem>(anniversaryList);
                 }
             }
