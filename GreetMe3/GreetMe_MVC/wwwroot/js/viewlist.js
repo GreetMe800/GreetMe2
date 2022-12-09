@@ -35,8 +35,8 @@ function BindViewsToGrid(viewList) {
         tr.append(`<td>${(view.hasBirthday)}</td>`)
         tr.append(`<td>${(view.hasAnniversary)}</td>`)
 
-        //tr.append('<td><a href="/ControllerName/ActionName/"' + val.empID + '"></a></td>');
-        tr.append('<td><a href="/Views/Display/"' + view.id + '">Display</a> | <a href="/Views/Details/"' + view.id + '">Details</a> | <a href="/Views/Edit/"' + view.id + '">Edit</a> | <a href="/Views/Delete/"' + view.id + '">Delete</a></td>');
+        //tr.append(`<td>| <a href="/Controllername/ActionName/${object.id}">Display</a></td>`);
+        tr.append(`<td><a href="/Views/Display/${view.id}">Display</a> | <a href="/Views/Details/${view.id}">Details</a> | <a href="/Views/Edit/${view.id}">Edit</a> | <a href="/Views/Delete/${view.id}">Delete</a></td>`);
 
         $('#tableViews').append(tr);
     });
