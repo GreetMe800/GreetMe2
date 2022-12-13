@@ -18,8 +18,15 @@ document.addEventListener('mousemove', (event) => {
     clearTimeout(window.timeout);
     window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)
     *@
-
-@foreach (var item in Model)
+@if (Model.Any())
 {
-    <p> Tillykke til @item.DisplayText, med de @item.SubText år.</p>
+    foreach (var item in Model)
+    {
+        <p> Tillykke til @item.DisplayText, med de @item.SubText år.</p>
+    }
 }
+else
+{
+    <p>No birthdays today!</p>
+}
+

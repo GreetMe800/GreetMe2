@@ -10,6 +10,7 @@ namespace GreetMe_MVC.Models
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         public string DisplayText { get => FullName; set => throw new NotImplementedException(); }
-        public string SubText { get => DateOfBirth.ToString(); set => throw new NotImplementedException(); }
+        public string SubText { get =>  DateOfBirth.ToString("dd/MM/yyyy"); set => throw new NotImplementedException(); }
+
     }
 }
