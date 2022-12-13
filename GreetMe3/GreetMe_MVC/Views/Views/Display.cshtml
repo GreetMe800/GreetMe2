@@ -5,11 +5,21 @@
 @{
 
 }
+<script>
+    const interval = setInterval(() => {
+        window.location.reload();
+    }, 5000);
+</script>
+
+
+@*window.timeout = 0;
+document.addEventListener('mousemove', (event) => {
+    console.log('MOVING');
+    clearTimeout(window.timeout);
+    window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)
+    *@
 
 @foreach (var item in Model)
 {
-    //int todaysdate = int.Parse(DateTime.Today.ToString("yyyyMMdd"));
-    //int bdayperson = int.Parse(@item.SubText);
-    //int age = (todaysdate - bdayperson) / 10000;
     <p> Tillykke til @item.DisplayText, med de @item.SubText år.</p>
 }
