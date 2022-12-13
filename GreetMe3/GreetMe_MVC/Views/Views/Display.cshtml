@@ -16,8 +16,13 @@
 document.addEventListener('mousemove', (event) => {
     console.log('MOVING');
     clearTimeout(window.timeout);
+<<<<<<< HEAD
     window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)*@
 
+=======
+    window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)
+    *@
+>>>>>>> 380f0d5b5f6c46293bc335f63e5d81a05e60f0c7
 
 @foreach (var item in Model)
 {
