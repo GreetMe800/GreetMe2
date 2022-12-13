@@ -13,7 +13,7 @@ document.addEventListener('mousemove', (event) => {
     clearTimeout(window.timeout);
     window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)
     *@
-@if (Model.birthdayViewModels.Any())
+@if (Model != null && Model.birthdayViewModels != null)
 {
     foreach (var item in Model.birthdayViewModels)
     {
@@ -24,7 +24,7 @@ document.addEventListener('mousemove', (event) => {
     }
 }
 
-@if (Model.anniversaryViewModels.Any())
+@if (Model != null && Model.anniversaryViewModels != null)
 {
     foreach (var item in Model.anniversaryViewModels)
     {
@@ -34,4 +34,3 @@ document.addEventListener('mousemove', (event) => {
         </p>
     }
 }
-
