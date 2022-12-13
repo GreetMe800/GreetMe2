@@ -17,7 +17,10 @@ document.addEventListener('mousemove', (event) => {
 {
     foreach (var item in Model.birthdayViewModels)
     {
-        <p> Tillykke til @item.FullName, med de @DateTime.Now.Date.Subtract(item.DateOfBirth); år!</p>
+        <p> Tillykke til @item.FullName, med de 
+        @{var age = DateTime.Today.Year - item.DateOfBirth.Year;}
+        @age år!
+        </p>
     }
 }
 
@@ -25,7 +28,10 @@ document.addEventListener('mousemove', (event) => {
 {
     foreach (var item in Model.anniversaryViewModels)
     {
-        <p> Tillykke til @item.FullName, med de @DateTime.Now.Date.Subtract(item.HiringDate) års jubileaum. </p>
+        <p> Tillykke til @item.FullName, med de
+            @{var age = DateTime.Today.Year - item.HiringDate.Year;}
+            års jubileaum.
+        </p>
     }
 }
 
