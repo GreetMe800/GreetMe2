@@ -58,7 +58,6 @@ namespace GreetMe_MVC.Controllers
 
             //Return
             return View(ViewList);
-            //return View();
         }
 
         //-----------------------------------------------------------------------------
