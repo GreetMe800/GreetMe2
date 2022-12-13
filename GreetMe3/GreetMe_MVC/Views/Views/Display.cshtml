@@ -1,10 +1,5 @@
-﻿@model IList<GreetMe_MVC.Models.IDisplayItem>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model GreetMe_MVC.Models.ComponentsViewModel
 
-}
 <script>
     const interval = setInterval(() => {
         window.location.reload();
@@ -18,15 +13,19 @@ document.addEventListener('mousemove', (event) => {
     clearTimeout(window.timeout);
     window.timeout = setTimeout(() => {console.log('TIMER DONE')}, 1000)
     *@
-@if (Model.Any())
+@if (Model.birthdayViewModels.Any())
 {
-    foreach (var item in Model)
+    foreach (var item in Model.birthdayViewModels)
     {
-        <p> Tillykke til @item.DisplayText, med de @item.SubText år.</p>
+        <p> Tillykke til @item.FullName, med de @DateTime.Now.Date.Subtract(item.DateOfBirth); år!</p>
     }
 }
-else
+
+@if (Model.anniversaryViewModels.Any())
 {
-    <p>No birthdays today!</p>
+    foreach (var item in Model.anniversaryViewModels)
+    {
+        <p> Tillykke til @item.FullName, med de @DateTime.Now.Date.Subtract(item.HiringDate) års jubileaum. </p>
+    }
 }
 

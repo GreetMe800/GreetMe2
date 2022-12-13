@@ -88,7 +88,9 @@ namespace GreetMe_MVC.Controllers
         //Route: ./Views/Display/{id}
         public async Task<ActionResult> Display(int id)
         {
-            IList<IDisplayItem> result = new List<IDisplayItem>();
+            ComponentsViewModel componentsViewModel = new ComponentsViewModel();
+            List<BirthdayViewModel> birthdayList = new List<BirthdayViewModel>();
+            List<AnniversaryViewModel> anniversaryList = new List<AnniversaryViewModel>();
 
             //Establish Connection
             var client = ApiHelper.InitializeClient("http://localhost:5184/api/");
@@ -100,23 +102,21 @@ namespace GreetMe_MVC.Controllers
                 var readTask = responseTask.Content.ReadAsAsync<ViewViewModel>();
                 if (readTask.Result.HasBirthday)
                 {
-                    IEnumerable<BirthdayViewModel> birthdayList = null;
                     var getTask = await client.GetAsync("person" + "/getallbirthdaystoday");
-                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<BirthdayViewModel>>();
+                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<List<BirthdayViewModel>>();
                     birthdayList = birthdayPeopleModelList;
-                    result.AddRange<IDisplayItem>(birthdayList);
+                    componentsViewModel.birthdayViewModels = birthdayList;
                 }
 
                 if (readTask.Result.HasAnniversary)
                 {
-                    IEnumerable<AnniversaryViewModel> anniversaryList = null;
                     var getTask = await client.GetAsync("person" + "/getallanniversarystoday");
-                    var birthdayPeopleModelList = await getTask.Content.ReadAsAsync<IList<AnniversaryViewModel>>();
-                    anniversaryList = birthdayPeopleModelList;
-                    result.AddRange<IDisplayItem>(anniversaryList);
+                    var anniversaryPeopleModelList = await getTask.Content.ReadAsAsync<List<AnniversaryViewModel>>();
+                    anniversaryList = anniversaryPeopleModelList;
+                    componentsViewModel.anniversaryViewModels = anniversaryList;
                 }
             }
-            return View(result);
+            return View(componentsViewModel);
         }
 
 
