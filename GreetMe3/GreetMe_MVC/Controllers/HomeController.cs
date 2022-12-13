@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace GreetMe_MVC.Controllers
 {
-    //Example Coe
+    //Example Core
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
