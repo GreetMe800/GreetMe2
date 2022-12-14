@@ -29,9 +29,9 @@ document.addEventListener('mousemove', (event) => {
 
 @if (Model != null && Model.anniversaryViewModels != null)
 {
+    <h2>Jubilærrumer idag</h2>
     foreach (var item in Model.anniversaryViewModels)
     {
-        <h2>Jubilærrumer idag</h2>
         <p> Tillykke til @item.FullName, med de
             @{var yearsEmployed = DateTime.Today.Year - item.HiringDate.Year;}
             @yearsEmployed års jubileaum.

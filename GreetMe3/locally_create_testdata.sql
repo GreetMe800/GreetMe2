@@ -20,14 +20,14 @@ insert into people (full_name, date_of_birth, hiring_date, email) values ('Fedor
 insert into people (full_name, date_of_birth, hiring_date, email) values ('Milt Fawdrie', '11/4/1999', '11/2/1997', 'mfawdrie4@fema.gov');
 insert into people (full_name, date_of_birth, hiring_date, email) values ('Fidel Ruit', '11/4/1985', '11/2/2002', 'fruit5@google.com.hk');
 
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Lars Christiansen',  '12/14/1996', '12/15/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Michal Jensen',  '12/14/1996', '12/15/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Torben Christiansen',  '12/14/1996', '12/15/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Lisa Larsen',  '12/14/1996', '12/15/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('henrik Boier',  '12/15/1996', '12/14/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Ib Christiansen',  '12/15/1996', '12/14/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Dennis Fuglsang',  '12/15/1996', '12/14/1996', '2128@google.de');
-insert into people (full_name, date_of_birth, hiring_date, email) values ('Tina Jensen',  '12/15/1996', '12/14/1996', '2128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Lars Christiansen',  '12/14/1996', '12/15/1996', '112128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Michal Jensen',  '12/14/1996', '12/15/1996', '212128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Torben Christiansen',  '12/14/1996', '12/15/1996', '132128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Lisa Larsen',  '12/14/1996', '12/15/1996', '142128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('henrik Boier',  '12/15/1996', '12/14/1996', '1512128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Ib Christiansen',  '12/15/1996', '12/14/1996', '162128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Dennis Fuglsang',  '12/15/1996', '12/14/1996', '172128@google.de');
+insert into people (full_name, date_of_birth, hiring_date, email) values ('Tina Jensen',  '12/15/1996', '12/14/1996', '182128@google.de');
 GO
 
 --menus
