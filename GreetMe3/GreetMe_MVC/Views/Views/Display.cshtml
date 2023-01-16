@@ -15,7 +15,7 @@ document.addEventListener('mousemove', (event) => {
     *@
 @if (Model != null && Model.birthdayViewModels != null)
 {
-    <h2>Føselsdage i Dag:</h2>
+    <h2>Fødselsdage idag:</h2>
     foreach (var item in Model.birthdayViewModels)
     {
         <p> Tillykke til @item.FullName, med de 
@@ -29,7 +29,7 @@ document.addEventListener('mousemove', (event) => {
 
 @if (Model != null && Model.anniversaryViewModels != null)
 {
-    <h2>Jubilærrumer idag</h2>
+    <h2>Jubilæumer idag</h2>
     foreach (var item in Model.anniversaryViewModels)
     {
         <p> Tillykke til @item.FullName, med de
